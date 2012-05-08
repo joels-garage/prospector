@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- ModelEntity is the base class for all rows, i.e. things with id's,
+	which all share the same CRUD and the same base table. -->
+<!-- TODO: split this into a few different base types. -->
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<union-subclass name="Log" extends="ModelEntity">
+		<component name="entity">
+			<property name="type" column="entityType" />
+			<property name="key" column="entityKey" length="12" />
+		</component>
+		<component name="writeEvent">
+			<property name="type" column="writeEventType" />
+			<property name="key" column="writeEventKey" length="12" />
+		</component>
+	</union-subclass>
+</hibernate-mapping>

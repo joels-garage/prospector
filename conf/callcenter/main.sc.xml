@@ -1,0 +1,389 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version=" 1.0" initialstate="normal_operation">
+	<datamodel>
+		<data name="UserInput">
+			<cc:event></cc:event>
+			<cc:utterance></cc:utterance>
+		</data>
+		<data name="speak0">
+			<cc:messageId></cc:messageId>
+		</data>
+		<data name="speak1">
+			<cc:messageId></cc:messageId>
+			<cc:verbatim1></cc:verbatim1>
+		</data>
+		<data name="speak2">
+			<cc:messageId></cc:messageId>
+			<cc:verbatim1></cc:verbatim1>
+			<cc:verbatim2></cc:verbatim2>
+		</data>
+		<data name="speakUrl">
+			<cc:messageId></cc:messageId>
+			<!-- The prefix part -->
+			<cc:baseUrl></cc:baseUrl>
+			<!-- append this -->
+			<cc:keyString></cc:keyString>
+		</data>
+		<data name="speakUrlFromKey">
+			<cc:messageId></cc:messageId>
+			<!-- The prefix part -->
+			<cc:baseUrl></cc:baseUrl>
+			<!-- will contain the entire XML key -->
+			<cc:key>
+				<!-- This exists here because we copy the *children* out of, say, ModelEntity.key and we need a way to denote the type -->
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key>
+		</data>
+		<data name="speakNameLookup">
+			<cc:messageId></cc:messageId>
+			<cc:keyString></cc:keyString>
+		</data>
+		<data name="speakNameAndVerbatim">
+			<cc:messageId></cc:messageId>
+			<cc:keyString></cc:keyString>
+			<cc:verbatim1></cc:verbatim1>
+		</data>
+		<data name="speakNameKey">
+			<cc:messageId></cc:messageId>
+			<cc:key>
+				<!-- This exists here because we copy the *children* out of, say, ModelEntity.key and we need a way to denote the type -->
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key>
+		</data>
+		<data name="speakThreeKeys">
+			<cc:messageId></cc:messageId>
+			<cc:key0>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key0>
+			<cc:key1>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key1>
+			<cc:key2>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key2>
+		</data>
+		<data name="speakNameKeyAndVerbatim">
+			<cc:messageId></cc:messageId>
+			<cc:key>
+				<!-- This exists here because we copy the *children* out of, say, ModelEntity.key and we need a way to denote the type -->
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key>
+			<cc:verbatim1></cc:verbatim1>
+		</data>
+		<!-- Tells the error handler whether unrecognized input is an error.  If "open", we're expecting
+			free text input, and should not trigger the error handlers.  If "closed" then any inappropriate
+			input is an "error" and should result in some followup help. -->
+		<data name="ExpectedInput">
+			<cc:value>closed</cc:value>
+		</data>
+		<!-- The output of the yesorno substate -->
+		<data name="yesorno">
+			<cc:outcome></cc:outcome>
+		</data>
+		<data name="logEndScene">
+			<cc:output></cc:output>
+		</data>
+
+		<!-- DATA MODEL -->
+		<!-- This is used for create operations.  We populate an entity, then copy it to the "create" data node. -->
+		<data name="IndividualUtility">
+			<cc:entity>
+				<p:IndividualUtility>
+					<p:stakeholderKey></p:stakeholderKey>
+					<p:individualKey></p:individualKey>
+					<p:value></p:value>
+				</p:IndividualUtility>
+			</cc:entity>
+		</data>
+		<data name="IndividualPropertyUtility">
+			<cc:entity>
+				<p:IndividualPropertyUtility>
+					<p:stakeholderKey></p:stakeholderKey>
+					<p:propertyKey></p:propertyKey>
+					<p:individualKey></p:individualKey>
+					<p:value></p:value>
+				</p:IndividualPropertyUtility>
+			</cc:entity>
+		</data>
+		<data name="IndividualProperty">
+			<cc:entity>
+				<p:IndividualProperty>
+					<p:name />
+					<p:domainClassKey />
+					<p:rangeClassKey />
+				</p:IndividualProperty>
+			</cc:entity>
+		</data>
+		<data name="Class">
+			<cc:entity>
+				<p:Class>
+					<p:name />
+					<p:description />
+				</p:Class>
+			</cc:entity>
+		</data>
+		<data name="Individual">
+			<cc:entity>
+				<p:Individual>
+					<p:name />
+				</p:Individual>
+			</cc:entity>
+		</data>
+		<data name="ClassMember">
+			<cc:entity>
+				<p:ClassMember>
+					<p:individualKey />
+					<p:classKey />
+				</p:ClassMember>
+			</cc:entity>
+		</data>
+		<data name="Decision">
+			<cc:entity>
+				<p:Decision>
+					<p:name />
+					<p:classKey />
+				</p:Decision>
+			</cc:entity>
+		</data>
+		<data name="Stakeholder">
+			<cc:entity>
+				<p:Stakeholder>
+					<p:decisionKey />
+					<p:userKey />
+				</p:Stakeholder>
+			</cc:entity>
+		</data>
+		<data name="User">
+			<cc:entity>
+				<p:User>
+					<p:name />
+					<p:emailAddress />
+				</p:User>
+			</cc:entity>
+		</data>
+		<data name="ExternalKey">
+			<cc:entity>
+				<p:ExternalKey />
+			</cc:entity>
+		</data>
+		<data name="Comment">
+			<cc:entity>
+				<p:Comment>
+					<p:text />
+					<p:referentKey />
+				</p:Comment>
+			</cc:entity>
+		</data>
+
+		<!-- CREATE -->
+		<data name="createModelEntity">
+			<cc:entity>
+				<!-- copy something from the data model here, then call the method -->
+			</cc:entity>
+		</data>
+
+		<!-- FETCH by key; returns in _eventdata/cc:entity -->
+		<data name="fetchModelEntity">
+			<cc:key>
+				<p:ExternalKey />
+			</cc:key>
+			<cc:keyString />
+		</data>
+
+		<!-- fetch by nonprimary field -->
+		<data name="fetchModelEntityByField">
+			<cc:payload>
+				<!-- text node with the dowser typename -->
+				<cc:type />
+				<!-- a text node with the name of the field to constrain -->
+				<cc:fieldName />
+				<!-- either text or p:ExternalKey -->
+				<cc:value />
+			</cc:payload>
+		</data>
+
+		<!-- fetch by nonprimary fields -->
+		<data name="fetchModelEntityByTwoFields">
+			<cc:payload>
+				<!-- text node with the dowser typename -->
+				<cc:type />
+				<cc:term>
+					<cc:fieldName />
+					<cc:value />
+				</cc:term>
+				<cc:term>
+					<cc:fieldName />
+					<cc:value />
+				</cc:term>
+			</cc:payload>
+		</data>
+
+		<!-- RECOGNIZER -->
+		<!-- set the preference filter (ignoring class-mismatched individuals) for the next recognition -->
+		<data name="setRecognizerPreferenceFilter">
+			<cc:classKey>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:classKey>
+		</data>
+		<!-- set the property filter (ignoring domain-class-mismatched properties) for the next recognition -->
+		<data name="setRecognizerPropertyFilter">
+			<cc:classKey>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:classKey>
+		</data>
+
+		<data name="echo">
+			<cc:payload></cc:payload>
+		</data>
+	</datamodel>
+
+
+	<!-- the scene has populated logEndScene, so this just logs it and then returns to the scene chooser via the history.
+		TODO: replace the history with a simple transition? -->
+	<state id="scene_done">
+		<onentry>
+			<!-- record the end state of whatever scene just competed -->
+			<send targettype="'x-java'" namelist="logEndScene" />
+		</onentry>
+		<transition event="logEndSceneDone" target="scene_chooser" />
+		<onexit>
+			<!-- clear the end state -->
+			<assign location="Data(logEndScene, 'cc:output')" expr="''" />
+		</onexit>
+	</state>
+
+	<!-- SCENES -->
+
+	<state id="ask_scene_choice" src="scenes/ask_scene_choice.sc.xml">
+		<transition event="ask_scene_choice.done" target="scene_done" />
+	</state>
+	<state id="get_decision" src="scenes/get_decision.sc.xml">
+		<transition event="get_decision.done" target="scene_done" />
+	</state>
+	<state id="get_decision_lite" src="scenes/get_decision_lite.sc.xml">
+		<transition event="get_decision_lite.done" target="scene_done" />
+	</state>
+	<state id="get_individual_preference" src="scenes/get_individual_preference.sc.xml">
+		<transition event="get_individual_preference.done" target="scene_done" />
+	</state>
+	<state id="get_individual_property_preference" src="scenes/get_individual_property_preference.sc.xml">
+		<transition event="get_individual_property_preference.done" target="scene_done" />
+	</state>
+	<state id="get_stakeholder" src="scenes/get_stakeholder.sc.xml">
+		<transition event="get_stakeholder.done" target="scene_done" />
+	</state>
+	<state id="intro" src="scenes/intro.sc.xml">
+		<transition event="intro.done" target="scene_done" />
+	</state>
+	<state id="joke" src="scenes/joke.sc.xml">
+		<transition event="joke.done" target="scene_done" />
+	</state>
+	<state id="rate_individual_property" src="scenes/rate_individual_property.sc.xml">
+		<transition event="rate_individual_property.done" target="scene_done" />
+	</state>
+
+	<state id="rate_individual" src="scenes/rate_individual.sc.xml">
+		<transition event="rate_individual.done" target="scene_done" />
+	</state>
+	<state id="show_alternatives" src="scenes/show_alternatives.sc.xml">
+		<transition event="show_alternatives.done" target="scene_done" />
+	</state>
+	<state id="show_url" src="scenes/show_url.sc.xml">
+		<transition event="show_url.done" target="scene_done" />
+	</state>
+	<state id="stakeholder_news" src="scenes/stakeholder_news.sc.xml">
+		<transition event="stakeholder_news.done" target="scene_done" />
+	</state>
+	<state id="verify_decision" src="scenes/verify_decision.sc.xml">
+		<transition event="verify_decision.done" target="scene_done" />
+	</state>
+
+	<!-- NOT SCENES -->
+
+	<state id="watch" src="watch.sc.xml">
+		<transition event="watch.done" target="scene_done" />
+	</state>
+	<state id="assistant" src="assistant.sc.xml">
+		<transition event="assistant.done" target="scene_done" />
+	</state>
+	<state id="sandbox" src="sandbox.sc.xml">
+		<transition event="sandbox.done" target="scene_done" />
+	</state>
+
+	<!-- TODO: remove this -->
+	<state id="answer">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'answer'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition event="user_input" target="scene_chooser" />
+	</state>
+
+	<state id="originate">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'originate'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition event="user_input" target="scene_chooser" />
+	</state>
+
+	<!-- initial state waits for an event to play a scene -->
+	<state id="normal_operation">
+		<initial>
+			<transition target="normal_operation_history" />
+		</initial>
+		<history type="deep" id="normal_operation_history">
+			<transition target="choose_scene" />
+		</history>
+
+		<!-- Ask the Java class what to do next. -->
+		<state id="scene_chooser">
+			<onentry>
+				<send targettype="'x-java'" target="'chooseScene'" />
+			</onentry>
+			<transition target="choose_scene" />
+		</state>
+
+		<!-- wait for an event to decide what scene to play -->
+		<state id="choose_scene">
+			<!-- SCENES -->
+			<transition event="ask_scene_choice" target="ask_scene_choice" />
+			<transition event="get_decision" target="get_decision_start" />
+			<transition event="get_decision_lite" target="get_decision_lite_start" />
+
+			<transition event="get_individual_preference" target="get_individual_preference_start" />
+			<transition event="get_individual_property_preference" target="get_individual_property_preference_start" />
+			<transition event="get_stakeholder" target="get_stakeholder_start" />
+
+			<transition event="intro" target="intro_start" />
+			<transition event="rate_individual_property" target="rate_individual_property_start" />
+			<transition event="rate_individual" target="rate_individual_start" />
+			<transition event="show_alternatives" target="show_alternatives_start" />
+			<transition event="show_url" target="show_url_start" />
+			<transition event="stakeholder_news" target="stakeholder_news_start" />
+			<transition event="verify_decision" target="verify_decision_start" />
+
+			<!-- NOT SCENES -->
+			<transition event="answer" target="answer" />
+			<transition event="originate" target="originate" />
+
+			<transition event="assistant" target="assistant" />
+			<transition event="joke" target="tell_jokes_endlessly" />
+			<transition event="sandbox" target="sandbox" />
+			<transition event="watch" target="watch" />
+		</state>
+
+		<transition event="user_input"
+			cond="(Data(_eventdata, 'cc:UserInput/cc:event') == 'unrecognized_input') and (Data(ExpectedInput, 'cc:value') == 'closed')"
+			target="unrecognized_input_error_handler" />
+		<transition event="user_input"
+			cond="(Data(_eventdata, 'cc:UserInput/cc:event') == 'inappropriate_input') and (Data(ExpectedInput, 'cc:value') == 'closed')"
+			target="inappropriate_input_error_handler" />
+
+		<!-- User wants to start over. -->
+		<!--		<transition event="user_input" cond="Data(_eventdata, '/UserInput/event') == 'abort'" target="normal_operation" />-->
+	</state>
+
+	<state id="error_handler" src="error_handler.sc.xml" />
+
+</scxml>

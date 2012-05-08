@@ -1,0 +1,157 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="tell_jokes_endlessly">
+
+	<datamodel>
+		<data name="current_joke_index">
+			<cc:value>0</cc:value>
+		</data>
+		<data name="number_of_jokes_available">
+			<cc:value>0</cc:value>
+		</data>
+		<data name="number_of_jokes_told">
+			<!-- -1 = haven't started telling one. 0 = started telling the first one. N = finished telling N -->
+			<cc:value>0</cc:value>
+		</data>
+
+		<data name="joke_input">
+			<cc:input>
+				<cc:current_joke_index></cc:current_joke_index>
+			</cc:input>
+		</data>
+		<data name="joke_output">
+			<cc:output>
+				<cc:current_joke_index></cc:current_joke_index>
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<!-- container for exit transitions -->
+	<state id="tell_jokes_endlessly">
+		<initial>
+			<transition target="joke_start" />
+		</initial>
+		<!--  this means 'when tell_jokes_endlessly is done, go to joke_final_outer' -->
+		<transition event="tell_jokes_endlessly.done" target="joke_final_outer" />
+
+		<!-- copy the input data -->
+		<onentry>
+			<log label="foo" expr="'foo'" />
+
+			<log label="eventdata" expr="Data(_eventdata, 'cc:input')" />
+			<log label="foo" expr="'bar'" />
+
+			<assign location="Data(joke_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<log label="foo" expr="'baz'" />
+			<log label="joke_log_input" expr="Data(joke_input, 'cc:input')" />
+			<log label="foo" expr="'boo'" />
+			<log label="joke_log_input_a" expr="Data(joke_input, 'cc:input/cc:current_joke_index')" />
+			<log label="foo" expr="'far'" />
+
+		</onentry>
+
+
+
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'abort'" target="joke_final" />
+
+		<state id="joke_start">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'joke_start'" />
+				<send targettype="'x-java'" namelist="speak0" />
+				<assign location="Data(current_joke_index, 'cc:value')" expr="Data(joke_input, 'cc:input/cc:current_joke_index')" />
+				<!-- TODO: remove this dependency, use a "joke manager" or something -->
+				<assign location="Data(number_of_jokes_available, 'cc:value')" expr="4" />
+				<assign location="Data(number_of_jokes_told, 'cc:value')" expr="-1" />
+			</onentry>
+			<transition target="joke_start_reply" />
+		</state>
+
+		<state id="joke_start_reply">
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="say_knock_knock">
+				<assign location="Data(number_of_jokes_told, 'cc:value')" expr="0" />
+			</transition>
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'" target="joke_final" />
+		</state>
+
+		<state id="say_knock_knock">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'say_knock_knock'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<transition target="await_whos_there" />
+		</state>
+
+		<state id="await_whos_there">
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'whos_there'" target="say_setup" />
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') != 'whos_there'" target="say_knock_knock">
+				<assign location="Data(speak0, 'cc:messageId')" expr="'help_whos_there'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</transition>
+		</state>
+
+		<state id="say_setup">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'setup' + Data(current_joke_index, 'cc:value')" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<transition target="await_setup_reply" />
+		</state>
+
+		<state id="await_setup_reply">
+			<!-- any input will do -->
+			<transition event="user_input" target="say_punchline" />
+		</state>
+
+		<state id="say_punchline">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'punchline' + Data(current_joke_index, 'cc:value')" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<transition target="more_jokes" />
+			<!-- after saying the punchline (i.e. having delivered the actual joke), increment the counters -->
+			<onexit>
+				<assign location="Data(number_of_jokes_told, 'cc:value')" expr="Data(number_of_jokes_told , 'cc:value') + 1" />
+				<assign location="Data(current_joke_index, 'cc:value')"
+					expr="(Data(current_joke_index , 'cc:value') + 1) mod Data(number_of_jokes_available, 'cc:value')" />
+			</onexit>
+		</state>
+
+		<state id="more_jokes">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'more_jokes'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<transition target="more_jokes_reply" />
+		</state>
+
+		<state id="more_jokes_reply">
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="say_knock_knock" />
+			<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'" target="joke_final" />
+		</state>
+
+		<!-- the closing comment is different for the three cases: no joke, some, one or more. -->
+		<final id="joke_final">
+			<onentry>
+				<if cond="Data(number_of_jokes_told, 'cc:value') lt 0">
+					<assign location="Data(speak0, 'cc:messageId')" expr="'joke_final_immediate'" />
+					<elseif cond="Data(number_of_jokes_told, 'cc:value') lt 1" />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'joke_final_part'" />
+					<else />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'joke_final_normal'" />
+				</if>
+				<send targettype="'x-java'" namelist="speak0" />
+				<!-- copy the state we want to keep into our output datamodel -->
+				<assign location="Data(joke_output, 'cc:output/cc:current_joke_index')" expr="Data(current_joke_index, 'cc:value')" />
+				<log label="joke_log_output_a" expr="Data(joke_output, 'cc:output/cc:current_joke_index')" />
+
+			</onentry>
+		</final>
+
+	</state>
+
+	<final id="joke_final_outer">
+		<onentry>
+			<!-- copy the output datamodel into the main output for collection -->
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(joke_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

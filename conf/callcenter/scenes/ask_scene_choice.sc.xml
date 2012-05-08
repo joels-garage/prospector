@@ -1,0 +1,88 @@
+<!--
+	
+	This is a scene whose outcome is a choice of scene.
+	
+-->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version=" 1.0"
+	initialstate="ask_scene_choice_ask">
+	<datamodel>
+		<!-- The choice the user makes -->
+		<data name="sceneChoice">
+			<cc:sceneName></cc:sceneName>
+		</data>
+		<data name="setScene">
+			<cc:sceneName></cc:sceneName>
+		</data>
+		<data name="ask_scene_choice_output">
+			<cc:output>
+				<!-- the name of the chosen scene, or null if nothing was chosen -->
+				<cc:sceneName></cc:sceneName>
+			</cc:output>
+		</data>
+	</datamodel>
+	<state id="ask_scene_choice_ask">
+		<!-- ask the user what they want to do -->
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'ask_scene_choice_ask'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- wait for the user to say something -->
+		<transition event="user_input" target="ask_scene_choice_evaluate">
+			<assign location="Data(sceneChoice, 'cc:sceneName')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+		</transition>
+	</state>
+	<state id="ask_scene_choice_evaluate">
+		<!-- is this a valid choice? -->
+		<onentry>
+			<send targettype="'x-java'" namelist="sceneChoice" />
+		</onentry>
+		<!-- it's a valid choice, so we're done -->
+		<transition event="ask_scene_choice_valid" target="ask_scene_choice_verify">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'ask_scene_choice_valid'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<!-- it's not a valid choice, so try again -->
+		<transition event="ask_scene_choice_invalid" target="ask_scene_choice_recover">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'ask_scene_choice_invalid'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+	<state id="ask_scene_choice_verify">
+		<onentry>
+			<!-- want to use this one? -->
+			<assign location="Data(speak1, 'cc:messageId')" expr="'ask_scene_choice_verify'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(sceneChoice, 'cc:sceneName')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<!-- confirmed, use this one -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="ask_scene_choice_final">
+			<assign location="Data(ask_scene_choice_output, 'cc:output/cc:sceneName')" expr="Data(sceneChoice, 'cc:sceneName')" />
+		</transition>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="ask_scene_choice_recover" />
+	</state>
+	<state id="ask_scene_choice_recover">
+		<onentry>
+			<!-- show help -->
+			<assign location="Data(speak0, 'cc:messageId')" expr="'ask_scene_choice_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+			<!-- try again? -->
+			<assign location="Data(speak0, 'cc:messageId')" expr="'ask_scene_choice_recover'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="ask_scene_choice_ask" />
+		<!-- abort! choose nothing. -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="ask_scene_choice_final">
+			<assign location="Data(ask_scene_choice_output, 'cc:output/cc:sceneName')" expr="''" />
+		</transition>
+	</state>
+	<!-- final state copies (ALL) the inner output data to the outer output.
+		this is how the outer output can have structure. -->
+	<final id="ask_scene_choice_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(ask_scene_choice_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- ModelEntity is the base class for all rows, i.e. things with id's,
+	which all share the same CRUD and the same base table. -->
+<!-- TODO: split this into a few different base types. -->
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<class name="ModelEntity" abstract="true">
+
+		<id name="id" length = "12" />
+		<property name="namespace" column="namespace" />
+
+
+		<!--		<component name="key" class="ExternalKey">-->
+		<!--			<property name="namespace" column="keyNamespace" type="text" length="2048" />-->
+		<!--			<property name="type" column="keyType" type="text" length="2048" />-->
+		<!--			<property name="key" column="keyKey" type="text" length="2048" />-->
+		<!--		</component>-->
+
+		<!--
+			<composite-id name="key" class="ExternalKey">
+			<key-property name="namespace" column="keyNamespace" type="text" length="2048" />
+			<key-property name="type" column="keyType" type="text" length="2048" />
+			<key-property name="key" column="keyKey" type="text" length="2048" />
+			</composite-id>
+		-->
+		<!--		<component name="creatorKey" node="creatorKey">-->
+		<!--			<property name="namespace" column="creatorNamespace" type="text" length="2048" />-->
+		<!--			<property name="type" column="creatorType" type="text" length="2048" />-->
+		<!--			<property name="key" column="creatorKey" type="text" length="2048" />-->
+		<!--		</component>-->
+		<!--		<property name="lastModified" />-->
+
+		<!--		<property name="name" type="text" length="2048" />-->
+
+	</class>
+</hibernate-mapping>

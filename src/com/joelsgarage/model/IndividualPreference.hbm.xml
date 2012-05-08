@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<union-subclass name="IndividualPreference" extends="Preference">
+
+		<component name="primaryIndividualKey">
+			<property name="type" column="primaryIndividualType" />
+			<property name="key" column="primaryIndividualKey" length="12" />
+		</component>
+		<component name="secondaryIndividualKey">
+			<property name="type" column="secondaryIndividualType" />
+			<property name="key" column="secondaryIndividualKey" length="12" />
+		</component>
+		<property name="value" />
+
+	</union-subclass>
+</hibernate-mapping>

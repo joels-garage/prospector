@@ -1,0 +1,5 @@
+sample.lst:sample_major:sample_minor
+sentiment.lst:sentiment
+pronoun.lst:pronoun
+command.lst:command
+dumpgate.lst:model_entity

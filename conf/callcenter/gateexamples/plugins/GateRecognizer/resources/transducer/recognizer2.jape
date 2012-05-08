@@ -1,0 +1,17 @@
+Phase:	Recognizer2
+Input: Lookup Token
+Options: control = appelt
+
+// Find recognized entities and create a special annotation for them, propagating the lookup keys
+
+Rule: GateRecognizer2
+(
+ {Lookup.termType == entity}
+)
+:gate_recognizer
+-->
+:gate_recognizer.Entity = {
+  externalKey = :gate_recognizer.Lookup.externalKey,
+  classKey = :gate_recognizer.Lookup.classKey,
+  rule = "GateRecognizer2"
+}

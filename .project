@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Prospector</name>
+	<comment></comment>
+	<projects>
+		<project>COMMONS-SCXML</project>
+		<project>GWT</project>
+		<project>HIBERNATE</project>
+		<project>JUNIT</project>
+		<project>MYSQL</project>
+		<project>SERVLET</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>

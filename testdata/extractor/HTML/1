@@ -1,0 +1,6299 @@
+creating dictionary for stylesheet
+reusing dictionary from test.xsl for stylesheet
+xsltParseStylesheetProcess : found stylesheet
+xsltPrecomputeStylesheet: removing ignorable blank node
+xsltCompilePattern : parsing '/'
+xsltCompilePattern : parsed /, default priority 0.500000
+added pattern : '/' priority 0.500000
+xsltCompilePattern : parsing 'html'
+xsltCompilePattern : parsed html, default priority 0.000000
+added pattern : 'html' priority 0.000000
+parsed 2 templates
+Resolving attribute sets references
+Creating sub-dictionary from stylesheet for transformation
+Registered 0 modules
+reusing transformation dict for output
+Registering global variables
+Registering global variables from test.xsl
+xsltProcessOneNode: applying template '/' for /
+xsltApplyTemplates: list of 1 nodes
+xsltProcessOneNode: no template found for html
+xsltProcessOneNode: no template found for head
+xsltProcessOneNode: no template found for title
+xsltDefaultProcessOneNode: copy text PLANTS Profile for Campanulastrum americanum (American bellflower)  | USDA PLANTS
+xsltCopyText: copy text PLANTS Profile for Campanulastrum americanum (American bellflower)  | USDA PLANTS
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for meta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for link
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for body
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+      
+        
+        
+      
+    
+xsltCopyText: copy text 
+      
+        
+        
+      
+    
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+      
+xsltCopyText: copy text 
+
+      
+xsltProcessOneNode: no template found for map
+xsltDefaultProcessOneNode: copy text 
+        
+xsltCopyText: copy text 
+        
+xsltProcessOneNode: no template found for area
+xsltDefaultProcessOneNode: copy text 
+
+      
+xsltCopyText: copy text 
+
+      
+xsltDefaultProcessOneNode: copy text 
+
+      
+xsltCopyText: copy text 
+
+      
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+    
+xsltCopyText: copy text 
+
+    
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+      
+        
+        
+
+        
+        
+      
+    
+xsltCopyText: copy text 
+      
+        
+        
+
+        
+        
+      
+    
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+
+xsltCopyText: copy text 
+
+
+xsltDefaultProcessOneNode: copy text 
+  
+xsltCopyText: copy text 
+  
+xsltProcessOneNode: no template found for form
+xsltDefaultProcessOneNode: copy text 
+          
+        
+xsltCopyText: copy text 
+          
+        
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+   
+xsltCopyText: copy text 
+   
+xsltDefaultProcessOneNode: copy text 
+                
+xsltCopyText: copy text 
+                
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+         
+                
+xsltCopyText: copy text 
+         
+                
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  Name Search                       
+xsltCopyText: copy text  Name Search                       
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for label
+xsltDefaultProcessOneNode: copy text name
+                        search type
+xsltCopyText: copy text name
+                        search type
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for label
+xsltDefaultProcessOneNode: copy text enter a
+                        search name
+xsltCopyText: copy text enter a
+                        search name
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for input
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for select
+xsltProcessOneNode: no template found for option
+xsltDefaultProcessOneNode: copy text Scientific
+                            Name
+xsltCopyText: copy text Scientific
+                            Name
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for option
+xsltDefaultProcessOneNode: copy text Common Name
+xsltCopyText: copy text Common Name
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for option
+xsltDefaultProcessOneNode: copy text Symbol
+xsltCopyText: copy text Symbol
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                        
+xsltCopyText: copy text 
+
+                        
+xsltProcessOneNode: no template found for input
+xsltDefaultProcessOneNode: copy text 
+                    
+xsltCopyText: copy text 
+                    
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text State Search
+xsltCopyText: copy text State Search
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Advanced Search
+xsltCopyText: copy text Advanced Search
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Search Help
+xsltCopyText: copy text Search Help
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Alternative Crops
+xsltCopyText: copy text Alternative Crops
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Characteristics
+xsltCopyText: copy text Characteristics
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Classification
+xsltCopyText: copy text Classification
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Culturally Significant
+xsltCopyText: copy text Culturally Significant
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Distribution Update
+xsltCopyText: copy text Distribution Update
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Fact Sheets & Plant Guides
+xsltCopyText: copy text Fact Sheets & Plant Guides
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Invasive and Noxious Weeds
+xsltCopyText: copy text Invasive and Noxious Weeds
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Plant Materials Publications
+xsltCopyText: copy text Plant Materials Publications
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Threatened & Endangered
+xsltCopyText: copy text Threatened & Endangered
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Wetland Indicator Status
+xsltCopyText: copy text Wetland Indicator Status
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 40,000+ Plant Images
+xsltCopyText: copy text 40,000+ Plant Images
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Submit Your Digital Images
+xsltCopyText: copy text Submit Your Digital Images
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Complete PLANTS Checklist
+xsltCopyText: copy text Complete PLANTS Checklist
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text State PLANTS Checklist
+xsltCopyText: copy text State PLANTS Checklist
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Advanced
+                          Search Download
+xsltCopyText: copy text Advanced
+                          Search Download
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Symbols for Unknown Plants
+xsltCopyText: copy text Symbols for Unknown Plants
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text NRCS State GSAT Lists
+xsltCopyText: copy text NRCS State GSAT Lists
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text NRCS State Plants Lists
+xsltCopyText: copy text NRCS State Plants Lists
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text PLANTS Posters
+xsltCopyText: copy text PLANTS Posters
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Crop Nutrient Tool
+xsltCopyText: copy text Crop Nutrient Tool
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Ecological Site Information System
+xsltCopyText: copy text Ecological Site Information System
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Plant Materials Web Site
+xsltCopyText: copy text Plant Materials Web Site
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Other NRCS Tech
+xsltCopyText: copy text Other NRCS Tech
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+ 
+                      Resources
+xsltCopyText: copy text 
+ 
+                      Resources
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text VegSpec
+xsltCopyText: copy text VegSpec
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text PLANTS Links
+xsltCopyText: copy text PLANTS Links
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+            
+xsltCopyText: copy text 
+
+            
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+                
+xsltCopyText: copy text 
+                
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+
+xsltCopyText: copy text 
+
+
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+    
+xsltCopyText: copy text 
+
+    
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+     
+     
+       
+       
+     
+    
+xsltCopyText: copy text 
+     
+     
+       
+       
+     
+    
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+        
+xsltCopyText: copy text 
+        
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text You are here: 
+xsltCopyText: copy text You are here: 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Home
+xsltCopyText: copy text Home
+xsltDefaultProcessOneNode: copy text 
+ / PLANTS Profile
+xsltCopyText: copy text 
+ / PLANTS Profile
+xsltDefaultProcessOneNode: copy text 
+
+      
+xsltCopyText: copy text 
+
+      
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+         
+xsltCopyText: copy text 
+         
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+           
+xsltCopyText: copy text 
+           
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+ Printer-Friendly
+xsltCopyText: copy text 
+ Printer-Friendly
+xsltDefaultProcessOneNode: copy text 
+ 
+
+           / 
+xsltCopyText: copy text 
+ 
+
+           / 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Plug-Ins
+xsltCopyText: copy text Plug-Ins
+xsltDefaultProcessOneNode: copy text 
+
+
+      
+xsltCopyText: copy text 
+
+
+      
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+ 
+  
+xsltCopyText: copy text 
+ 
+  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+  
+xsltCopyText: copy text  
+  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+PLANTS Profile 
+xsltCopyText: copy text 
+PLANTS Profile 
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+        
+        
+          
+        
+        
+          
+    
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+        
+          
+        
+
+  
+        
+          
+        
+   
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+  
+        
+          
+        
+        
+          
+        
+  
+  
+
+        
+xsltCopyText: copy text 
+
+        
+        
+          
+        
+        
+          
+    
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+        
+          
+        
+
+  
+        
+          
+        
+   
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+  
+        
+          
+        
+        
+          
+        
+  
+  
+
+        
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+            
+xsltCopyText: copy text 
+
+            
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small 
+xsltCopyText: copy text 
+ (L.) Small 
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+                  American bellflower
+xsltCopyText: copy text 
+
+                  American bellflower
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+            
+xsltCopyText: copy text 
+
+            
+xsltDefaultProcessOneNode: copy text 
+
+          
+xsltCopyText: copy text 
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+            
+        
+          
+
+      
+          
+          
+        
+        
+xsltCopyText: copy text 
+            
+        
+          
+
+      
+          
+          
+        
+        
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+            
+
+    
+            
+
+
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+   
+     
+              
+     
+   
+
+            
+xsltCopyText: copy text 
+            
+
+    
+            
+
+
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+   
+     
+              
+     
+   
+
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Symbol:
+xsltCopyText: copy text Symbol:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text CAAM18
+xsltCopyText: copy text CAAM18
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Group:
+xsltCopyText: copy text Group:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Dicot
+xsltCopyText: copy text Dicot
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Family:
+xsltCopyText: copy text Family:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Campanulaceae
+xsltCopyText: copy text Campanulaceae
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Duration:
+xsltCopyText: copy text Duration:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+                Annual
+
+
+              
+xsltCopyText: copy text 
+
+                Annual
+
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Growth Habit:
+xsltCopyText: copy text Growth Habit:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+                Forb/herb
+
+
+              
+xsltCopyText: copy text 
+
+                Forb/herb
+
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Native Status:
+xsltCopyText: copy text Native Status:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+       
+
+ 
+                
+                  
+                  
+                  
+                
+  
+                
+                  
+                  
+                  
+                
+  
+                
+xsltCopyText: copy text 
+       
+
+ 
+                
+                  
+                  
+                  
+                
+  
+                
+                  
+                  
+                  
+                
+  
+                
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text L48
+xsltCopyText: copy text L48
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text   
+xsltCopyText: copy text   
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text N
+xsltCopyText: copy text N
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text CAN
+xsltCopyText: copy text CAN
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text   
+xsltCopyText: copy text   
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text N
+xsltCopyText: copy text N
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+
+          
+xsltCopyText: copy text 
+
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+
+            
+xsltCopyText: copy text 
+
+
+            
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Click on the image below to enlarge it and download a high-resolution 
+            JPEG file.
+xsltCopyText: copy text Click on the image below to enlarge it and download a high-resolution 
+            JPEG file.
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+               
+xsltCopyText: copy text 
+
+               
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+                 
+xsltCopyText: copy text 
+                 
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+
+
+            
+xsltCopyText: copy text 
+
+
+
+            
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanula
+xsltCopyText: copy text Campanula
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americana
+xsltCopyText: copy text americana
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+
+            
+xsltCopyText: copy text 
+
+
+            
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Robert H. Mohlenbrock. USDA SCS. 1989. 
+xsltCopyText: copy text Robert H. Mohlenbrock. USDA SCS. 1989. 
+xsltProcessOneNode: no template found for cite
+xsltDefaultProcessOneNode: copy text Midwest wetland flora: Field office illustrated guide to plant species
+xsltCopyText: copy text Midwest wetland flora: Field office illustrated guide to plant species
+xsltDefaultProcessOneNode: copy text 
+. Midwest National Technical Center, Lincoln. Courtesy of 
+xsltCopyText: copy text 
+. Midwest National Technical Center, Lincoln. Courtesy of 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text USDA NRCS Wetland Science Institute
+xsltCopyText: copy text USDA NRCS Wetland Science Institute
+xsltDefaultProcessOneNode: copy text 
+. 
+xsltCopyText: copy text 
+. 
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Usage Requirements
+xsltCopyText: copy text Usage Requirements
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+.
+          
+            
+xsltCopyText: copy text 
+.
+          
+            
+xsltDefaultProcessOneNode: copy text 
+
+
+          
+xsltCopyText: copy text 
+
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+            
+
+    
+            
+
+
+              
+            
+
+            
+              
+            
+            
+              
+            
+  
+            
+xsltCopyText: copy text 
+            
+
+    
+            
+
+
+              
+            
+
+            
+              
+            
+            
+              
+            
+  
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text More Information:
+xsltCopyText: copy text More Information:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+                
+xsltCopyText: copy text 
+                
+xsltProcessOneNode: no template found for ul
+xsltDefaultProcessOneNode: copy text 
+
+                  
+xsltCopyText: copy text 
+
+                  
+xsltProcessOneNode: no template found for li
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Characteristics
+xsltCopyText: copy text Characteristics
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+  
+                  
+xsltCopyText: copy text 
+
+  
+                  
+xsltProcessOneNode: no template found for li
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Classification
+xsltCopyText: copy text Classification
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+                  
+xsltCopyText: copy text 
+
+
+                  
+xsltProcessOneNode: no template found for li
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Source & Reference
+xsltCopyText: copy text Source & Reference
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                
+xsltCopyText: copy text 
+
+                
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+  
+          
+xsltCopyText: copy text 
+
+  
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+xsltCopyText: copy text 
+
+
+xsltDefaultProcessOneNode: copy text 
+      
+xsltCopyText: copy text 
+      
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Images:
+xsltCopyText: copy text Images:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+               
+xsltCopyText: copy text 
+
+               
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+  
+                    Click on a thumbnail to view an image, or
+            
+xsltCopyText: copy text 
+
+  
+                    Click on a thumbnail to view an image, or
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+                    see all the 
+xsltCopyText: copy text 
+                    see all the 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ thumbnails at the PLANTS Gallery
+xsltCopyText: copy text 
+ thumbnails at the PLANTS Gallery
+xsltDefaultProcessOneNode: copy text 
+
+            
+            
+              
+            
+            
+xsltCopyText: copy text 
+
+            
+            
+              
+            
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+              
+xsltCopyText: copy text 
+
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+          
+xsltCopyText: copy text 
+
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+Synonyms:
+xsltCopyText: copy text 
+Synonyms:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+               
+xsltCopyText: copy text 
+
+               
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+            
+xsltCopyText: copy text 
+
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text CAAM6
+xsltCopyText: copy text CAAM6
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanula
+xsltCopyText: copy text Campanula
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americana
+xsltCopyText: copy text americana
+xsltDefaultProcessOneNode: copy text 
+ L.
+xsltCopyText: copy text 
+ L.
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text CAAMI
+xsltCopyText: copy text CAAMI
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanula
+xsltCopyText: copy text Campanula
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americana
+xsltCopyText: copy text americana
+xsltDefaultProcessOneNode: copy text 
+ L. var. 
+xsltCopyText: copy text 
+ L. var. 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text illinoensis
+xsltCopyText: copy text illinoensis
+xsltDefaultProcessOneNode: copy text 
+ (Fresen.) Farw.
+xsltCopyText: copy text 
+ (Fresen.) Farw.
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+          
+xsltCopyText: copy text 
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text 
+  
+          
+xsltCopyText: copy text 
+  
+          
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Distribution:
+xsltCopyText: copy text Distribution:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+  
+
+            
+            
+              
+            
+  
+
+            
+              
+              
+            
+  
+  
+            
+xsltCopyText: copy text 
+
+  
+
+            
+            
+              
+            
+  
+
+            
+              
+              
+            
+  
+  
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text View Native Status
+xsltCopyText: copy text View Native Status
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for div
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+          
+xsltCopyText: copy text 
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text See US county distributions (when available) by clicking on the map or the state   links below:
+xsltCopyText: copy text See US county distributions (when available) by clicking on the map or the state   links below:
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+
+
+
+     
+            
+xsltCopyText: copy text 
+
+
+
+
+     
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            AL
+xsltCopyText: copy text 
+            AL
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            AR
+xsltCopyText: copy text 
+            AR
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            FL
+xsltCopyText: copy text 
+            FL
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            GA
+xsltCopyText: copy text 
+            GA
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            IA
+xsltCopyText: copy text 
+            IA
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            IL
+xsltCopyText: copy text 
+            IL
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            IN
+xsltCopyText: copy text 
+            IN
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            KS
+xsltCopyText: copy text 
+            KS
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            KY
+xsltCopyText: copy text 
+            KY
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            LA
+xsltCopyText: copy text 
+            LA
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            MI
+xsltCopyText: copy text 
+            MI
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            MN
+xsltCopyText: copy text 
+            MN
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            MO
+xsltCopyText: copy text 
+            MO
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            MS
+xsltCopyText: copy text 
+            MS
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            NC
+xsltCopyText: copy text 
+            NC
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            NE
+xsltCopyText: copy text 
+            NE
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            NY
+xsltCopyText: copy text 
+            NY
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            OH
+xsltCopyText: copy text 
+            OH
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            OK
+xsltCopyText: copy text 
+            OK
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            PA
+xsltCopyText: copy text 
+            PA
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            SC
+xsltCopyText: copy text 
+            SC
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            SD
+xsltCopyText: copy text 
+            SD
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            TN
+xsltCopyText: copy text 
+            TN
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            VA
+xsltCopyText: copy text 
+            VA
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            WI
+xsltCopyText: copy text 
+            WI
+xsltDefaultProcessOneNode: copy text 
+,
+      
+            
+xsltCopyText: copy text 
+,
+      
+            
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+            WV
+xsltCopyText: copy text 
+            WV
+xsltDefaultProcessOneNode: copy text 
+
+     
+
+          
+xsltCopyText: copy text 
+
+     
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Related Taxa:
+xsltCopyText: copy text Related Taxa:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+  
+    
+      
+                View 
+xsltCopyText: copy text 
+
+
+  
+    
+      
+                View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+                  27 genera in 
+xsltCopyText: copy text 
+                  27 genera in 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulaceae
+xsltCopyText: copy text Campanulaceae
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+, 
+                  
+xsltCopyText: copy text 
+, 
+                  
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 
+                  1 species in 
+xsltCopyText: copy text 
+                  1 species in 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+      
+    
+    
+  
+  
+          
+xsltCopyText: copy text 
+
+      
+    
+    
+  
+  
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Classification:
+xsltCopyText: copy text Classification:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+            
+xsltCopyText: copy text 
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Kingdom
+xsltCopyText: copy text Kingdom
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Plantae
+xsltCopyText: copy text Plantae
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Plants
+xsltCopyText: copy text 
+
+                  – Plants
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Subkingdom
+xsltCopyText: copy text Subkingdom
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Tracheobionta
+xsltCopyText: copy text Tracheobionta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Vascular plants
+xsltCopyText: copy text 
+
+                  – Vascular plants
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Superdivision
+xsltCopyText: copy text Superdivision
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Spermatophyta
+xsltCopyText: copy text Spermatophyta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Seed plants
+xsltCopyText: copy text 
+
+                  – Seed plants
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Division
+xsltCopyText: copy text Division
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Magnoliophyta
+xsltCopyText: copy text Magnoliophyta
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Flowering plants
+xsltCopyText: copy text 
+
+                  – Flowering plants
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Class
+xsltCopyText: copy text Class
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Magnoliopsida
+xsltCopyText: copy text Magnoliopsida
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Dicotyledons
+xsltCopyText: copy text 
+
+                  – Dicotyledons
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Subclass
+xsltCopyText: copy text Subclass
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Asteridae
+xsltCopyText: copy text Asteridae
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  
+xsltCopyText: copy text 
+
+                  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Order
+xsltCopyText: copy text Order
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulales
+xsltCopyText: copy text Campanulales
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  
+xsltCopyText: copy text 
+
+                  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Family
+xsltCopyText: copy text Family
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulaceae
+xsltCopyText: copy text Campanulaceae
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+                  – Bellflower family
+xsltCopyText: copy text 
+
+                  – Bellflower family
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Genus
+xsltCopyText: copy text Genus
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ Small
+xsltCopyText: copy text 
+ Small
+xsltDefaultProcessOneNode: copy text 
+
+                  – bellflower
+xsltCopyText: copy text 
+
+                  – bellflower
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Species
+xsltCopyText: copy text Species
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for a
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+                  – American bellflower
+xsltCopyText: copy text 
+
+                  – American bellflower
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+          
+xsltCopyText: copy text 
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text Wetland Indicator Status:
+xsltCopyText: copy text Wetland Indicator Status:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+  
+  
+  
+         
+            
+xsltCopyText: copy text 
+
+  
+  
+  
+         
+            
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanula
+xsltCopyText: copy text Campanula
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americana
+xsltCopyText: copy text americana
+xsltDefaultProcessOneNode: copy text 
+:
+xsltCopyText: copy text 
+:
+xsltDefaultProcessOneNode: copy text 
+
+            
+            
+xsltCopyText: copy text 
+
+            
+            
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Nat. Ind. 
+xsltCopyText: copy text Nat. Ind. 
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 1
+xsltCopyText: copy text Reg. 1
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 2
+xsltCopyText: copy text Reg. 2
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 3
+xsltCopyText: copy text Reg. 3
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 4
+xsltCopyText: copy text Reg. 4
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 5
+xsltCopyText: copy text Reg. 5
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 6
+xsltCopyText: copy text Reg. 6
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 7
+xsltCopyText: copy text Reg. 7
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 8
+xsltCopyText: copy text Reg. 8
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 9
+xsltCopyText: copy text Reg. 9
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. 0
+xsltCopyText: copy text Reg. 0
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. A
+xsltCopyText: copy text Reg. A
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. C
+xsltCopyText: copy text Reg. C
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Reg. H
+xsltCopyText: copy text Reg. H
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text FAC
+xsltCopyText: copy text FAC
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text NO
+xsltCopyText: copy text NO
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+        
+  
+             
+xsltCopyText: copy text 
+
+        
+  
+             
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text Interpreting Wetland Indicator Status
+xsltCopyText: copy text Interpreting Wetland Indicator Status
+xsltDefaultProcessOneNode: copy text 
+
+          
+xsltCopyText: copy text 
+
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for p
+xsltProcessOneNode: no template found for span
+xsltDefaultProcessOneNode: copy text More Accounts and Images:
+xsltCopyText: copy text More Accounts and Images:
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for br
+xsltDefaultProcessOneNode: copy text 
+
+              
+xsltCopyText: copy text 
+
+              
+xsltProcessOneNode: no template found for span
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text Campanulastrum
+xsltCopyText: copy text Campanulastrum
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltProcessOneNode: no template found for em
+xsltDefaultProcessOneNode: copy text americanum
+xsltCopyText: copy text americanum
+xsltDefaultProcessOneNode: copy text 
+ (L.) Small
+xsltCopyText: copy text 
+ (L.) Small
+xsltDefaultProcessOneNode: copy text 
+ 
+xsltCopyText: copy text 
+ 
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text photographs
+xsltCopyText: copy text photographs
+xsltDefaultProcessOneNode: copy text 
+ from CalPhotos.
+xsltCopyText: copy text 
+ from CalPhotos.
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text species account
+xsltCopyText: copy text species account
+xsltDefaultProcessOneNode: copy text 
+, 
+xsltCopyText: copy text 
+, 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text photographs
+xsltCopyText: copy text photographs
+xsltDefaultProcessOneNode: copy text 
+, and 
+xsltCopyText: copy text 
+, and 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text distribution
+xsltCopyText: copy text distribution
+xsltDefaultProcessOneNode: copy text 
+ from USF Atlas of Florida Vascular Plants.
+xsltCopyText: copy text 
+ from USF Atlas of Florida Vascular Plants.
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text taxonomic account
+xsltCopyText: copy text taxonomic account
+xsltDefaultProcessOneNode: copy text 
+ from Integrated Taxonomic Information System (ITIS) for ITIS Taxonomic Serial Number 501172.
+xsltCopyText: copy text 
+ from Integrated Taxonomic Information System (ITIS) for ITIS Taxonomic Serial Number 501172.
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text species account and photographs
+xsltCopyText: copy text species account and photographs
+xsltDefaultProcessOneNode: copy text 
+ from Lady Bird Johnson Wildflower Center Native Plant Information Network (NPIN).
+xsltCopyText: copy text 
+ from Lady Bird Johnson Wildflower Center Native Plant Information Network (NPIN).
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text species account
+xsltCopyText: copy text species account
+xsltDefaultProcessOneNode: copy text 
+ from Native American Ethnobotany (University of Michigan - Dearborn).
+xsltCopyText: copy text 
+ from Native American Ethnobotany (University of Michigan - Dearborn).
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text 1 propagation protocol
+xsltCopyText: copy text 1 propagation protocol
+xsltDefaultProcessOneNode: copy text 
+ from Native Plants Network.
+xsltCopyText: copy text 
+ from Native Plants Network.
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text photographs and distribution
+xsltCopyText: copy text photographs and distribution
+xsltDefaultProcessOneNode: copy text 
+ from University of Tennessee Herbarium.
+xsltCopyText: copy text 
+ from University of Tennessee Herbarium.
+xsltDefaultProcessOneNode: copy text 
+
+      
+              
+xsltCopyText: copy text 
+
+      
+              
+xsltProcessOneNode: no template found for p
+xsltDefaultProcessOneNode: copy text View 
+xsltCopyText: copy text View 
+xsltProcessOneNode: no template found for a
+xsltDefaultProcessOneNode: copy text species account and photographs
+xsltCopyText: copy text species account and photographs
+xsltDefaultProcessOneNode: copy text 
+ from University of Wisconsin - Stevens Point Freckmann Herbarium.
+xsltCopyText: copy text 
+ from University of Wisconsin - Stevens Point Freckmann Herbarium.
+xsltDefaultProcessOneNode: copy text 
+
+      
+          
+xsltCopyText: copy text 
+
+      
+          
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+
+xsltCopyText: copy text 
+
+
+
+xsltDefaultProcessOneNode: copy text 
+
+      
+xsltCopyText: copy text 
+
+      
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text Time Generated: 06/13/2008 03:49 PM MDT
+xsltCopyText: copy text Time Generated: 06/13/2008 03:49 PM MDT
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text  
+xsltCopyText: copy text  
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+
+xsltCopyText: copy text 
+
+
+
+xsltDefaultProcessOneNode: copy text 
+
+
+        
+xsltCopyText: copy text 
+
+
+        
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltDefaultProcessOneNode: copy text       
+      
+        
+      
+    
+xsltCopyText: copy text       
+      
+        
+      
+    
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for hr
+xsltDefaultProcessOneNode: copy text 
+
+
+xsltCopyText: copy text 
+
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+
+xsltCopyText: copy text 
+
+
+
+xsltDefaultProcessOneNode: copy text 
+
+      
+      
+          
+          
+                  
+      
+xsltCopyText: copy text 
+
+      
+      
+          
+          
+                  
+      
+xsltProcessOneNode: no template found for table
+xsltProcessOneNode: no template found for tbody
+xsltProcessOneNode: no template found for tr
+xsltProcessOneNode: no template found for td
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+
+
+xsltCopyText: copy text 
+
+
+
+xsltDefaultProcessOneNode: copy text 
+
+ 
+xsltCopyText: copy text 
+
+ 
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltProcessOneNode: no template found for img
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+xsltDefaultProcessOneNode: copy text 
+
+xsltCopyText: copy text 
+
+freeing transformation dictionary
+<?xml version="1.0"?>
+PLANTS Profile for Campanulastrum americanum (American bellflower)  | USDA PLANTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+        
+      
+    
+
+
+
+
+
+
+
+
+      
+        
+
+      
+
+      
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+        
+
+        
+        
+      
+     
+
+
+
+  
+          
+        
+
+
+
+   
+                
+
+
+         
+                 Name Search                       
+
+name
+                        search type
+
+                        enter a
+                        search name
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        Scientific
+                            Name
+Common Name
+Symbol
+
+
+                        
+                    
+
+
+
+State Search
+ 
+
+
+
+Advanced Search
+ 
+
+
+
+Search Help
+
+
+
+
+
+
+ 
+
+
+
+Alternative Crops
+
+
+
+
+Characteristics
+
+
+
+
+Classification
+
+
+
+
+Culturally Significant
+
+
+
+
+Distribution Update
+
+
+
+
+Fact Sheets &amp; Plant Guides
+
+
+
+
+Invasive and Noxious Weeds
+
+
+
+
+Plant Materials Publications
+
+
+
+
+Threatened &amp; Endangered
+
+
+
+
+Wetland Indicator Status
+
+
+ 
+
+
+
+
+ 
+
+
+
+40,000+ Plant Images
+
+
+
+
+Submit Your Digital Images
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+Complete PLANTS Checklist
+
+
+
+
+State PLANTS Checklist
+
+
+
+
+Advanced
+                          Search Download
+
+
+
+
+Symbols for Unknown Plants
+
+
+
+
+NRCS State GSAT Lists
+
+
+
+
+NRCS State Plants Lists
+
+
+
+
+PLANTS Posters
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+Crop Nutrient Tool
+
+
+
+
+Ecological Site Information System
+
+
+
+
+Plant Materials Web Site
+
+
+
+
+Other NRCS Tech
+ 
+                      Resources
+
+
+
+
+VegSpec
+
+
+ 
+
+
+
+
+ 
+
+
+
+PLANTS Links
+
+
+
+
+
+            
+
+                
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+    
+     
+     
+       
+       
+     
+    
+        You are here: Home
+ / PLANTS Profile
+
+      
+
+         
+           
+ Printer-Friendly
+ 
+
+           / Plug-Ins
+
+
+      
+
+
+
+ 
+  
+ 
+  
+
+
+
+PLANTS Profile 
+
+
+
+
+        
+        
+          
+        
+        
+          
+    
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+        
+          
+        
+
+  
+        
+          
+        
+   
+    
+      
+    
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+
+
+
+        
+          
+        
+        
+          
+        
+
+
+
+
+
+
+  
+        
+          
+        
+        
+          
+        
+  
+  
+
+         
+
+            Campanulastrum
+ americanum
+ (L.) Small 
+
+                  American bellflower
+
+
+            
+
+          
+
+
+
+            
+        
+          
+
+      
+          
+          
+        
+        
+            
+
+    
+            
+
+
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+            
+              
+              
+              
+              
+            
+   
+     
+              
+     
+   
+
+             
+ 
+ 
+ 
+
+Symbol:
+ 
+CAAM18
+ 
+
+Group:
+ 
+Dicot
+ 
+
+Family:
+ 
+Campanulaceae
+ 
+
+Duration:
+ 
+
+
+                Annual
+
+
+              
+ 
+
+Growth Habit:
+
+ 
+
+
+                Forb/herb
+
+
+              
+ 
+
+Native Status:
+
+ 
+
+       
+
+ 
+                
+                  
+                  
+                  
+                
+  
+                
+                  
+                  
+                  
+                
+  
+                L48
+  
+N
+
+CAN
+  
+N
+
+
+
+
+              
+
+
+
+
+
+
+
+
+          
+
+
+
+            Click on the image below to enlarge it and download a high-resolution 
+            JPEG file.
+
+
+               
+                 
+
+
+
+
+
+            Campanula
+ americana
+
+
+
+
+
+            Robert H. Mohlenbrock. USDA SCS. 1989. Midwest wetland flora: Field office illustrated guide to plant species
+. Midwest National Technical Center, Lincoln. Courtesy of USDA NRCS Wetland Science Institute
+. Usage Requirements
+
+.
+          
+            
+
+
+          
+
+            
+
+    
+            
+
+
+              
+            
+
+            
+              
+            
+            
+              
+            
+  
+             
+
+More Information:
+
+
+                
+
+                  Characteristics
+
+
+  
+                  Classification
+
+
+
+                  Source &amp; Reference
+
+
+                
+
+              
+
+
+
+
+  
+          
+
+
+
+
+
+      
+
+ 
+
+Images:
+
+
+               Campanulastrum
+ americanum
+ (L.) Small
+
+
+  
+                    Click on a thumbnail to view an image, or
+            
+                    see all the Campanulastrum
+ thumbnails at the PLANTS Gallery
+
+            
+            
+              
+            
+            
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+              
+
+
+
+
+
+          
+
+ 
+
+
+Synonyms:
+
+
+               Campanulastrum
+ americanum
+ (L.) Small
+
+
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+            
+              
+              
+    
+              
+    
+            
+  
+             
+CAAM6
+Campanula
+ americana
+ L.
+
+ 
+CAAMI
+Campanula
+ americana
+ L. var. illinoensis
+ (Fresen.) Farw.
+
+
+
+
+          
+
+ 
+
+
+  
+          Distribution:
+
+
+              Campanulastrum
+ americanum
+ (L.) Small
+
+
+  
+
+            
+            
+              
+            
+  
+
+            
+              
+              
+            
+  
+  
+            
+
+              
+
+View Native Status
+
+
+
+
+
+
+
+
+          
+
+See US county distributions (when available) by clicking on the map or the state   links below:
+
+
+
+
+     
+            
+            AL
+,
+      
+            
+            AR
+,
+      
+            
+            FL
+,
+      
+            
+            GA
+,
+      
+            
+            IA
+,
+      
+            
+            IL
+,
+      
+            
+            IN
+,
+      
+            
+            KS
+,
+      
+            
+            KY
+,
+      
+            
+            LA
+,
+      
+            
+            MI
+,
+      
+            
+            MN
+,
+      
+            
+            MO
+,
+      
+            
+            MS
+,
+      
+            
+            NC
+,
+      
+            
+            NE
+,
+      
+            
+            NY
+,
+      
+            
+            OH
+,
+      
+            
+            OK
+,
+      
+            
+            PA
+,
+      
+            
+            SC
+,
+      
+            
+            SD
+,
+      
+            
+            TN
+,
+      
+            
+            VA
+,
+      
+            
+            WI
+,
+      
+            
+            WV
+
+     
+
+          
+
+ 
+
+Related Taxa:
+
+
+              Campanulastrum
+ americanum
+ (L.) Small
+
+
+
+  
+    
+      
+                View 
+                  27 genera in Campanulaceae
+
+, 
+                  
+                  1 species in Campanulastrum
+
+
+      
+    
+    
+  
+  
+          
+
+ 
+
+Classification:
+
+
+              Campanulastrum
+ americanum
+ (L.) Small
+
+             
+ 
+
+Kingdom
+Plantae
+
+
+                  – Plants
+
+Subkingdom
+Tracheobionta
+
+
+                  – Vascular plants
+
+Superdivision
+Spermatophyta
+
+
+                  – Seed plants
+
+Division
+Magnoliophyta
+
+
+                  – Flowering plants
+
+Class
+Magnoliopsida
+
+
+                  – Dicotyledons
+
+Subclass
+Asteridae
+
+
+                  
+
+Order
+Campanulales
+
+
+                  
+
+Family
+Campanulaceae
+
+
+                  – Bellflower family
+
+Genus
+Campanulastrum
+ Small
+
+                  – bellflower
+
+Species
+Campanulastrum
+ americanum
+ (L.) Small
+
+                  – American bellflower
+
+
+
+
+          
+
+ 
+
+Wetland Indicator Status:
+
+
+              Campanulastrum
+ americanum
+ (L.) Small
+
+
+  
+  
+  
+         
+            Campanula
+ americana
+:
+
+            
+            Nat. Ind. 
+Reg. 1
+Reg. 2
+Reg. 3
+Reg. 4
+Reg. 5
+Reg. 6
+Reg. 7
+Reg. 8
+Reg. 9
+Reg. 0
+Reg. A
+Reg. C
+Reg. H
+
+FAC
+FAC
+FAC
+FAC
+FAC
+FAC
+FAC
+NO
+NO
+NO
+NO
+NO
+NO
+NO
+
+
+
+
+        
+  
+             Interpreting Wetland Indicator Status
+
+          
+
+ 
+
+More Accounts and Images:
+
+
+              Campanulastrum
+ americanum
+ (L.) Small
+ 
+
+      
+              View photographs
+ from CalPhotos.
+
+      
+              View species account
+, photographs
+, and distribution
+ from USF Atlas of Florida Vascular Plants.
+
+      
+              View taxonomic account
+ from Integrated Taxonomic Information System (ITIS) for ITIS Taxonomic Serial Number 501172.
+
+      
+              View species account and photographs
+ from Lady Bird Johnson Wildflower Center Native Plant Information Network (NPIN).
+
+      
+              View species account
+ from Native American Ethnobotany (University of Michigan - Dearborn).
+
+      
+              View 1 propagation protocol
+ from Native Plants Network.
+
+      
+              View photographs and distribution
+ from University of Tennessee Herbarium.
+
+      
+              View species account and photographs
+ from University of Wisconsin - Stevens Point Freckmann Herbarium.
+
+      
+          
+
+ 
+
+
+
+
+
+
+
+      
+ 
+
+Time Generated: 06/13/2008 03:49 PM MDT
+ 
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+      
+      
+        
+      
+    
+
+
+
+
+
+
+
+
+
+      
+      
+          
+          
+                  
+      
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+warning: failed to load external entity "2"
+unable to parse 2
+freeing dictionary from stylesheet

@@ -1,0 +1,116 @@
+<!--
+	Solicit individual preferences, using a simple "star rating" for known individuals.
+	
+	This is a "lite" version of preference solicitation; to actually create new individuals,
+	see get_individual_property_preference.
+	
+	1. What this does is to rank the set of unrated individuals somehow
+	2. Asks you to rate the top ranked one, or bail
+	3. If you bailed, or if there are no more to rate, we're done
+	4. Otherwise get another thing to rate.
+	
+	TODO: there must be some way to allow a user to skip a rating, i.e. to not look at the same
+	individual again for awhile, despite not rating it.  Unfortunately the most natural way to do
+	that is to look at the scene history.
+	
+	So that's an argument to put the 'next individual' logic in the scene chooser, since it needs
+	to avoid asking the same question too often.
+	
+	OK, so, then this scene is very simple indeed.  It just asks for ONE rating, and that's it.
+	The individual to be rated is specified on the input.  This scene writes the rating itself.
+	
+	It also provides the rating (a number) on the output, or blank if skipped.
+	
+	We use the "main" datamodel "IndividualUtility" to create the record to write, and then copy it to
+	the datamodel "createModelEntity" to do the actual work.
+	
+	Input:
+	/cc:input/cc:decision == active decision
+	/cc:input/cc:individual == individual to rate
+	/cc:input/cc:stakeholder == active stakeholder
+	
+	Output:
+	/cc:output/cc:value == rating, [0,1], or blank if skipped.
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="rate_individual_start">
+	<datamodel>
+		<data name="rate_individual_input" />
+		<data name="rate_individual_output">
+			<cc:output>
+				<!-- the rating (utility from 0 to 1) or blank if skipped. -->
+				<cc:value />
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<!-- entry point -->
+	<state id="rate_individual_start">
+		<onentry>
+			<assign location="Data(rate_individual_input, '.')" expr="Data(_eventdatamap['rate_individual'], '.')" />
+			<assign location="Data(rate_individual_output, 'cc:output/cc:value')" expr="''" />
+			<assign location="Data(echo, 'cc:payload')" expr="Data(_eventdatamap['rate_individual'], '.')" />
+			<send targettype="'x-java'" namelist="echo" />
+			<assign location="Data(echo, 'cc:payload')" expr="Data(rate_individual_input, '.')" />
+			<send targettype="'x-java'" namelist="echo" />
+		</onentry>
+		<transition target="rate_individual_pre" />
+	</state>
+
+	<!-- 'how would you rate X?' -->
+	<state id="rate_individual_pre">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'rate_individual'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(rate_individual_input, 'cc:input/cc:individual/p:Individual/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</onentry>
+		<!-- user should provide a number from 0 to 5 inclusive, or "skip" which means "end" -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'skip'" target="rate_individual_final" />
+
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'number'
+				and Data(_eventdata, 'cc:UserInput/cc:text') ge 0
+				and Data(_eventdata, 'cc:UserInput/cc:text') le 5"
+			target="rate_individual_create">
+			<assign location="Data(IndividualUtility, 'cc:entity/p:IndividualUtility/p:value')"
+				expr="Data(_eventdata, 'cc:UserInput/cc:text') / 5" />
+		</transition>
+
+		<!-- otherwise, ask again (or maybe this should just return?) -->
+		<transition event="user_input" target="rate_individual_pre" />
+	</state>
+
+	<!-- user gave us a valid number -->
+	<state id="rate_individual_create">
+		<onentry>
+			<assign location="Data(IndividualUtility, 'cc:entity/p:IndividualUtility/p:individualKey')"
+				expr="Data(rate_individual_input, 'cc:input/cc:individual/p:Individual/p:key')" />
+			<assign location="Data(IndividualUtility, 'cc:entity/p:IndividualUtility/p:stakeholderKey')"
+				expr="Data(rate_individual_input, 'cc:input/cc:stakeholder/p:Stakeholder/p:key')" />
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(IndividualUtility, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="rate_individual_final">
+			<assign location="Data(rate_individual_output, 'cc:output/cc:value')"
+				expr="Data(IndividualUtility, 'cc:entity/p:IndividualUtility/p:value')" />
+			<assign location="Data(speak1, 'cc:messageId')" expr="'rate_individual_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(IndividualUtility, 'cc:entity/p:IndividualUtility/p:value') * 5.0" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createModelEntityFail" target="rate_individual_final">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'rate_individual_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+
+	<final id="rate_individual_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(rate_individual_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

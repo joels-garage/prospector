@@ -1,0 +1,26 @@
+<!--
+	This is stuff I removed but don't want to remove forever.
+-->
+
+<!-- when we had the possibility of getting an individual in the wrong class, this was useful. -->
+<!-- create a ClassMember record -->
+<data name="createClassMember">
+	<!-- The key of the individual in question -->
+	<cc:individualKey></cc:individualKey>
+	<!-- The current decision -->
+	<cc:classKey>
+		<p:ExternalKey></p:ExternalKey>
+	</cc:classKey>
+</data>
+<state id="get_individual_preference_create_class_member">
+	<onentry>
+		<assign location="Data(createClassMember, 'cc:individualKey')" expr="Data(ActiveIndividual, 'cc:key')" />
+		<assign location="Data(createClassMember, 'cc:classKey/p:ExternalKey')"
+			expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+		<send targettype="'x-java'" namelist="createClassMember" />
+	</onentry>
+	<!-- now we have an individual in the correct class -->
+	<transition event="createClassMemberSuccess" />
+	<!-- failed for some reason.  start all the way over -->
+	<transition event="createClassMemberFail" target="get_individual_preference_pre" />
+</state>

@@ -1,0 +1,53 @@
+<!--
+	Tell the user about their new stakeholder status.
+	
+	Input:
+	/cc:input/cc:decision == active decision, in its entirety
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="stakeholder_news_start">
+	<datamodel>
+		<data name="stakeholder_news_input">
+			<cc:input>
+				<!-- the current decision (entire record) -->
+				<cc:decision />
+				<!-- the user who created the stakeholder record -->
+				<cc:user />
+			</cc:input>
+		</data>
+		<data name="stakeholder_news_output">
+			<cc:output />
+		</data>
+	</datamodel>
+
+	<state id="stakeholder_news_start">
+		<onentry>
+			<assign location="Data(stakeholder_news_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(stakeholder_news_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="stakeholder_news_report" />
+	</state>
+
+	<!-- there are two states here to make sure we speak these things in the right order. -->
+	<state id="stakeholder_news_report">
+		<onentry>
+			<assign location="Data(speak2, 'cc:messageId')" expr="'stakeholder_news_report'" />
+			<assign location="Data(speak2, 'cc:verbatim1')" expr="Data(stakeholder_news_input, 'cc:input/cc:user/p:User/p:name')" />
+			<assign location="Data(speak2, 'cc:verbatim2')"
+				expr="Data(stakeholder_news_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak2" />
+		</onentry>
+		<transition target="stakeholder_news_final" />
+	</state>
+
+
+	<final id="stakeholder_news_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(stakeholder_news_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

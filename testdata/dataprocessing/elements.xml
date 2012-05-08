@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container>
+<StringProperty>
+  <creatorKey>
+    <key>usda-plants-characteristics-importer</key>
+    <namespace>p1</namespace>
+    <type>individual</type>
+  </creatorKey>
+  <domainClassKey>
+    <key>Plantae</key>
+    <namespace>plants.usda.gov</namespace>
+    <type>class</type>
+  </domainClassKey>
+  <key>
+    <key></key>
+    <namespace></namespace>
+    <type></type>
+  </key>
+  <lastModified>2008-06-13T14:44:07</lastModified>
+  <name>Common Name</name>
+</StringProperty>
+<StringProperty>
+  <creatorKey>
+    <key>usda-plants-characteristics-importer</key>
+    <namespace>p1</namespace>
+    <type>individual</type>
+  </creatorKey>
+  <domainClassKey>
+    <key>Plantae</key>
+    <namespace>plants.usda.gov</namespace>
+    <type>class</type>
+  </domainClassKey>
+  <key>
+    <key>Active Growth Period</key>
+    <namespace>plants.usda.gov</namespace>
+    <type>string_property</type>
+  </key>
+  <lastModified>2008-06-13T14:44:07</lastModified>
+  <name>Active Growth Period</name>
+</StringProperty>
+<Individual>
+  <creatorKey>
+    <key>usda-plants-characteristics-importer</key>
+    <namespace>p1</namespace>
+    <type>individual</type>
+  </creatorKey>
+  <key>
+    <key>MEOF</key>
+    <namespace>plants.usda.gov</namespace>
+    <type>individual</type>
+  </key>
+  <lastModified>2008-06-15T01:49:45</lastModified>
+  <name>MEOF</name>
+</Individual>
+<User>
+  <admin>true</admin>
+  <cookie></cookie>
+  <creatorKey>
+    <key></key>
+    <namespace></namespace>
+    <type></type>
+  </creatorKey>
+  <emailAddress>joel</emailAddress>
+  <guest>false</guest>
+  <key>
+    <key></key>
+    <namespace></namespace>
+    <type></type>
+  </key>
+  <lastModified></lastModified>
+  <name>joel</name>
+  <password>joel</password>
+  <realName>joel</realName>
+</User></container>

@@ -1,0 +1,19 @@
+Phase:	Recognizer1
+Input: Lookup Token
+Options: control = appelt
+
+// Simple test to find things from our gazeteer.
+
+Rule: GateRecognizer1
+(
+ {Lookup.majorType == sample_major} 
+ (
+  {Lookup.majorType == sample_major} 
+ )?
+)
+:gate_recognizer
+-->
+ :gate_recognizer.RecognizedThing = {
+   type = :gate_recognizer.Lookup.minorType,
+   rule = "GateRecognizer1"
+ }

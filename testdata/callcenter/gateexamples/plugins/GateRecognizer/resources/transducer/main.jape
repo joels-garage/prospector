@@ -1,0 +1,6 @@
+MultiPhase: foo
+Phases:
+recognizer1
+recognizer2
+preference1
+user_input

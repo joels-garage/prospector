@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<union-subclass name="ClassPreference" extends="Preference">
+
+		<component name="primaryClassKey">
+			<property name="type" column="primaryClassType" />
+			<property name="key" column="primaryClassKey" length = "12"/>
+		</component>
+		<component name="secondaryClassKey">
+			<property name="type" column="secondaryClassType" />
+			<property name="key" column="secondaryClassKey" length = "12" />
+		</component>
+		<property name="value" />
+	</union-subclass>
+</hibernate-mapping>

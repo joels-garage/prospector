@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!--
+So, the point of this XSL is to figure out how to do these transforms
+by hand.  Ultimately I'd like to create some sort of template for this,
+so that each new site is much simpler.  And eventually, automatic.
+
+Anyway the goal, for now, is to take a page representing an individual
+and a set of facts about that individual, and transform it into the following
+record types:
+
+  <Individual>
+  <StringProperty>
+  <StringFact>
+
+Use "String" because I don't want to deal with parsing measurements.  Some later
+"gardener" process will run over the DB and duplicate these string things as the
+correct type.
+
+Note, even things like "latin name" are facts (and in that case, a properly typed
+StringFact.
+
+The input pages in this case don't have it, but nearby ones do: taxonomic data like
+genus, species, family, etc.  Are those classes or individuals?
+
+see http://sites.google.com/a/joelsgarage.com/wik/Home/design/ontology
+
+they're classes.
+
+So I might want to produce some records like
+
+  <Class>
+  <ClassAxiom>
+
+I should have an authoritative linnean taxonomy for reference, if that matters.
+
+Anyway for now, it's just individuals, properties, and facts.
+     
+-->
+<xsl:stylesheet xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version="1.0">
+
+<xsl:output method="xml" indent="yes"/>
+
+<xsl:template match="/">
+<result>
+<xsl:text>
+</xsl:text>
+
+<cultivar>
+<xsl:for-each select="html:html/html:body/html:table/html:tbody/html:tr[5]/html:td/html:table/html:tbody/html:tr/html:td[4]/html:table/html:tbody/html:tr[3]/html:td[1]/child::*">
+<xsl:choose>
+<xsl:when  test="position()=1">
+<!-- do nothing, this is navgational links -->
+</xsl:when>
+
+<xsl:when test="name()='p'">
+<!-- it's a cultivar description -->
+<xsl:text>
+</xsl:text>
+<name>
+<xsl:text>
+</xsl:text>
+<xsl:call-template name="name"/>
+<xsl:text>
+</xsl:text>
+</name>
+<xsl:text>
+</xsl:text>
+</xsl:when>
+
+<xsl:when test="name()='table'">
+<!-- it's a data table.  how to get the id extracted above into this? -->
+
+<!-- get the id -->
+<xsl:variable name="individual_id">
+<!-- this is the <table>; select the preceding paragraph; node these are numbered backwards;
+the first one is the last one in document order -->
+<xsl:for-each select="preceding-sibling::html:p[1]">
+<!-- just the *immediately* preceding node -->
+<xsl:call-template name="code"/>
+</xsl:for-each>
+</xsl:variable>
+
+
+<xsl:text>
+</xsl:text>
+<data>
+<xsl:text>
+</xsl:text>
+<xsl:for-each select="html:tbody/html:tr">
+<xsl:call-template name="row">
+<xsl:with-param name="individual_id_param" select="$individual_id"/>
+</xsl:call-template>
+</xsl:for-each>
+<xsl:text>
+</xsl:text>
+</data>
+<xsl:text>
+</xsl:text>
+</xsl:when>
+</xsl:choose>
+
+</xsl:for-each>
+</cultivar>
+</result>
+</xsl:template>
+
+<xsl:template name="name">
+<latin-name>
+<xsl:for-each select="html:span/html:br[1]/preceding-sibling::node()">
+<xsl:value-of select="normalize-space()"/>
+<xsl:if test="not(position() = last())">
+<xsl:text> </xsl:text>
+</xsl:if>
+</xsl:for-each>
+</latin-name>
+<xsl:text>
+</xsl:text>
+<common-name>
+<xsl:variable name="after1" select="html:span/html:br[1]/following-sibling::node()"/>
+<xsl:variable name="before2" select="html:span/html:br[2]/preceding-sibling::node()"/>
+<!-- intersect after1 with before2 -->
+<xsl:for-each select="$after1[count(.|$before2)=count($before2)]">
+<xsl:value-of select="normalize-space()"/>
+<xsl:if test="not(position() = last())">
+<xsl:text> </xsl:text>
+</xsl:if>
+</xsl:for-each>
+</common-name>
+<xsl:text>
+</xsl:text>
+<code><xsl:call-template name="code"/></code>
+</xsl:template>
+
+<xsl:template name="code">
+<namespace>plants.usda.com</namespace>
+<type>individual</type>
+<key><xsl:for-each select="html:span/html:br[2]/following-sibling::node()">
+<xsl:if test="string-length() > 0">
+<xsl:value-of select="translate(., ' &#xA;&#x9;', '')"/>
+<xsl:if test="not(position() = last())">
+<xsl:text>_</xsl:text>
+</xsl:if>
+</xsl:if>
+</xsl:for-each></key>
+</xsl:template>
+
+<xsl:template name="row">
+<xsl:param name="individual_id_param"/>
+
+<xsl:choose>
+<xsl:when test="html:td[@class='divider_bg']">
+<!-- if this divider child exists in this row, then this row is a (no-op) divider -->
+</xsl:when>
+<xsl:when test="html:td[@class='hdrblkbold']">
+<!-- this is a header row for an attribute group.
+     TODO: prepend the attribute with the group name?  -->
+</xsl:when>
+<xsl:otherwise>
+<characteristic>
+<subjectKey>
+<xsl:copy-of select="$individual_id_param"/>
+</subjectKey>
+<xsl:text>
+</xsl:text>
+<name>
+<xsl:value-of select="html:td[1]"/>
+  </name>
+<xsl:text>
+</xsl:text>
+  <value>
+<xsl:value-of select="html:td[2]"/>
+  </value>
+<xsl:text>
+</xsl:text>
+</characteristic>
+<xsl:text>
+</xsl:text>
+</xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+</xsl:stylesheet>

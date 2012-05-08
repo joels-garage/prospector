@@ -1,0 +1,193 @@
+<!--
+	Ask the user if they have any collaborators to add as stakeholders, e.g. by asking for email addresses.
+	
+	If so, create new Stakeholder records accordingly.
+	
+	The user might give us some user ids (emails) that we don't already know.  If so, create new User records.
+	
+	TODO: ask for the name of the new user.
+	
+	Input:
+	/cc:input/cc:decision == active decision, in its entirety
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="get_stakeholder_start">
+	<datamodel>
+		<data name="get_stakeholder_input">
+			<cc:input>
+				<!-- the current decision (entire record) -->
+				<cc:decision></cc:decision>
+			</cc:input>
+		</data>
+		<data name="get_stakeholder_output">
+			<cc:output>
+				<!-- there is no output -->
+			</cc:output>
+		</data>
+		<data name="validateEmail">
+			<cc:emailAddress />
+		</data>
+	</datamodel>
+
+	<state id="get_stakeholder_start">
+		<onentry>
+			<assign location="Data(get_stakeholder_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(get_stakeholder_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="get_stakeholder_ask" />
+	</state>
+
+	<!-- ask for collaborators -->
+	<state id="get_stakeholder_ask">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_stakeholder_ask'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="get_stakeholder_who" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'" target="get_stakeholder_final" />
+	</state>
+
+	<!-- ask who the collaborator is -->
+	<state id="get_stakeholder_who">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_stakeholder_who'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<!-- put the user utterance in the user email slot -->
+		<transition event="user_input" target="get_stakeholder_validate">
+			<assign location="Data(User, 'cc:entity/p:User/p:emailAddress')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+		</transition>
+	</state>
+
+	<!-- check that the address is a valid email address.  TODO: recognizer could do this.-->
+	<state id="get_stakeholder_validate">
+		<onentry>
+			<!-- call a java validate method -->
+			<assign location="Data(validateEmail, 'cc:emailAddress')" expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<send targettype="'x-java'" namelist="validateEmail" />
+		</onentry>
+		<!--  valid, proceed silently. -->
+		<transition event="validateEmailSuccess" target="get_stakeholder_fetch_user" />
+		<!-- invalid, complain and try again -->
+		<transition event="validateEmailFail" target="get_stakeholder_ask">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_stakeholder_invalid'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+	<!-- check if the user exists -->
+	<state id="get_stakeholder_fetch_user">
+		<onentry>
+			<assign location="Data(fetchModelEntityByField, 'cc:payload/cc:type')" expr="'user'" />
+			<assign location="Data(fetchModelEntityByField, 'cc:payload/cc:fieldName')" expr="'emailAddress'" />
+			<assign location="Data(fetchModelEntityByField, 'cc:payload/cc:value')"
+				expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<send targettype="'x-java'" namelist="fetchModelEntityByField" />
+		</onentry>
+		<!-- does, so now check if the stakeholder already exists -->
+		<transition event="fetchModelEntityByFieldSuccess" target="get_stakeholder_fetch_stakeholder">
+			<assign location="Data(User, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+		</transition>
+		<!-- doesn't ask to create it -->
+		<transition event="fetchModelEntityByFieldFail" target="get_stakeholder_create_user_confirm" />
+	</state>
+
+	<!-- really create a new user? -->
+	<state id="get_stakeholder_create_user_confirm">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_stakeholder_create_user_confirm'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_stakeholder_create_user" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'" target="get_stakeholder_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_stakeholder_start_over'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the new user -->
+	<state id="get_stakeholder_create_user">
+		<onentry>
+			<!-- all we have is an email address, wihch is already populated. -->
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(User, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<!-- put the written user in the User datamodel -->
+		<transition event="createModelEntitySuccess" target="get_stakeholder_create_stakeholder">
+			<assign location="Data(User, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_stakeholder_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_stakeholder_start_over'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- verify that no such stakeholder exists -->
+	<state id="get_stakeholder_fetch_stakeholder">
+		<onentry>
+			<!-- two-step with ExternalKey in order to get the right container name (ExternalKey) -->
+			<assign location="Data(fetchModelEntityByTwoFields, 'cc:payload/cc:type')" expr="'stakeholder'" />
+			<assign location="Data(fetchModelEntityByTwoFields, 'cc:payload/cc:term[1]/cc:fieldName')" expr="'userKey'" />
+			<assign location="Data(ExternalKey, 'cc:entity/p:ExternalKey')" expr="Data(User, 'cc:entity/p:User/p:key')" />
+			<assign location="Data(fetchModelEntityByTwoFields, 'cc:payload/cc:term[1]/cc:value')"
+				expr="Data(ExternalKey, 'cc:entity')" />
+			<assign location="Data(fetchModelEntityByTwoFields, 'cc:payload/cc:term[2]/cc:fieldName')" expr="'decisionKey'" />
+			<assign location="Data(ExternalKey, 'cc:entity/p:ExternalKey')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:key')" />
+			<assign location="Data(fetchModelEntityByTwoFields, 'cc:payload/cc:term[2]/cc:value')"
+				expr="Data(ExternalKey, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="fetchModelEntityByTwoFields" />
+		</onentry>
+		<!-- it already exists!  start over -->
+		<transition event="fetchModelEntityByTwoFieldsSuccess" target="get_stakeholder_ask">
+			<assign location="Data(speak2, 'cc:messageId')" expr="'get_stakeholder_duplicate'" />
+			<assign location="Data(speak2, 'cc:verbatim1')" expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<assign location="Data(speak2, 'cc:verbatim2')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak2" />
+		</transition>
+		<!-- it doesn't exist, so create it -->
+		<transition event="fetchModelEntityByTwoFieldsFail" target="get_stakeholder_create_stakeholder" />
+	</state>
+
+	<!-- create the new stakeholder -->
+	<state id="get_stakeholder_create_stakeholder">
+		<onentry>
+			<assign location="Data(Stakeholder, 'cc:entity/p:Stakeholder/p:decisionKey')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:key')" />
+			<assign location="Data(Stakeholder, 'cc:entity/p:Stakeholder/p:userKey')" expr="Data(User, 'cc:entity/p:User/p:key')" />
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Stakeholder, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<!-- success, ask for another one -->
+		<transition event="createModelEntitySuccess" target="get_stakeholder_ask">
+			<assign location="Data(speak2, 'cc:messageId')" expr="'get_stakeholder_success'" />
+			<assign location="Data(speak2, 'cc:verbatim1')" expr="Data(User, 'cc:entity/p:User/p:emailAddress')" />
+			<assign location="Data(speak2, 'cc:verbatim2')"
+				expr="Data(get_stakeholder_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak2" />
+		</transition>
+		<!-- failed, start over -->
+		<transition event="createModelEntityFail" target="get_stakeholder_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_stakeholder_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<final id="get_stakeholder_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(get_stakeholder_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

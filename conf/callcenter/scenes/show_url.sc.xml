@@ -1,0 +1,65 @@
+<!--
+	The "show url" scene is extremely short.  It just spits out the URL for the decision
+	at hand.  It's a separate scene because it's repeated every so often.  After all,
+	it's where the ads are.  :-)  Of course any other scene can use these states too.
+	
+	NEW! this tests the 'pass the whole payload in XML' thing.
+	
+	Input:
+	/cc:input/cc:decision == active decision, in its entirety
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="show_url_start">
+	<datamodel>
+		<data name="show_url_input">
+			<cc:input>
+				<!-- the current decision (entire record) -->
+				<cc:decision></cc:decision>
+			</cc:input>
+		</data>
+		<data name="show_url_output">
+			<cc:output>
+				<!-- there is no output -->
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<state id="show_url_start">
+		<onentry>
+			<assign location="Data(show_url_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(show_url_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="show_url_speak_decision" />
+	</state>
+
+	<!-- there are two states here to make sure we speak these things in the right order. -->
+	<state id="show_url_speak_decision">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'show_decision'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(show_url_input, 'cc:input/cc:decision/p:Decision/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition target="show_url_speak_url" />
+	</state>
+
+	<state id="show_url_speak_url">
+		<onentry>
+			<assign location="Data(speakUrlFromKey, 'cc:messageId')" expr="'show_url'" />
+			<assign location="Data(speakUrlFromKey, 'cc:baseUrl')" expr="'http://localhost:8080/show/utility-alternatives/'" />
+			<assign location="Data(speakUrlFromKey, 'cc:key/p:ExternalKey')"
+				expr="Data(show_url_input, 'cc:input/cc:decision/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="speakUrlFromKey" />
+		</onentry>
+		<transition target="show_url_final" />
+	</state>
+
+	<final id="show_url_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(show_url_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

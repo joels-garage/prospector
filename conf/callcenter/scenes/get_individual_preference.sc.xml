@@ -1,0 +1,308 @@
+<!--
+	Solicit individual preferences.  The user may, as a side-effect, also create the individual they are commenting on.
+	
+	Input:
+	/cc:input/cc:decision
+	/cc:input/cc:stakeholder
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="get_individual_preference_start">
+	<datamodel>
+		<data name="get_individual_preference_input">
+			<cc:input>
+				<!-- the current decision, serialized -->
+				<cc:decision></cc:decision>
+				<!-- the current stakeholder record -->
+				<cc:stakeholder></cc:stakeholder>
+			</cc:input>
+		</data>
+		<data name="get_individual_preference_output">
+			<cc:output>
+				<!-- there is no output -->
+			</cc:output>
+		</data>
+		<!-- internal data -->
+		<!-- The individual being discussed, e.g. regarding preferences thereof -->
+		<data name="ActiveIndividual">
+			<cc:key></cc:key>
+			<cc:degree></cc:degree>
+		</data>
+		<!-- if user says "i like x" for some unknown x, it goes here. -->
+		<data name="NewName">
+			<cc:name></cc:name>
+		</data>
+		<!-- Java methods -->
+		<!-- create an alternative with the specified name, as a member of the specified class. -->
+		<data name="createAlternative">
+			<!-- the name of the individual -->
+			<cc:name></cc:name>
+			<!-- the class of which it is a member -->
+			<cc:classKey>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:classKey>
+		</data>
+		<!-- create an IndividualUtility record as specified.  Note we can use the string version of the
+			individualKey, our converter fixes it up. -->
+		<data name="createIndividualUtility">
+			<cc:entity>
+				<p:IndividualUtility>
+					<p:stakeholderKey></p:stakeholderKey>
+					<p:individualKey></p:individualKey>
+					<p:value></p:value>
+				</p:IndividualUtility>
+			</cc:entity>
+		</data>
+	</datamodel>
+
+	<!-- entry point -->
+	<state id="get_individual_preference_start">
+		<onentry>
+			<assign location="Data(get_individual_preference_input, '.')"
+				expr="Data(_eventdatamap['get_individual_preference'], '.')" />
+			<assign location="Data(get_individual_preference_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="get_individual_preference_pre" />
+	</state>
+
+	<!-- first time around -->
+	<state id="get_individual_preference_pre">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'get_individual_preference'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</onentry>
+		<transition target="get_individual_preference_ask" />
+	</state>
+
+	<!-- second time around -->
+	<state id="get_individual_preference_again">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_again'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition target="get_individual_preference_ask" />
+	</state>
+
+	<!-- ask the user if there are any individuals they like or dislike -->
+	<!-- this state activates the recognizer filter -->
+	<state id="get_individual_preference_ask">
+		<onentry>
+			<assign location="Data(setRecognizerPreferenceFilter, 'cc:classKey/p:ExternalKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+			<send targettype="'x-java'" namelist="setRecognizerPreferenceFilter" />
+		</onentry>
+		<!-- no individual preferences -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_preference_final" />
+		<!-- follow up == ask again -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_preference_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<!-- user provides a preference including degree; class is guaranteed correct -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'preference' and Data(_eventdata, 'cc:UserInput/cc:type') == 'individual'"
+			target="get_individual_preference_create">
+			<assign location="Data(ActiveIndividual, 'cc:key')" expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+			<assign location="Data(ActiveIndividual, 'cc:degree')" expr="Data(_eventdata, 'cc:UserInput/cc:degree')" />
+		</transition>
+		<!-- user provides a known individual but not a preference degree; ask the degree -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'model_entity' and Data(_eventdata, 'cc:UserInput/cc:type') == 'individual'"
+			target="get_individual_preference_degree">
+			<assign location="Data(ActiveIndividual, 'cc:key')" expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- any other utterance might be a new individual -->
+		<transition event="user_input" target="get_individual_preference_new">
+			<assign location="Data(NewName, 'cc:name')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+		</transition>
+	</state>
+
+	<!-- we have ActiveIndividual populated with cc:key and cc:degree, so we can create the IndividualUtility. -->
+	<state id="get_individual_preference_create">
+		<onentry>
+			<assign location="Data(createIndividualUtility, 'cc:entity/p:IndividualUtility/p:individualKey')"
+				expr="Data(ActiveIndividual, 'cc:key')" />
+			<assign location="Data(createIndividualUtility, 'cc:entity/p:IndividualUtility/p:value')"
+				expr="Data(ActiveIndividual, 'cc:degree')" />
+			<assign location="Data(createIndividualUtility, 'cc:entity/p:IndividualUtility/p:stakeholderKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:stakeholder/p:Stakeholder/p:key')" />
+			<send targettype="'x-java'" namelist="createIndividualUtility" />
+		</onentry>
+		<!-- no matter the outcome, we go back to the beginning. -->
+		<!-- provide feedback in terms of stars -->
+		<transition event="createIndividualUtilitySuccess" target="get_individual_preference_comment">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_create_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(ActiveIndividual, 'cc:degree') * 5.0" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createIndividualUtilityFail" target="get_individual_preference_comment">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_create_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+	<!-- ask for a comment to go along with the rating -->
+	<state id="get_individual_preference_comment">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_comment'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- whatever the user says is a comment on the individual. -->
+		<transition event="user_input" target="get_individual_preference_comment_store">
+			<assign location="Data(Comment, 'cc:entity/p:Comment/p:text')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<assign location="Data(Comment, 'cc:entity/p:Comment/p:referentKey')" expr="Data(ActiveIndividual, 'cc:key')" />
+		</transition>
+	</state>
+
+	<state id="get_individual_preference_comment_store">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Comment, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_preference_pre">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_comment_store_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(Comment, 'cc:entity/p:Comment/p:text')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_preference_pre">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_comment_store_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+
+	<!-- user gave us an entity but not a preference degree -->
+	<state id="get_individual_preference_degree">
+		<onentry>
+			<assign location="Data(speakNameLookup, 'cc:keyString')" expr="Data(ActiveIndividual, 'cc:key')" />
+			<assign location="Data(speakNameLookup, 'cc:messageId')" expr="'get_individual_preference_degree'" />
+			<send targettype="'x-java'" namelist="speakNameLookup" />
+		</onentry>
+		<!-- "yes" == provide help, ask again -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_preference_degree">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_degree_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<!-- "no" == bail -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_preference_again" />
+		<!-- user provides a sentiment of some kind, so we go to create the utility -->
+		<!-- TODO: allow sentiment with unknown object, e.g. "I like <something new>" -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'sentiment'"
+			target="get_individual_preference_create">
+			<assign location="Data(ActiveIndividual, 'cc:degree')" expr="Data(_eventdata, 'cc:UserInput/cc:degree')" />
+		</transition>
+		<!-- anything else == give help string, start again -->
+		<transition event="user_input" target="get_individual_preference_degree">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_degree_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- User said something we didn't recognize, so maybe it's a hertofore-unknown individual.  So
+		ask to create it, do so, and then go ask about sentiment. -->
+	<state id="get_individual_preference_new">
+		<onentry>
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:messageId')" expr="'get_individual_preference_new_ask'" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:verbatim1')" expr="Data(NewName, 'cc:name')" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:key/p:ExternalKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+			<send targettype="'x-java'" namelist="speakNameKeyAndVerbatim" />
+		</onentry>
+		<!-- yes, go ahead and create it. -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_preference_create_alternative" />
+		<!-- no?  why did the user mention it?  start over. -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_preference_again">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_confused'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<onexit>
+			<assign location="Data(echo, 'cc:payload')" expr="Data(get_individual_preference_input, '.')" />
+			<send targettype="'x-java'" namelist="echo" />
+		</onexit>
+	</state>
+
+	<!-- The user wants NewName/name to be created with ClassMember for class ActiveClass/key -->
+	<state id="get_individual_preference_create_alternative">
+		<onentry>
+			<assign location="Data(createAlternative, 'cc:name')" expr="Data(NewName, 'cc:name')" />
+			<assign location="Data(createAlternative, 'cc:classKey/p:ExternalKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+			<send targettype="'x-java'" namelist="createAlternative" />
+		</onentry>
+		<!-- successfully created the new alternative, now go ask about sentiment. -->
+		<transition event="createAlternativeSuccess" target="get_individual_preference_url">
+			<assign location="Data(ActiveIndividual, 'cc:key')" expr="Data(_eventdata, 'cc:Result/cc:key')" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:messageId')" expr="'get_individual_preference_new_success'" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:verbatim1')" expr="Data(NewName, 'cc:name')" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:key/p:ExternalKey')"
+				expr="Data(get_individual_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+			<send targettype="'x-java'" namelist="speakNameKeyAndVerbatim" />
+		</transition>
+		<!-- failed for some reason. go back to the start. -->
+		<transition event="createAlternativeFail" target="get_individual_preference_again">
+			<assign location="Data(speak2, 'cc:messageId')" expr="'get_individual_preference_new_fail'" />
+			<assign location="Data(speak2, 'cc:verbatim1')" expr="Data(NewName, 'cc:name')" />
+			<assign location="Data(speak2, 'cc:verbatim2')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak2" />
+		</transition>
+	</state>
+
+	<!-- solicit a URL or other comment for the new individual -->
+	<state id="get_individual_preference_url">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_url'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- "yes" == provide help, ask again -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_preference_url">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_preference_url_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<!-- "no" == continue, ask about preference -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_preference_degree" />
+		<!-- anything else == the comment we want -->
+		<transition event="user_input" target="get_individual_preference_url_store">
+			<assign location="Data(Comment, 'cc:entity/p:Comment/p:text')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<assign location="Data(Comment, 'cc:entity/p:Comment/p:referentKey')" expr="Data(ActiveIndividual, 'cc:key')" />
+		</transition>
+	</state>
+
+	<state id="get_individual_preference_url_store">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Comment, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_preference_degree">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_url_store_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(Comment, 'cc:entity/p:Comment/p:text')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_preference_degree">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_preference_url_store_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+
+	</state>
+
+	<final id="get_individual_preference_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(get_individual_preference_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

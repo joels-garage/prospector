@@ -1,0 +1,54 @@
+<!-- simple test SCXML -->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version=" 1.0"
+	initialstate="normal_operation">
+	<datamodel>
+		<data name="UserInput">
+			<cc:event></cc:event>
+			<cc:utterance></cc:utterance>
+		</data>
+		<data name="speak0">
+			<cc:messageId></cc:messageId>
+		</data>
+		<data name="speak1">
+			<cc:messageId></cc:messageId>
+			<cc:verbatim1></cc:verbatim1>
+		</data>
+		<data name="speak2">
+			<cc:messageId></cc:messageId>
+			<cc:verbatim1></cc:verbatim1>
+			<cc:verbatim2></cc:verbatim2>
+		</data>
+	</datamodel>
+
+	<state id="normal_operation">
+		<initial>
+			<transition target="normal_operation_history" />
+		</initial>
+		<history type="deep" id="normal_operation_history">
+			<transition target="unconnected" />
+		</history>
+
+		<state id="include" src="test.include.sc.xml">
+			<transition event="include.done" target="normal_operation" />
+		</state>
+
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'hello'">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'hello'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+
+		<state id="unconnected">
+			<transition event="originate" target="await_instructions" />
+			<transition event="answer" target="answer_the_phone" />
+		</state>
+		<state id="answer_the_phone">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'answer'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<transition target="await_instructions" />
+		</state>
+		<state id="await_instructions" />
+	</state>
+</scxml>

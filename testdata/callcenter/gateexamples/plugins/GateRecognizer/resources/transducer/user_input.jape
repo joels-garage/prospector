@@ -1,0 +1,139 @@
+Phase:	UserInput
+Input: Lookup Token Preference
+Options: control = appelt
+
+// Creates UserInput annotations to be picked up by the recognizer.
+
+// the gazetteer contains simple imperatives; those become UserInput directly
+Rule: CommandRule
+(
+ {Lookup.majorType == command}
+)
+:command
+-->
+:command.UserInput = {
+  event = :command.Lookup.event,
+  rule = "CommandRule"
+}
+
+// User specifies an entity name (exactly).  Need not be the *entire* utterance.
+// TODO: approximate matching.
+// TODO: bound the nonmatched part somehow
+Rule: ModelEntityRule
+(
+ {Lookup.majorType == model_entity}
+)
+:command
+-->
+:command.UserInput = {
+    event = "model_entity",
+    type = :command.Lookup.type,
+    key = :command.Lookup.key
+    rule = "ModelEntityRule"
+}
+
+// User specifies a goal in terms of a class: {I|we} want {a} {entity}
+// TODO: move the verb strings ("want", "need") to the lexicon
+Rule: GoalRule
+(
+ {Lookup.majorType == pronoun, Lookup.person == first}
+ {Token.string == "want"}|{Token.string == "need"}
+ ({Token.category == "DT"})?
+ (
+  {Lookup.majorType == model_entity, Lookup.type == class}
+ ):entity
+)
+:command
+-->
+:command.UserInput = {
+  event = "goal",
+  key = :entity.Lookup.key,
+  rule = "GoalRule"
+}
+
+// Copy Preference annotations into UserInput
+// TODO: this seems dumb
+
+Rule: GatherPreference
+(
+ ({Preference}):preference
+)
+:user_input
+-->
+:user_input.UserInput = {
+  event = "preference",
+  degree = :preference.Preference.degree,
+  key = :preference.Preference.key,
+  type = :preference.Preference.type,
+  rule = "GatherPreference"
+}
+
+// Grab sentiment words if they're by themselves.
+Rule: Sentiment
+(
+ {Lookup.majorType == sentiment}
+)
+:sentiment
+-->
+:sentiment.UserInput = {
+  event = "sentiment",
+  degree = :sentiment.Lookup.degree,
+  rule = "Sentiment"
+}
+
+Macro: MILLION_BILLION
+({Token.string == "m"}|
+{Token.string == "million"}|
+{Token.string == "b"}|
+{Token.string == "billion"}|
+{Token.string == "bn"}|
+{Token.string == "k"}|
+{Token.string == "K"}
+)
+
+Macro: NUMBER_WORDS
+// two hundred and thirty five
+// twenty five
+
+(
+ (({Lookup.majorType == number} 
+   ({Token.string == "-"})?
+  )*
+   {Lookup.majorType == number}
+   {Token.string == "and"}
+ )*
+ ({Lookup.majorType == number} 
+  ({Token.string == "-"})?
+ )*
+   {Lookup.majorType == number}
+)
+
+
+Macro: AMOUNT_NUMBER
+// enables commas, decimal points and million/billion
+// to be included in a number
+ 
+(({Token.kind == number}
+  (({Token.string == ","}|
+    {Token.string == "."}
+   )
+   {Token.kind == number}
+  )*
+  |
+  (NUMBER_WORDS)
+ )
+ (MILLION_BILLION)?
+)
+
+// If the user gave us a number, take the whole span of it, so we can (separately) convert it to
+// a value.  Would be nice if GATE did the conversion, I think.
+Rule: Number
+(
+ (AMOUNT_NUMBER)
+)
+:number
+-->
+:number.UserInput = {
+  event = "number",
+  rule = "Number"
+}

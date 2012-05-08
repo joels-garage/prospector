@@ -1,0 +1,67 @@
+<!--
+	The "show alternatives" scene tells the user something about the available alternatives.
+	
+	For example it could name the highest-scoring few individuals.  It could also say something
+	about the worst ones, or about how different stakeholders feel about the options.
+	
+	For now it just shows the "ranked alternatives" list.
+	
+	Inputs:
+	/cc:input/cc:key == active decision
+	
+	Outputs:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="show_alternatives_start">
+	<datamodel>
+		<data name="show_alternatives_input">
+			<cc:input>
+				<!-- the current decision -->
+				<cc:decision></cc:decision>
+			</cc:input>
+		</data>
+		<data name="show_alternatives_output">
+			<cc:output>
+				<!-- there is no output -->
+			</cc:output>
+		</data>
+		<!-- Java methods -->
+		<data name="getAlternatives">
+			<!-- the decision key -->
+			<cc:key>
+				<p:ExternalKey></p:ExternalKey>
+			</cc:key>
+		</data>
+	</datamodel>
+
+	<state id="show_alternatives_start">
+		<onentry>
+			<assign location="Data(show_alternatives_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(show_alternatives_output, 'cc:output')" expr="''" />
+
+			<!-- fetch the list of top alternatives for the specified decision -->
+			<assign location="Data(getAlternatives, 'cc:key/p:ExternalKey')"
+				expr="Data(show_alternatives_input, 'cc:input/cc:decision/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="getAlternatives" />
+		</onentry>
+		<!-- speak the returned list -->
+		<transition event="getAlternativesDone" target="show_alternatives_final">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'show_alternatives'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:alternatives')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<!-- say: got none -->
+		<transition event="getAlternativesFail" target="show_alternatives_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'show_alternatives_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<final id="show_alternatives_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(show_url_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

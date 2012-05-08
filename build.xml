@@ -1,0 +1,1813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Note there are ant tasks for hibernate ddl: http://www.hibernate.org/381.html -->
+
+<!-- Prospector build file -->
+
+<project name="Prospector" default="clean-war" basedir=".">
+
+	<description>Prospector build file.</description>
+
+	<property file="build.properties" />
+
+	<!-- new PROTOBUF task -->
+
+	<target name="proto">
+		<mkdir dir="${basedir}/target/generated-sources" />
+		<exec executable="protoc">
+			<arg value="--java_out=${basedir}/target/generated-sources" />
+			<arg value="--proto_path=${basedir}/proto" />
+			<arg value="${basedir}/proto/sample.proto" />
+		</exec>
+	</target>
+
+	<!-- CLEAN -->
+
+	<target name="clean">
+		<delete quiet="true">
+			<fileset dir="${bin.dir}" includes="**" />
+		</delete>
+		<delete quiet="true">
+			<fileset file="${dist.dir}/**/*" />
+		</delete>
+		<delete quiet="true">
+			<fileset dir="${gwt.out.dir}" includes="**/*" />
+		</delete>
+		<delete quiet="true">
+			<fileset dir="${basedir}/target/generated-sources" includes="**/*" />
+		</delete>
+	</target>
+
+	<!-- JAVA -->
+
+	<!-- Libraries for compilation, i.e. direct dependencies -->
+	<!-- TODO (truher): different class path for test vs src -->
+	<path id="project.class.path">
+		<pathelement path="${java.class.path}" />
+		<!-- pathelement path="${gwt-user.jar}" / -->
+		<!-- don't need gwt-dev for java-compile -->
+		<!-- pathelement path="${gwt-dev.jar}" / -->
+		<!-- pathelement path="${junit.jar}" / -->
+		<!-- Additional dependencies (such as junit) go here -->
+		<pathelement path="${hibernate3.jar}" />
+		<!--pathelement path="${servlet.jar}" /-->
+		<pathelement path="${gwt-servlet.jar}" />
+		<pathelement path="${mysql-connector.jar}" />
+		<pathelement path="${c3p0.jar}" />
+		<pathelement path="${cglib.jar}" />
+		<pathelement path="${asm.jar}" />
+		<pathelement path="${jta.jar}" />
+		<pathelement path="${antlr.jar}" />
+
+		<pathelement path="${log4j.jar}" />
+		<pathelement path="${dom4j.jar}" />
+		<pathelement path="${jaxen.jar}" />
+		<pathelement path="${args4j.jar}" />
+
+		<pathelement path="${smack.jar}" />
+		<pathelement path="${smackx.jar}" />
+		<pathelement path="${smackx-debug.jar}" />
+		<pathelement path="${commons-scxml.jar}" />
+		<pathelement path="${commons-jexl.jar}" />
+		<pathelement path="${commons-logging.jar}" />
+		<pathelement path="${xalan.jar}" />
+		<pathelement path="${serializer.jar}" />
+		<pathelement path="${xml-apis.jar}" />
+		<pathelement path="${xercesImpl.jar}" />
+		<pathelement path="${commons-collections.jar}" />
+		<pathelement path="${commons-digester.jar}" />
+		<pathelement path="${commons-beanutils.jar}" />
+		<!-- pathelement path="${jox.jar}" / -->
+		<pathelement path="${dtdparser.jar}" />
+		<pathelement path="${google-collections.jar}" />
+		<pathelement path="${heritrix.jar}" />
+		<pathelement path="${fastutil.jar}" />
+		<pathelement path="${htmlcleaner.jar}" />
+		<!-- for STRIPES -->
+		<pathelement path="${stripes.jar}" />
+		<pathelement path="${colt.jar}" />
+
+		<!-- for callcenter -->
+		<pathelement path="${gate.jar}" />
+		<pathelement path="${nekohtml.jar}" />
+		<pathelement path="${pdfbox.jar}" />
+		<pathelement path="${jdom.jar}" />
+		<pathelement path="${ontotext.jar}" />
+		<pathelement path="${jasper-compiler-jdt.jar}" />
+
+		<pathelement path="${protobuf.jar}" />
+		<pathelement path="${gson.jar}" />
+		<pathelement path="${json.jar}" />
+
+
+	</path>
+
+
+	<target name="java-compile" depends="proto" description="Compile java src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<compilerarg value="-Xlint" />
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${basedir}/target/generated-sources" />
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<!-- Copy all the Hibernate per-class xml -->
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+			<fileset file="${conf.dir}/common/log4j.properties" />
+		</copy>
+	</target>
+
+	<target name="java-test-compile" depends="proto" description="Compile java test src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}" includes="**" debug="on" debuglevel="lines,vars,source">
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<!-- Copy all the Hibernate per-class xml -->
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+		</copy>
+	</target>
+
+	<!-- Using fork=true here because the junit splitloader isn't working
+	     for some reason. -->
+
+	<!-- removed from here: show-test -->
+	<target name="all-test"
+	        depends="callcenter-test,
+		extractor-test,
+		prospector-test,
+		skiploader-test,
+		data-processing-test,
+		util-test,
+		gardening-test"
+	/>
+
+	<!-- omits client test until fixed -->
+	<target name="prospector-test" depends="model-test, logic-test" />
+	<!-- target name="prospector-test" depends="prospector-server-test" /-->
+
+
+	<!-- this seems to fail but I don't think it's for a good reason.
+	removed "gwt-compile" from below -->
+	<target name="model-test" depends="java-test-compile" description="run all the junit tests">
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<!-- sysproperty key="swt.library.path" value="${gwt.home}" / -->
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--path refid="gwt.shell.classpath" /-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<!--<batchtest todir="${test.reports.dir}">-->
+			<assertions>
+				<enable />
+			</assertions>
+			<batchtest>
+				<fileset dir="${test.dir}">
+					<include name="**/model/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="logic-test" depends="java-test-compile" description="run all the junit tests">
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--path refid="gwt.shell.classpath" /-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<!--	<batchtest todir="${test.reports.dir}">-->
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<fileset dir="${test.dir}">
+					<include name="**/logic/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- WAR -->
+
+	<!-- Pack up the war file, and include indirect dependencies -->
+	<target name="war" depends="java-compile,gwt-compile" description="Make a WAR for Tomcat">
+		<mkdir dir="${dist.dir}" />
+		<war destfile="${dist.dir}/${war.filename}.war" webxml="${conf.dir}/prospector/web.xml">
+			<classes dir="${bin.dir}" />
+
+			<!-- need gwt-servlet.jar for deployment but not gwt-user.jar -->
+			<!-- which is why this doesn't include project.class.path either -->
+			<lib file="${gwt-servlet.jar}" />
+
+			<!-- this is the GWT Javascript stuff, relocated to the root of the WAR -->
+			<!-- TODO is such relocation a good idea? -->
+			<fileset dir="${gwt.out.dir}/${gwt.module.name}" />
+
+			<!-- hibernate indirect dependencies -->
+			<lib file="${hibernate3.jar}" />
+
+			<!-- need this? -->
+			<!--lib file="${servlet.jar}" /-->
+			<lib file="${mysql-connector.jar}" />
+
+			<lib file="${antlr.jar}" />
+			<lib file="${asm.jar}" />
+			<lib file="${asm-attrs.jar}" />
+			<lib file="${c3p0.jar}" />
+			<lib file="${cglib.jar}" />
+			<lib file="${commons-collections.jar}" />
+			<lib file="${commons-logging.jar}" />
+			<lib file="${dom4j.jar}" />
+			<lib file="${jaxen.jar}" />
+			<lib file="${jta.jar}" />
+			<lib file="${log4j.jar}" />
+
+			<lib file="${args4j.jar}" />
+		</war>
+	</target>
+
+
+	<!-- GWT -->
+
+	<path id="gwt.classpath">
+		<!--pathelement path="${java.class.path}/" /-->
+		<pathelement path="${src.dir}/" />
+		<pathelement path="${gwt-user.jar}" />
+		<pathelement path="${gwt-dev.jar}" />
+	</path>
+
+	<!-- extract into some common path -->
+	<path id="gwt.shell.classpath">
+		<pathelement path="${gwt-user.jar}" />
+		<pathelement path="${gwt-dev.jar}" />
+
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${src.dir}" />
+		<pathelement path="${bin.dir}" />
+
+		<pathelement path="${hibernate3.jar}" />
+		<pathelement path="${c3p0.jar}" />
+
+		<pathelement path="${mysql-connector.jar}" />
+		<pathelement path="${antlr.jar}" />
+		<pathelement path="${asm.jar}" />
+		<pathelement path="${asm-attrs.jar}" />
+		<pathelement path="${cglib.jar}" />
+		<pathelement path="${commons-collections.jar}" />
+		<pathelement path="${commons-logging.jar}" />
+		<pathelement path="${dom4j.jar}" />
+		<pathelement path="${jaxen.jar}" />
+		<pathelement path="${jta.jar}" />
+		<pathelement path="${log4j.jar}" />
+
+		<pathelement path="${args4j.jar}" />
+	</path>
+
+	<target name="gwt-compile" depends="java-compile">
+		<java classname="com.google.gwt.dev.GWTCompiler"
+		      classpathref="gwt.classpath"
+		      fork="true"
+		      failonerror="true"
+		>
+			<!--jvmarg value="-Xmx192m" /-->
+			<!--jvmarg value="-Xms128m" /-->
+			<arg value="-out" />
+			<arg value="${gwt.out.dir}" />
+			<arg value="-style" />
+			<arg value="${gwt.js.style}" />
+			<arg value="-logLevel" />
+			<arg value="${gwt.log.level}" />
+			<arg value="${gwt.module.name}" />
+		</java>
+	</target>
+
+	<target name="gwt-hosted-mode" depends="gwt-compile">
+		<java classname="com.google.gwt.dev.GWTShell"
+		      classpathref="gwt.shell.classpath"
+		      fork="true"
+		      failonerror="true"
+		>
+			<arg value="-out" />
+			<arg value="${gwt.out.dir}" />
+			<arg value="-style" />
+			<arg value="${gwt.js.style}" />
+			<arg value="-logLevel" />
+			<arg value="${gwt.log.level}" />
+			<arg value="${gwt.shell.url}" />
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+		</java>
+	</target>
+
+
+	<!-- DO EVERYTHING -->
+
+	<target name="clean-war" depends="clean,war" />
+	<target name="clean-deploy" depends="clean-war,deploy" />
+
+
+
+	<!-- Stop tomcat, push the war, and restart it. -->
+	<target name="deploy" depends="war">
+		<!--exec executable="/bin/sh">
+			<arg value="${tomcat.bin.dir}/shutdown.sh"/>
+		</exec>
+		<delete quiet="true">
+			<fileset dir="${tomcat.webapps.dir}/${war.filename}" includes="**/*" />
+		</delete>
+		<delete quiet="true">
+			<fileset file="${tomcat.webapps.dir}/${war.filename}.war" />
+		</delete-->
+
+		<copy todir="${tomcat.webapps.dir}">
+			<fileset file="${dist.dir}/${war.filename}.war" />
+		</copy>
+
+		<!--exec executable="/bin/sh">
+			<arg value="${tomcat.bin.dir}/startup.sh"/>
+		</exec-->
+	</target>
+
+	<!-- SKIPLOADER APPLICATION -->
+
+	<target name="skiploader-compile"
+	        depends="proto"
+	        description="Compile skiploader java src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+
+			<!-- Copy all the Hibernate per-class xml -->
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+			<fileset file="${conf.dir}/common/log4j.properties" />
+		</copy>
+	</target>
+
+	<target name="skiploader-test-compile"
+	        depends="proto"
+	        description="Compile extractor java test src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<!-- Copy all the Hibernate per-class xml -->
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+		</copy>
+	</target>
+
+	<target name="skiploader-test"
+	        depends="skiploader-test-compile"
+	        description="run all the extractor junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--
+				<path refid="gwt.shell.classpath" />
+				-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+
+				<pathelement path="${log4j.jar}" />
+				<pathelement path="${hibernate.jar}" />
+				<pathelement path="${mysql-connector.jar}" />
+				<pathelement path="${c3p0.jar}" />
+				<pathelement path="${antlr.jar}" />
+				<pathelement path="${asm.jar}" />
+				<pathelement path="${asm-attrs.jar}" />
+				<pathelement path="${cglib.jar}" />
+				<pathelement path="${commons-collections.jar}" />
+				<pathelement path="${commons-logging.jar}" />
+				<pathelement path="${dom4j.jar}" />
+				<pathelement path="${jaxen.jar}" />
+				<pathelement path="${jta.jar}" />
+
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--<batchtest todir="${test.reports.dir}">-->
+
+				<fileset dir="${test.dir}">
+					<include name="**/skiploader/**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- this jar's manifest should refer to ALL the dependencies of the enclosed app -->
+	<!-- thus, these dependencies must be copied to the "lib" directory -->
+
+	<target name="skiploader-jar"
+	        depends="skiploader-compile"
+	        description="Make an executable JAR for skiploader"
+	>
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${skiploader.jar.filename}">
+			<fileset dir="${bin.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${skiploader.main.class}" />
+				<attribute name="Class-Path"
+				           value="
+					lib/${log4j.jar.basename}
+					lib/${hibernate.jar.basename}
+					lib/${mysql-connector.jar.basename}
+					lib/${c3p0.jar.basename}
+					lib/${antlr.jar.basename}
+					lib/${asm.jar.basename}
+					lib/${asm-attrs.jar.basename}
+					lib/${cglib.jar.basename}
+					lib/${commons-collections.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${dom4j.jar.basename}
+					lib/${jaxen.jar.basename}
+					lib/${jta.jar.basename}
+					lib/${gwt-user.jar.basename}
+					lib/${args4j.jar.basename}
+					lib/${dtdparser.jar.basename}
+					lib/${commons-beanutils.jar.basename}
+					lib/${stripes.jar.basename}
+					"
+				/>
+				<!--
+					lib/${jox.jar.basename}
+					lib/${smack.jar.basename}
+					lib/${smackx.jar.basename}
+					lib/${smackx-debug.jar.basename}
+					lib/${commons-scxml.jar.basename}
+					lib/${commons-jexl.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${xalan.jar.basename}
+					lib/${serializer.jar.basename}
+					lib/${xml-apis.jar.basename}
+					lib/${xercesImpl.jar.basename}
+					lib/${commons-collections.jar.basename}
+					lib/${commons-digester.jar.basename}
+					lib/${commons-beanutils.jar.basename}"
+				/>-->
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="skiploader-clean-jar" depends="clean,skiploader-jar" />
+	<target name="skiploader-clean-deploy" depends="skiploader-clean-jar,skiploader-deploy" />
+
+
+
+	<!-- Copy ALL the dependencies to the "lib" directory, as specified above. -->
+
+	<target name="skiploader-deploy" depends="skiploader-jar">
+		<copy todir="${skiploader.host.dir}">
+			<fileset file="${dist.dir}/${skiploader.jar.filename}" />
+		</copy>
+
+		<copy todir="${skiploader.host.lib.dir}" verbose="true" failonerror="true">
+			<fileset file="${log4j.jar}" />
+			<fileset file="${hibernate3.jar}" />
+			<fileset file="${mysql-connector.jar}" />
+			<fileset file="${c3p0.jar}" />
+			<fileset file="${antlr.jar}" />
+			<fileset file="${asm.jar}" />
+			<fileset file="${asm-attrs.jar}" />
+			<fileset file="${cglib.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${dom4j.jar}" />
+			<fileset file="${jaxen.jar}" />
+			<fileset file="${jta.jar}" />
+			<!-- just for "IsSerializable" -->
+			<fileset file="${gwt-user.jar}" />
+			<fileset file="${args4j.jar}" />
+			<!--fileset file="${jox.jar}" / -->
+			<fileset file="${dtdparser.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+			<!-- for the class scanner in resolvutil -->
+			<fileset file="${stripes.jar}" />
+
+
+			<!--
+			<fileset file="${smack.jar}" />
+			<fileset file="${smackx.jar}" />
+			<fileset file="${smackx-debug.jar}" />
+			<fileset file="${commons-scxml.jar}" />
+			<fileset file="${commons-jexl.jar}" />
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${xalan.jar}" />
+			<fileset file="${serializer.jar}" />
+			<fileset file="${xml-apis.jar}" />
+			<fileset file="${xercesImpl.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-digester.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+			-->
+
+		</copy>
+	</target>
+
+
+	<!-- CALLCENTER APPLICATION -->
+
+	<target name="callcenter-compile"
+	        depends="proto"
+	        description="Compile callcenter java src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<!-- Copy all the Hibernate per-class xml -->
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/common/commons-logging.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+			<fileset dir="${callcenter.conf.dir}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<!-- GATE CONFIG FILES -->
+		<copy todir="${bin.dir}/gateexamples">
+			<fileset dir="${callcenter.conf.dir}/gateexamples">
+				<include name="*" />
+			</fileset>
+		</copy>
+		<!-- GATE PLUGINS -->
+		<copy todir="${bin.dir}/gateexamples/plugins">
+			<fileset dir="${gate.home}/plugins">
+				<include name="ANNIE/**" />
+			</fileset>
+			<fileset dir="${callcenter.conf.dir}/gateexamples/plugins">
+				<include name="Goldfish/**" />
+			</fileset>
+			<fileset dir="${callcenter.conf.dir}/gateexamples/plugins">
+				<include name="GateRecognizer/**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="callcenter-test-compile"
+	        depends="proto"
+	        description="Compile callcenter java test src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+			<!-- putting it back in for the end-to-end tests, against my better judgment -->
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+
+			<!-- Copy all the Hibernate per-class xml -->
+			<!--
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+			-->
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/common/commons-logging.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+			<fileset dir="${callcenter.conf.dir}">
+				<include name="*.sc.xml" />
+				<include name="*.properties" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<!-- GATE CONFIG FILES -->
+		<copy todir="${bin.dir}/gateexamples">
+			<fileset dir="${callcenter.conf.dir}/gateexamples">
+				<include name="*" />
+			</fileset>
+		</copy>
+		<!-- GATE PLUGINS -->
+		<copy todir="${bin.dir}/gateexamples/plugins">
+			<fileset dir="${gate.home}/plugins">
+				<include name="ANNIE/**" />
+			</fileset>
+			<fileset dir="${callcenter.conf.dir}/gateexamples/plugins">
+				<include name="Goldfish/**" />
+			</fileset>
+			<!--
+			<fileset dir="${callcenter.conf.dir}/gateexamples/plugins">
+				<include name="GateRecognizer/**" />
+			</fileset>
+			-->
+		</copy>
+		<copy todir="${bin.dir}/gateexamples/plugins">
+			<fileset dir="${testdata.dir}/callcenter/gateexamples/plugins">
+				<include name="GateRecognizer/**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="callcenter-test"
+	        depends="callcenter-test-compile"
+	        description="run all the callcenter junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--
+				<path refid="gwt.shell.classpath" />
+				-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!-- <batchtest todir="${test.reports.dir}">-->
+
+				<fileset dir="${test.dir}">
+					<include name="**/callcenter/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- this jar's manifest should refer to ALL the dependencies of the enclosed app -->
+	<!-- thus, these dependencies must be copied to the "lib" directory -->
+
+	<target name="callcenter-jar"
+	        depends="callcenter-compile"
+	        description="Make an executable JAR for callcenter"
+	>
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${callcenter.jar.filename}">
+			<fileset dir="${bin.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${callcenter.main.class}" />
+				<attribute name="Class-Path"
+				           value="
+					lib/${log4j.jar.basename}
+					lib/${hibernate.jar.basename}
+					lib/${mysql-connector.jar.basename}
+					lib/${c3p0.jar.basename}
+					lib/${antlr.jar.basename}
+					lib/${asm.jar.basename}
+					lib/${asm-attrs.jar.basename}
+					lib/${cglib.jar.basename}
+					lib/${commons-collections.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${dom4j.jar.basename}
+					lib/${jaxen.jar.basename}
+					lib/${jta.jar.basename}
+					lib/${gwt-user.jar.basename}
+					lib/${args4j.jar.basename}
+	
+					lib/${smack.jar.basename}
+					lib/${smackx.jar.basename}
+					lib/${smackx-debug.jar.basename}
+					lib/${commons-scxml.jar.basename}
+					lib/${commons-jexl.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${xalan.jar.basename}
+					lib/${serializer.jar.basename}
+					lib/${xml-apis.jar.basename}
+					lib/${xercesImpl.jar.basename}
+					lib/${commons-collections.jar.basename}
+					lib/${commons-digester.jar.basename}
+					lib/${commons-beanutils.jar.basename}
+					
+					lib/${dtdparser.jar.basename}
+					lib/${google-collections.jar.basename}
+					
+					lib/${gate.jar.basename}
+					lib/${nekohtml.jar.basename}
+					lib/${pdfbox.jar.basename}
+					lib/${jdom.jar.basename}
+					lib/${ontotext.jar.basename}
+					lib/${jasper-compiler-jdt.jar.basename}
+					
+					lib/${stripes.jar.basename}
+					lib/${colt.jar.basename}
+
+					"
+				/>
+				<!--lib/${jox.jar.basename}-->
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="callcenter-clean-jar" depends="clean,callcenter-jar" />
+	<target name="callcenter-clean-deploy" depends="callcenter-clean-jar,callcenter-deploy" />
+
+
+	<!-- Copy ALL the dependencies to the "lib" directory, as specified above. -->
+
+	<target name="callcenter-deploy" depends="callcenter-jar">
+		<copy todir="${callcenter.host.dir}">
+			<fileset file="${dist.dir}/${callcenter.jar.filename}" />
+		</copy>
+
+		<!-- Stuff that Gate can find -->
+		<copy todir="${callcenter.host.dir}/gateexamples">
+			<fileset dir="${bin.dir}/gateexamples">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<copy todir="${callcenter.host.lib.dir}" verbose="true" failonerror="true">
+			<fileset file="${log4j.jar}" />
+			<fileset file="${hibernate3.jar}" />
+			<fileset file="${mysql-connector.jar}" />
+			<fileset file="${c3p0.jar}" />
+			<fileset file="${antlr.jar}" />
+			<fileset file="${asm.jar}" />
+			<fileset file="${asm-attrs.jar}" />
+			<fileset file="${cglib.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${dom4j.jar}" />
+			<fileset file="${jaxen.jar}" />
+			<fileset file="${jta.jar}" />
+			<!-- just for "IsSerializable" -->
+			<fileset file="${gwt-user.jar}" />
+			<fileset file="${args4j.jar}" />
+
+
+			<fileset file="${smack.jar}" />
+			<fileset file="${smackx.jar}" />
+			<fileset file="${smackx-debug.jar}" />
+			<fileset file="${commons-scxml.jar}" />
+			<fileset file="${commons-jexl.jar}" />
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${xalan.jar}" />
+			<fileset file="${serializer.jar}" />
+			<fileset file="${xml-apis.jar}" />
+			<fileset file="${xercesImpl.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-digester.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+			<!--fileset file="${jox.jar}" /-->
+			<fileset file="${dtdparser.jar}" />
+			<fileset file="${google-collections.jar}" />
+
+			<fileset file="${gate.jar}" />
+			<fileset file="${nekohtml.jar}" />
+			<fileset file="${pdfbox.jar}" />
+			<fileset file="${jdom.jar}" />
+			<fileset file="${ontotext.jar}" />
+			<fileset file="${jasper-compiler-jdt.jar}" />
+
+			<!-- because the callcenter uses the dowser, which uses the stripes scanner -->
+			<fileset file="${stripes.jar}" />
+			<fileset file="${colt.jar}" />
+
+
+		</copy>
+	</target>
+
+
+	<!-- EXTRACTOR APPLICATION -->
+
+	<target name="extractor-compile"
+	        depends="proto"
+	        description="Compile extractor java src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+			<!--
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			-->
+
+			<!-- Copy all the Hibernate per-class xml -->
+			<!--
+				<fileset dir="${src.dir}">
+					<include name="**/*hbm.xml" />
+				</fileset>
+				-->
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/common/commons-logging.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+			<fileset dir="${extractor.conf.dir}">
+				<include name="*.properties" />
+				<include name="*.xsl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="extractor-test-compile"
+	        depends="proto"
+	        description="Compile extractor java test src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+			<!--
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			-->
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/common/commons-logging.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+			<fileset dir="${extractor.conf.dir}">
+				<include name="*.properties" />
+				<include name="*.xsl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="extractor-test"
+	        depends="extractor-test-compile"
+	        description="run all the extractor junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--
+				<path refid="gwt.shell.classpath" />
+				-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<!--<batchtest todir="${test.reports.dir}"> -->
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+
+				<fileset dir="${test.dir}">
+					<include name="**/extractor/**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- this jar's manifest should refer to ALL the dependencies of the enclosed app -->
+	<!-- thus, these dependencies must be copied to the "lib" directory -->
+
+	<target name="extractor-jar"
+	        depends="extractor-compile"
+	        description="Make an executable JAR for skiploader"
+	>
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${extractor.jar.filename}">
+			<fileset dir="${bin.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${extractor.main.class}" />
+				<attribute name="Class-Path"
+				           value="
+						lib/${log4j.jar.basename}
+						lib/${args4j.jar.basename}
+						lib/${heritrix.jar.basename}
+						lib/${fastutil.jar.basename}
+						lib/${htmlcleaner.jar.basename}
+						lib/${xalan.jar.basename}
+						lib/${serializer.jar.basename}
+						lib/${xml-apis.jar.basename}
+						lib/${xercesImpl.jar.basename}
+						
+						lib/${dtdparser.jar.basename}
+					
+					    lib/${dom4j.jar.basename}
+				    	lib/${gwt-user.jar.basename}
+
+					lib/${commons-beanutils.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${stripes.jar.basename}
+
+						"
+				/>
+
+				<!--
+				lib/${jox.jar.basename}
+						
+						lib/${hibernate.jar.basename}
+						lib/${mysql-connector.jar.basename}
+						lib/${c3p0.jar.basename}
+						lib/${antlr.jar.basename}
+						lib/${asm.jar.basename}
+						lib/${asm-attrs.jar.basename}
+						lib/${cglib.jar.basename}
+						lib/${commons-collections.jar.basename}
+						lib/${commons-logging.jar.basename}
+						lib/${jaxen.jar.basename}
+						lib/${jta.jar.basename}
+						
+					-->
+				<!--
+						lib/${smack.jar.basename}
+						lib/${smackx.jar.basename}
+						lib/${smackx-debug.jar.basename}
+						lib/${commons-scxml.jar.basename}
+						lib/${commons-jexl.jar.basename}
+						lib/${commons-collections.jar.basename}
+						lib/${commons-digester.jar.basename}
+					/>-->
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="extractor-clean-jar" depends="clean,extractor-jar" />
+	<target name="extractor-clean-deploy" depends="extractor-clean-jar,extractor-deploy" />
+
+
+
+	<!-- Copy ALL the dependencies to the "lib" directory, as specified above. -->
+
+	<target name="extractor-deploy" depends="extractor-jar">
+		<copy todir="${extractor.host.dir}">
+			<fileset file="${dist.dir}/${extractor.jar.filename}" />
+		</copy>
+
+		<copy todir="${extractor.host.lib.dir}" verbose="true" failonerror="true">
+			<fileset file="${args4j.jar}" />
+			<fileset file="${log4j.jar}" />
+			<fileset file="${heritrix.jar}" />
+			<fileset file="${fastutil.jar}" />
+			<fileset file="${htmlcleaner.jar}" />
+			<fileset file="${xalan.jar}" />
+			<fileset file="${serializer.jar}" />
+			<fileset file="${xml-apis.jar}" />
+			<fileset file="${xercesImpl.jar}" />
+			<!--fileset file="${jox.jar}" /-->
+			<fileset file="${dtdparser.jar}" />
+
+			<fileset file="${dom4j.jar}" />
+			<!-- just for "IsSerializable" -->
+			<fileset file="${gwt-user.jar}" />
+
+			<fileset file="${commons-beanutils.jar}" />
+			<fileset file="${commons-logging.jar}" />
+
+			<fileset file="${stripes.jar}" />
+
+
+
+
+
+			<!--
+				<fileset file="${hibernate3.jar}" />
+				<fileset file="${mysql-connector.jar}" />
+				<fileset file="${c3p0.jar}" />
+				<fileset file="${antlr.jar}" />
+				<fileset file="${asm.jar}" />
+				<fileset file="${asm-attrs.jar}" />
+				<fileset file="${cglib.jar}" />
+				<fileset file="${commons-collections.jar}" />
+				<fileset file="${commons-logging.jar}" />
+				<fileset file="${jaxen.jar}" />
+				<fileset file="${jta.jar}" />
+				-->
+
+
+			<!--
+				<fileset file="${smack.jar}" />
+				<fileset file="${smackx.jar}" />
+				<fileset file="${smackx-debug.jar}" />
+				<fileset file="${commons-scxml.jar}" />
+				<fileset file="${commons-jexl.jar}" />
+
+				<fileset file="${commons-collections.jar}" />
+				<fileset file="${commons-digester.jar}" />
+				-->
+
+		</copy>
+	</target>
+
+
+
+
+
+
+
+	<!-- STRIPES WEB APPLICATION, "SHOW" -->
+
+
+	<!--
+	<target name="show-clean">
+		<delete quiet="true">
+			<fileset dir="${bin.dir}" includes="**/*.class" />
+		</delete>
+		<delete quiet="true">
+			<fileset file="${dist.dir}/${show.war.filename}.war" />
+		</delete>
+	</target>
+	-->
+
+	<!--
+	<target name="show-compile" depends="proto" description="Compile show java src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<fileset file="${conf.dir}/show/StripesResources.properties" />
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+		</copy>
+	</target>
+	-->
+
+	<!--
+	<target name="show-test-compile" depends="proto" description="Compile java test src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<fileset file="${conf.dir}/show/StripesResources.properties" />
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+		</copy>
+	</target>
+	-->
+
+	<!--
+	<target name="show-test" depends="show-test-compile" description="run all the junit tests">
+		<mkdir dir="${test.reports.dir}" />
+		<junit printsummary="true" fork="true">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+				<pathelement path="${servlet.jar}" />
+				<pathelement path="${jsp-api.jar}" />
+
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+						<assertions><enable/></assertions>
+			
+			<batchtest todir="${test.reports.dir}">
+				<fileset dir="${test.dir}">
+					<include name="**/show/**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	-->
+
+	<!-- WAR -->
+
+	<!--
+	<target name="show-war" depends="show-compile" description="Make a WAR for Tomcat">
+		<mkdir dir="${dist.dir}" />
+		<war destfile="${dist.dir}/${show.war.filename}.war" webxml="${conf.dir}/show/web.xml">
+			<classes dir="${bin.dir}" />
+			<zipfileset dir="web" />
+
+			<lib file="${hibernate3.jar}" />
+
+			<lib file="${gwt-servlet.jar}" />
+			<lib file="${mysql-connector.jar}" />
+			<lib file="${antlr.jar}" />
+			<lib file="${asm.jar}" />
+			<lib file="${asm-attrs.jar}" />
+			<lib file="${c3p0.jar}" />
+			<lib file="${cglib.jar}" />
+			<lib file="${commons-collections.jar}" />
+			<lib file="${commons-logging.jar}" />
+			<lib file="${dom4j.jar}" />
+			<lib file="${jaxen.jar}" />
+			<lib file="${jta.jar}" />
+			<lib file="${log4j.jar}" />
+
+			<lib file="${args4j.jar}" />
+
+			<lib file="${stripes.jar}" />
+			<lib file="${cos.jar}" />
+			<lib file="${jstl.jar}" />
+			<lib file="${standard.jar}" />
+			<lib file="${commons-beanutils.jar}" />
+			<lib file="${colt.jar}" />
+
+		</war>
+	</target>
+	-->
+
+	<!--
+	<target name="show-clean-war" depends="show-clean,show-war" />
+	<target name="show-clean-deploy" depends="show-clean-war,show-deploy" />
+    
+	<target name="show-deploy" depends="show-war">
+		<copy todir="${tomcat.webapps.dir}">
+			<fileset file="${dist.dir}/${show.war.filename}.war" />
+		</copy>
+	</target>
+	-->
+
+	<!-- DATA PROCESSING -->
+
+	<!-- at the moment this depends on extractor targets -->
+
+	<target name="data-processing-test"
+	        depends="extractor-test-compile"
+	        description="run all the extractor junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--
+				<path refid="gwt.shell.classpath" />
+				-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+
+				<pathelement path="${log4j.jar}" />
+				<pathelement path="${hibernate.jar}" />
+				<pathelement path="${mysql-connector.jar}" />
+				<pathelement path="${c3p0.jar}" />
+				<pathelement path="${antlr.jar}" />
+				<pathelement path="${asm.jar}" />
+				<pathelement path="${asm-attrs.jar}" />
+				<pathelement path="${cglib.jar}" />
+				<pathelement path="${commons-collections.jar}" />
+				<pathelement path="${commons-logging.jar}" />
+				<pathelement path="${dom4j.jar}" />
+				<pathelement path="${jaxen.jar}" />
+				<pathelement path="${jta.jar}" />
+
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--	<batchtest todir="${test.reports.dir}">-->
+				<fileset dir="${test.dir}">
+					<include name="**/dataprocessing/**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="util-test-compile" depends="proto" description="Compile util test src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<fileset file="${conf.dir}/show/StripesResources.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<!--
+				<fileset dir="${extractor.conf.dir}">
+					<include name="*.properties" />
+					<include name="*.xsl" />
+				</fileset>
+				-->
+		</copy>
+	</target>
+
+	<target name="util-test" depends="util-test-compile" description="run all the util junit tests">
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+				<pathelement path="${servlet.jar}" />
+				<pathelement path="${jsp-api.jar}" />
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--<batchtest todir="${test.reports.dir}">-->
+				<fileset dir="${test.dir}">
+					<include name="**/util/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+
+	<target name="query-test-compile" depends="proto">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<fileset file="${conf.dir}/show/StripesResources.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<!--
+					<fileset dir="${extractor.conf.dir}">
+						<include name="*.properties" />
+						<include name="*.xsl" />
+					</fileset>
+					-->
+		</copy>
+	</target>
+
+	<target name="query-test"
+	        depends="query-test-compile"
+	        description="run all the util junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+				<pathelement path="${servlet.jar}" />
+				<pathelement path="${jsp-api.jar}" />
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--<batchtest todir="${test.reports.dir}">-->
+				<fileset dir="${test.dir}">
+					<include name="**/query/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+
+	<!-- GARDENER APPLICATION -->
+
+	<target name="gardener-compile" depends="proto" description="Compile gardener java src to bin">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${bin.dir}">
+
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+
+
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+			<fileset dir="${gardener.conf.dir}">
+				<include name="*.properties" />
+				<include name="*.xsl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="gardener-test-compile"
+	        depends="proto"
+	        description="Compile gardening java test src to bin"
+	>
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<fileset file="${conf.dir}/common/commons-logging.properties" />
+
+			<fileset dir="${gardener.conf.dir}">
+				<include name="*.properties" />
+				<include name="*.xsl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="gardening-test"
+	        depends="gardener-test-compile"
+	        description="run all the gardening junit tests"
+	>
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<sysproperty key="swt.library.path" value="${gwt.home}" />
+			<!-- try removing this for hosted mode -->
+			<!-- sysproperty key="gwt.args" value="-web" / -->
+			<classpath>
+				<path refid="project.class.path" />
+				<!--
+				<path refid="gwt.shell.classpath" />
+				-->
+				<!-- pathelement path="${swt.jar}" /-->
+				<pathelement path="${junit.jar}" />
+				<!--pathelement path="${ant-junit.jar}" /-->
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--<batchtest todir="${test.reports.dir}">-->
+
+				<fileset dir="${test.dir}">
+					<include name="**/gardening/**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- this jar's manifest should refer to ALL the dependencies of the enclosed app -->
+	<!-- thus, these dependencies must be copied to the "lib" directory -->
+
+	<target name="gardener-jar"
+	        depends="gardener-compile"
+	        description="Make an executable JAR for skiploader"
+	>
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${gardener.jar.filename}">
+			<fileset dir="${bin.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${gardener.main.class}" />
+				<attribute name="Class-Path"
+				           value="
+						lib/${log4j.jar.basename}
+						lib/${args4j.jar.basename}
+					lib/${hibernate.jar.basename}
+					lib/${mysql-connector.jar.basename}
+					lib/${c3p0.jar.basename}
+					lib/${antlr.jar.basename}
+					lib/${asm.jar.basename}
+					lib/${asm-attrs.jar.basename}
+					lib/${cglib.jar.basename}
+					lib/${commons-collections.jar.basename}
+					lib/${commons-logging.jar.basename}
+					lib/${dom4j.jar.basename}
+					lib/${jaxen.jar.basename}
+					lib/${jta.jar.basename}
+					lib/${gwt-user.jar.basename}
+					lib/${stripes.jar.basename}
+					lib/${commons-beanutils.jar.basename}
+				"
+				/>
+				<!--
+						lib/${heritrix.jar.basename}
+						lib/${fastutil.jar.basename}
+						lib/${htmlcleaner.jar.basename}
+						lib/${xalan.jar.basename}
+						lib/${serializer.jar.basename}
+						lib/${xml-apis.jar.basename}
+						lib/${xercesImpl.jar.basename}
+						lib/${jox.jar.basename}
+						lib/${dtdparser.jar.basename}
+				-->
+
+				<!--
+						lib/${smack.jar.basename}
+						lib/${smackx.jar.basename}
+						lib/${smackx-debug.jar.basename}
+						lib/${commons-scxml.jar.basename}
+						lib/${commons-jexl.jar.basename}
+						lib/${commons-logging.jar.basename}
+						lib/${commons-collections.jar.basename}
+						lib/${commons-digester.jar.basename}
+						"
+					/>-->
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="gardener-clean-jar" depends="clean,gardener-jar" />
+	<target name="gardener-clean-deploy" depends="gardener-clean-jar,gardener-deploy" />
+
+
+
+	<!-- Copy ALL the dependencies to the "lib" directory, as specified above. -->
+
+	<target name="gardener-deploy" depends="gardener-jar">
+		<copy todir="${gardener.host.dir}">
+			<fileset file="${dist.dir}/${gardener.jar.filename}" />
+		</copy>
+
+		<copy todir="${gardener.host.lib.dir}" verbose="true" failonerror="true">
+			<fileset file="${args4j.jar}" />
+			<fileset file="${log4j.jar}" />
+			<fileset file="${hibernate3.jar}" />
+			<fileset file="${mysql-connector.jar}" />
+			<fileset file="${c3p0.jar}" />
+			<fileset file="${antlr.jar}" />
+			<fileset file="${asm.jar}" />
+			<fileset file="${asm-attrs.jar}" />
+			<fileset file="${cglib.jar}" />
+			<fileset file="${commons-collections.jar}" />
+			<fileset file="${commons-logging.jar}" />
+			<fileset file="${dom4j.jar}" />
+			<fileset file="${jaxen.jar}" />
+			<fileset file="${jta.jar}" />
+			<!-- just for "IsSerializable" -->
+			<fileset file="${gwt-user.jar}" />
+			<!-- for the class scanner in resolvutil -->
+			<fileset file="${stripes.jar}" />
+			<fileset file="${commons-beanutils.jar}" />
+
+
+			<!--
+			<fileset file="${heritrix.jar}" />
+			<fileset file="${fastutil.jar}" />
+			<fileset file="${htmlcleaner.jar}" />
+			<fileset file="${xalan.jar}" />
+			<fileset file="${serializer.jar}" />
+			<fileset file="${xml-apis.jar}" />
+			<fileset file="${xercesImpl.jar}" />
+			<fileset file="${jox.jar}" />
+			<fileset file="${dtdparser.jar}" />
+			
+
+				-->
+			<!-- just for "IsSerializable" -->
+			<!--
+				<fileset file="${gwt-user.jar}" />
+				-->
+
+			<!--
+				<fileset file="${smack.jar}" />
+				<fileset file="${smackx.jar}" />
+				<fileset file="${smackx-debug.jar}" />
+				<fileset file="${commons-scxml.jar}" />
+				<fileset file="${commons-jexl.jar}" />
+				<fileset file="${commons-logging.jar}" />
+
+				<fileset file="${commons-collections.jar}" />
+				<fileset file="${commons-digester.jar}" />
+				
+				-->
+
+		</copy>
+	</target>
+
+	<!-- THIS TAKES A LONG TIME -->
+
+	<target name="solver-test-compile" depends="proto">
+		<mkdir dir="${bin.dir}" />
+		<javac destdir="${bin.dir}"
+		       includes="**"
+		       debug="on"
+		       debuglevel="lines,vars,source"
+		       deprecation="on"
+		>
+			<src path="${src.dir}" />
+			<exclude name="**/show/**" />
+			<src path="${test.dir}" />
+			<src path="${basedir}/target/generated-sources" />
+
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<!-- pathelement path="${ant-junit.jar}" / -->
+			</classpath>
+		</javac>
+		<copy todir="${bin.dir}">
+
+			<fileset file="${conf.dir}/common/hibernate.cfg.xml" />
+			<fileset file="${conf.dir}/show/StripesResources.properties" />
+			<fileset file="${conf.dir}/util/dowser.properties" />
+
+
+			<!-- Copy all the Hibernate per-class xml -->
+
+			<fileset dir="${src.dir}">
+				<include name="**/*hbm.xml" />
+			</fileset>
+
+			<fileset file="${conf.dir}/common/log4j.properties" />
+			<!--
+				<fileset dir="${extractor.conf.dir}">
+					<include name="*.properties" />
+					<include name="*.xsl" />
+				</fileset>
+				-->
+		</copy>
+	</target>
+
+	<target name="solver-test" depends="solver-test-compile">
+		<!--<mkdir dir="${test.reports.dir}" />-->
+		<junit printsummary="true" fork="true">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="${junit.jar}" />
+				<pathelement path="${bin.dir}" />
+				<pathelement path="${test.dir}" />
+				<pathelement path="${src.dir}" />
+				<pathelement path="${testdata.dir}" />
+				<pathelement path="${servlet.jar}" />
+				<pathelement path="${jsp-api.jar}" />
+
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<assertions>
+				<enable />
+			</assertions>
+
+			<batchtest>
+				<!--<batchtest todir="${test.reports.dir}">-->
+				<fileset dir="${test.dir}">
+					<include name="**/solver/**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+</project>

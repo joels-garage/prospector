@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<union-subclass name="Provenance" extends="ModelEntity" abstract="true">
+
+		<component name="subjectKey">
+			<property name="type" column="subjectType" />
+			<property name="key" column="subjectKey" length="12" />
+		</component>
+
+	</union-subclass>
+</hibernate-mapping>

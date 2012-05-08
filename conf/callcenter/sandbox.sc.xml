@@ -1,0 +1,207 @@
+<!-- SANDBOX -->
+<!-- to prototype stuff -->
+<!--
+	The goal here is to demonstrate a template state.  That is, you're in state X,
+	and you want to do something handled by state Y, which is not within X.  In fact, Y has
+	no knowledge of X;  Y is a general handler.  So there are two things to worry about:
+	1. you need to tell Y what to do,
+	2. you need Y to get back to X.
+	
+	So what this does is as follows.  You start in A.  say anything other than "stop" or "sub"
+	and you're in B, which is the same.  if you say "sub" you're in the subroutine, which is the
+	same; it has a subA and subB that point at each other.  say "stop" from there and you're done
+	with the subroutine and should be in the state you just left; it should redo the 'onentry' utterance.
+	say "stop" again and you're done entirely.
+	
+	The bit to add is some form of return value passing.  so, you call the subroutine, it does its thing,
+	i.e. has more than one outcome, and then you're back where you left off, with that multiple outcome
+	stored ... somewhere.  the most natural thing is to define transitions in the caller state (e.g. "success,"
+	"fail"), and for those transitions to be attached, somehow, to the subroutine outcomes.
+	
+	So, seems like the only clean way to do this is to define a semaphore, and for the caller state
+	to be as small as possible, so it has a switch in the onentry that raises an event depending
+	on the semaphore state: "pre" => call sub, "success" => some event, "fail" => some other event,
+	and it also specifies transitions for those events.  so the effect is to "push" the event from
+	the sub to the caller.
+	
+	Another possibility is for the outcome to be stored in Java somewhere, so that instead of putting
+	the switch for all the outcomes in the onentry, you put it in Java, and the onentry just has a
+	boolean guard (to avoid calling the sub a second time), and calls a 'get outcome' method that
+	sources the appropriate event.  so the datamodel is the same in each case, it's just a guard,
+	but the switch is in Java, and not repeated for each caller.  actually the 'get outcome' method
+	could also include 'run sub' as a method, so you don't need the datamodel component.
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="sandbox_run">
+
+	<state id="sandbox_run">
+		<initial>
+			<!-- Initial target is static (not history) because we can reenter after exiting. -->
+			<transition target="sandbox_main" />
+		</initial>
+		<!-- Propagate finality. -->
+		<transition event="sandbox_run.done" target="sandbox_final_outer" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'abort'" target="sandbox_final" />
+
+		<!-- this is the subroutine state. -->
+		<state id="sandbox_subroutine">
+			<transition event="sandbox_subroutine.done" target="sandbox_main_history" />
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_subroutine'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+			<initial>
+				<transition target="sandbox_subroutine_a_pre" />
+			</initial>
+			<!-- this only exists because the outcome comes from scxml -->
+			<datamodel>
+				<data name="setSub">
+					<cc:outcome></cc:outcome>
+				</data>
+			</datamodel>
+			<state id="sandbox_subroutine_a_pre">
+				<onentry>
+					<assign location="Data(setSub, 'cc:outcome')" expr="'A'" />
+					<send targettype="'x-java'" namelist="setSub" />
+				</onentry>
+				<transition event="done" target="sandbox_subroutine_a" />
+			</state>
+			<state id="sandbox_subroutine_a">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_subroutine_a'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'stop'"
+					target="sandbox_subroutine_final_a" />
+				<transition event="user_input" target="sandbox_subroutine_b_pre" />
+			</state>
+			<state id="sandbox_subroutine_b_pre">
+				<onentry>
+					<assign location="Data(setSub, 'cc:outcome')" expr="'B'" />
+					<send targettype="'x-java'" namelist="setSub" />
+				</onentry>
+				<transition event="done" target="sandbox_subroutine_b" />
+			</state>
+			<state id="sandbox_subroutine_b">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_subroutine_b'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'stop'"
+					target="sandbox_subroutine_final_b" />
+				<transition event="user_input" target="sandbox_subroutine_a_pre" />
+			</state>
+			<!-- more than one outcome -->
+			<final id="sandbox_subroutine_final_a">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_subroutine_final_a'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+			</final>
+			<final id="sandbox_subroutine_final_b">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_subroutine_final_b'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+			</final>
+		</state>
+
+		<!-- this is the history container -->
+		<state id="sandbox_main">
+			<transition event="sandbox_main.done" target="sandbox_final" />
+			<initial>
+				<transition target="sandbox_main_history" />
+			</initial>
+			<history type="deep" id="sandbox_main_history">
+				<transition target="sandbox_start" />
+			</history>
+
+			<state id="sandbox_start">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_start'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition target="sandbox_a" />
+			</state>
+			<state id="sandbox_a">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_a'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'sub'"
+					target="sandbox_clear_sub">
+
+				</transition>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'stop'"
+					target="sandbox_main_final_a" />
+				<transition event="user_input" target="sandbox_b" />
+			</state>
+
+			<state id="sandbox_clear_sub">
+				<onentry>
+					<!-- clear the semaphore before we go call the subroutine -->
+					<send targettype="'x-java'" target="'clearSub'" />
+				</onentry>
+				<transition event="sandbox_clear_sub_done" target="sandbox_call_sub" />
+			</state>
+			<state id="sandbox_call_sub">
+				<onentry>
+					<!-- this is really "get outcome" or something -->
+					<send targettype="'x-java'" target="'callSub'" />
+				</onentry>
+				<!-- if we haven't already called the subroutine state, do it -->
+				<transition event="call" target="sandbox_subroutine" />
+				<!-- now we have an outcome, and can transition based on it -->
+				<transition event="outcome_a" target="outcome_a" />
+				<transition event="outcome_b" target="outcome_b" />
+			</state>
+
+			<state id="outcome_a">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'outcome_a'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition target="sandbox_a" />
+			</state>
+			<state id="outcome_b">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'outcome_b'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition target="sandbox_b" />
+			</state>
+			<state id="sandbox_b">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_b'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'sub'"
+					target="sandbox_clear_sub" />
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:utterance') == 'stop'"
+					target="sandbox_main_final_b" />
+				<transition event="user_input" target="sandbox_a" />
+			</state>
+			<final id="sandbox_main_final_a">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_main_final_a'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+			</final>
+			<final id="sandbox_main_final_b">
+				<onentry>
+					<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_main_final_b'" />
+					<send targettype="'x-java'" namelist="speak0" />
+				</onentry>
+			</final>
+		</state>
+
+		<final id="sandbox_final">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'sandbox_final'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+		</final>
+	</state>
+	<final id="sandbox_final_outer" />
+</scxml>

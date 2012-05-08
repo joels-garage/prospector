@@ -1,0 +1,136 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="stopwatch_run">
+
+	<state id="stopwatch_run">
+		<onentry>
+			<assign location="Data(WatchAction, 'cc:action')" expr="'unsilence'" />
+			<send targettype="'x-java'" namelist="WatchAction" />
+		</onentry>
+		<onexit>
+			<assign location="Data(WatchAction, 'cc:action')" expr="'silence'" />
+			<send targettype="'x-java'" namelist="WatchAction" />
+		</onexit>
+		<initial>
+			<!-- Initial target is static (not history) because we can reenter after exiting. -->
+			<transition target="reset" />
+		</initial>
+
+		<!-- Propagate finality. -->
+		<transition event="stopwatch_run.done" target="stopwatch_final_outer" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'abort'" target="stopwatch_final" />
+		<!-- The clock wants to interject the current time. -->
+		<transition event="cuckoo" target="cuckoo">
+			<log label="state" expr="'logging transition: stopwatch_run ->cuckoo'" />
+		</transition>
+
+		<datamodel>
+			<data name="WatchAction">
+				<cc:action></cc:action>
+			</data>
+		</datamodel>
+
+		<final id="stopwatch_final">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'stopwatch_final'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+		</final>
+
+		<history type="deep" id="watch_history">
+			<transition target="reset">
+				<log label="state" expr="'logging transition: watch_history initial = reset'" />
+			</transition>
+		</history>
+
+		<state id="reset">
+			<initial>
+				<transition target="reset_entry" />
+			</initial>
+			<state id="reset_entry">
+				<onentry>
+					<log label="state" expr="'logging entry: reset'" />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'reset'" />
+					<assign location="Data(WatchAction, 'cc:action')" expr="'reset'" />
+					<send targettype="'x-java'" namelist="speak0 WatchAction" />
+				</onentry>
+				<transition target="reset_waiting" />
+			</state>
+			<state id="reset_waiting">
+				<onentry>
+					<log label="state" expr="'logging entry: reset_waiting'" />
+				</onentry>
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.start'" target="running" />
+			</state>
+		</state>
+
+		<state id="running">
+			<initial>
+				<transition target="running_entry" />
+			</initial>
+			<state id="running_entry">
+				<onentry>
+					<log label="state" expr="'run foo'" />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'running'" />
+					<assign location="Data(WatchAction, 'cc:action')" expr="'running'" />
+					<send targettype="'x-java'" namelist="speak0 WatchAction" />
+				</onentry>
+				<transition target="running_waiting" />
+			</state>
+			<state id="running_waiting">
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.split'" target="paused" />
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.stop'" target="stopped" />
+			</state>
+		</state>
+
+		<state id="paused">
+			<initial>
+				<transition target="paused_entry" />
+			</initial>
+			<state id="paused_entry">
+				<onentry>
+					<log label="state" expr="'pause foo'" />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'paused'" />
+					<assign location="Data(WatchAction, 'cc:action')" expr="'paused'" />
+					<send targettype="'x-java'" namelist="speak0 WatchAction" />
+				</onentry>
+				<transition target="paused_waiting" />
+			</state>
+			<state id="paused_waiting">
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.unsplit'" target="running" />
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.stop'" target="stopped" />
+			</state>
+		</state>
+
+		<state id="stopped">
+			<initial>
+				<transition target="stopped_entry" />
+			</initial>
+			<state id="stopped_entry">
+				<onentry>
+					<log label="state" expr="'stop foo'" />
+					<assign location="Data(speak0, 'cc:messageId')" expr="'stopped'" />
+					<assign location="Data(WatchAction, 'cc:action')" expr="'stopped'" />
+					<send targettype="'x-java'" namelist="speak0 WatchAction" />
+				</onentry>
+				<transition target="stopped_waiting" />
+			</state>
+			<state id="stopped_waiting">
+				<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'watch.reset'" target="reset" />
+			</state>
+		</state>
+
+		<state id="cuckoo">
+			<onentry>
+				<assign location="Data(speak1, 'cc:messageId')" expr="'cuckoo'" />
+				<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Display/cc:display')" />
+				<send targettype="'x-java'" namelist="speak1" />
+			</onentry>
+			<transition target="watch_history" />
+		</state>
+
+	</state>
+
+	<!--  this should produce parent.done for whatever parent included this file -->
+	<final id="stopwatch_final_outer" />
+
+</scxml>

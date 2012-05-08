@@ -1,0 +1,35 @@
+<!-- This just exercises file inclusion -->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="stopwatch_run">
+
+	<state id="stopwatch_run">
+		<initial>
+			<transition target="reset" />
+		</initial>
+		<transition event="stopwatch_run.done" target="stopwatch_final_outer" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'abort'" target="stopwatch_final" />
+
+		<datamodel>
+			<data name="WatchAction">
+				<cc:action></cc:action>
+			</data>
+		</datamodel>
+		<final id="stopwatch_final">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'stopwatch_final'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+		</final>
+		<history type="deep" id="watch_history">
+			<transition target="reset"/>
+		</history>
+		<state id="reset">
+			<initial>
+				<transition target="reset_entry" />
+			</initial>
+			<state id="reset_entry"></state>
+		</state>
+	</state>
+	<final id="stopwatch_final_outer"/>
+</scxml>

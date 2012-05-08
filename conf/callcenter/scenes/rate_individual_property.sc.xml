@@ -1,0 +1,124 @@
+<!--
+	Solicit individual property preferences, using a simple "star rating" for known individuals.
+	
+	This is a "lite" version of preference solicitation; to actually create new individuals,
+	see get_individual_property_preference.
+	
+	The drill here is as follows.
+	
+	Like rate_individual, this scene allows for a SINGLE star-rating for one individual with respect
+	to a specific property.
+	
+	We write our output into IndividualPropertyUtility, which means we need to know:
+	
+	* the value (specified by the user)
+	* the individual in question, specified in the input
+	* the property in question, specified in the input
+	* the stakeholder in question, specified in the input
+	* the decision, since it has the class
+	
+	So the question is "in <class>, how would you rate <property> of <individual>, from 0 to 5?"
+	
+	e.g. "in turnips, how would you rate color of purple, from 0 to 5?"
+	
+	
+	
+	Input:
+	
+	/cc:input/cc:decision == decision at hand
+	/cc:input/cc:individual == individual to rate
+	/cc:input/cc:stakeholder == active stakeholder
+	/cc:input/cc:property == the property, always an IndividualProperty.
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="rate_individual_property_start">
+	<datamodel>
+		<data name="rate_individual_property_input" />
+		<data name="rate_individual_property_output">
+			<cc:output>
+				<!-- the rating (utility from 0 to 1) or blank if skipped. -->
+				<cc:value />
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<!-- entry point -->
+	<state id="rate_individual_property_start">
+		<onentry>
+			<assign location="Data(rate_individual_property_input, '.')"
+				expr="Data(_eventdatamap['rate_individual_property'], '.')" />
+			<assign location="Data(rate_individual_property_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="rate_individual_property_pre" />
+	</state>
+
+	<!-- how would you rate X? -->
+	<state id="rate_individual_property_pre">
+		<onentry>
+			<assign location="Data(speakThreeKeys, 'cc:messageId')" expr="'rate_individual_property'" />
+			<assign location="Data(speakThreeKeys, 'cc:key0/p:ExternalKey[1]')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:decision/p:Decision/p:classKey[1]')" />
+			<assign location="Data(speakThreeKeys, 'cc:key1/p:ExternalKey[1]')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:property/p:IndividualProperty/p:key[1]')" />
+			<assign location="Data(speakThreeKeys, 'cc:key2/p:ExternalKey[1]')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:individual/p:Individual/p:key[1]')" />
+			<send targettype="'x-java'" namelist="speakThreeKeys" />
+		</onentry>
+
+		<!-- user should provide a number from 0 to 5 inclusive, or "skip" which means "end" -->
+		<transition event="user_input" cond="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:event') == 'skip'"
+			target="rate_individual_property_final" />
+
+		<transition event="user_input"
+			cond="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:event') == 'number'
+				and Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') ge 0
+				and Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') le 5"
+			target="rate_individual_property_create">
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:value')"
+				expr="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') / 5" />
+		</transition>
+
+		<!-- otherwise, ask again (or maybe this should just return?) -->
+		<transition event="user_input" target="rate_individual_property_pre" />
+	</state>
+
+
+	<!-- user gave us a valid number -->
+	<state id="rate_individual_property_create">
+		<onentry>
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:individualKey')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:individual/p:Individual/p:key')" />
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:stakeholderKey')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:stakeholder/p:Stakeholder/p:key')" />
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:propertyKey')"
+				expr="Data(rate_individual_property_input, 'cc:input/cc:property/p:IndividualProperty/p:key')" />
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(IndividualPropertyUtility, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+
+		<transition event="createModelEntitySuccess" target="rate_individual_property_final">
+			<assign location="Data(rate_individual_property_output, 'cc:output/cc:value')"
+				expr="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:value')" />
+			<assign location="Data(speak1, 'cc:messageId')" expr="'rate_individual_property_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:value') * 5.0" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createModelEntityFail" target="rate_individual_property_final">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'rate_individual_property_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(_eventdatamap['createModelEntityFail'], 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+	<final id="rate_individual_property_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(rate_individual_property_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

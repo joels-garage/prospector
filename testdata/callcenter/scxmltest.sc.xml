@@ -1,0 +1,46 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version=" 1.0"
+	initialstate="one">
+	<datamodel>
+		<data name="foo">
+			<cc:field>
+				<cc:sub1></cc:sub1>
+				<cc:sub2></cc:sub2>
+			</cc:field>
+		</data>
+		<data name="bar">
+			<cc:field></cc:field>
+		</data>
+	</datamodel>
+
+	<state id="one">
+		<onentry>
+			<assign location="Data(foo, 'cc:field/cc:sub1')" expr="'foofoo'" />
+			<assign location="Data(foo, 'cc:field/cc:sub2')" expr="'foobar'" />
+			<assign location="Data(bar, 'cc:field')" expr="Data(foo, 'cc:field')" />
+			<send targettype="'foo'" namelist="foo" />
+		</onentry>
+		<transition target="two" />
+	</state>
+	<state id="two">
+		<onentry>
+			<assign location="Data(foo, 'cc:field/cc:sub1')" expr="'barfoo'" />
+			<assign location="Data(foo, 'cc:field/cc:sub2')" expr="'barbar'" />
+			<assign location="Data(bar, 'cc:field')" expr="Data(foo, 'cc:field')" />
+			<send targettype="'foo'" namelist="foo" />
+		</onentry>
+		<transition event="foo_event" target="three" />
+	</state>
+	<state id="three">
+		<onentry>
+			<assign location="Data(foo, 'cc:field')" expr="Data(_eventdatamap['foo_event'], '.')" />
+			<send targettype="'foo'" namelist="foo" />
+		</onentry>
+		<transition event="bar_event" target="four" />
+	</state>
+	<state id="four">
+		<onentry>
+			<assign location="Data(foo, 'cc:field')" expr="Data(_eventdatamap['bar_event'], '.')" />
+			<send targettype="'foo'" namelist="foo" />
+		</onentry>
+	</state>
+</scxml>

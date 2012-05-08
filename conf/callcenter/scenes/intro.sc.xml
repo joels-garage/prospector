@@ -1,0 +1,47 @@
+<!--
+	"intro" just utters a long hello message
+	
+	Input:
+	none
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="intro_start">
+	<datamodel>
+		<data name="intro_input">
+			<cc:input>
+				<!-- there is no input -->
+			</cc:input>
+		</data>
+		<data name="intro_output">
+			<cc:output>
+				<!-- there is no output -->
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<state id="intro_start">
+		<onentry>
+			<assign location="Data(intro_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(intro_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="intro_speak" />
+	</state>
+
+	<state id="intro_speak">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'intro'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition target="intro_final" />
+	</state>
+
+	<final id="intro_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(intro_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

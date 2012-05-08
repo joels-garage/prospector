@@ -1,0 +1,391 @@
+<!--
+	Solicit individual property preferences (actually IndividualPropertyUtility), which is a utility expressed
+	about the individual value used as the object of a fact for a particular property.  For example, one could
+	say that, for the property "color" that you prefer the individual "blue."
+	
+	So the process involves picking both the property ("color") and the individual ("blue").
+	
+	The user may, as a side-effect, also create the individual they are commenting on.
+	
+	Input:
+	/cc:input/cc:decision
+	/cc:input/cc:stakeholder
+	
+	Output:
+	none
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="get_individual_property_preference_start">
+	<datamodel>
+		<data name="get_individual_property_preference_input">
+			<cc:input>
+				<cc:decision />
+				<cc:stakeholder />
+			</cc:input>
+		</data>
+		<data name="get_individual_property_preference_output">
+			<cc:output />
+		</data>
+		<!-- internal data -->
+		<data name="ActiveIndividual">
+			<cc:entity />
+		</data>
+		<data name="ActiveProperty">
+			<cc:entity />
+		</data>
+		<data name="RangeClass">
+			<cc:entity />
+		</data>
+		<!-- if user says "i like x" for some unknown x, it goes here. -->
+		<data name="NewName">
+			<cc:name></cc:name>
+		</data>
+	</datamodel>
+
+	<!-- entry point -->
+	<state id="get_individual_property_preference_start">
+		<onentry>
+			<assign location="Data(get_individual_property_preference_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(get_individual_property_preference_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="get_individual_property_preference_which_prop" />
+	</state>
+
+	<!-- ask the user if there are any properties they want to talk about -->
+	<!-- we want to recognize only properties of the decision class, i.e. properties whose domainClassKey
+		is equal to the classKey of the input Decision.  -->
+	<state id="get_individual_property_preference_which_prop">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId[1]')" expr="'get_individual_property_preference_which_prop'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey[1]')"
+				expr="Data(get_individual_property_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey[1]')" />
+			<assign location="Data(setRecognizerPropertyFilter, 'cc:classKey/p:ExternalKey[1]')"
+				expr="Data(get_individual_property_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey[1]')" />
+			<send targettype="'x-java'" namelist="speakNameKey setRecognizerPropertyFilter" />
+		</onentry>
+		<!-- no individual preferences -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_final" />
+		<!-- follow up == ask again -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_which_prop">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_which_prop_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<!-- user supplies a valid property name, fetch it and then ask what the subject of the individualutility is -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'model_entity' and Data(_eventdata, 'cc:UserInput/cc:type') == 'individual_property'"
+			target="get_individual_property_preference_which_individual">
+			<!-- fetch the specified property -->
+			<assign location="Data(fetchModelEntity, 'cc:key/p:ExternalKey')" expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- any other utterance might be a new property. -->
+		<transition event="user_input" target="get_individual_property_preference_verify_new_prop">
+			<!-- its name is whatever the user said -->
+			<assign location="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:name')"
+				expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<!-- its domain is the decision class -->
+			<assign location="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:domainClassKey')"
+				expr="Data(get_individual_property_preference_input, 'cc:input/cc:decision/p:Decision/p:classKey')" />
+		</transition>
+	</state>
+
+	<!-- fetch the user-specified property -->
+	<state id="get_individual_property_preference_fetch_property">
+		<onentry>
+			<send targettype="'x-java'" namelist="fetchModelEntity" />
+		</onentry>
+		<transition event="fetchModelEntitySuccess" target="get_individual_property_preference_which_individual">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(ActiveProperty, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+		</transition>
+		<transition event="fetchModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- what's the subject Individual for the IndividualUtility?
+		filter by ActiveProperty.rangeClassKey
+		TODO: make sure this is populated! -->
+	<state id="get_individual_property_preference_which_individual">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId[1]')" expr="'get_individual_property_preference_which_individual'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey[1]')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:key')" />
+			<assign location="Data(setRecognizerPreferenceFilter, 'cc:classKey/p:ExternalKey')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:rangeClassKey')" />
+			<send targettype="'x-java'" namelist="speakNameKey setRecognizerPreferenceFilter" />
+		</onentry>
+		<!-- user supplies a valid (filtered) individual; populate the IndividualPropertyUtility -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'model_entity' and Data(_eventdata, 'cc:UserInput/cc:type') == 'individual'"
+			target="get_individual_property_preference_what_value">
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:individualKey')"
+				expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- user says something else; might be a new individual, so populate it and the ClassMember.-->
+		<transition event="user_input" target="get_individual_property_preference_verify_individual">
+			<!-- its name is whatever the user said -->
+			<assign location="Data(Individual, 'cc:entity/p:Individual/p:name')"
+				expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<!-- its class is the range class -->
+			<assign location="Data(ClassMember, 'cc:entity/p:ClassMember/p:classKey')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:rangeClassKey')" />
+		</transition>
+	</state>
+
+	<!-- verify the subject individual -->
+	<state id="get_individual_property_preference_verify_individual">
+		<!-- is <individualname> a member of class <class>? -->
+		<onentry>
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:messageId')"
+				expr="'get_individual_property_preference_verify_individual'" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:verbatim1')"
+				expr="Data(Individual, 'cc:entity/p:Individual/p:name')" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:key/p:ExternalKey')"
+				expr="Data(ClassMember, 'cc:entity/p:ClassMember/p:classKey')" />
+			<send targettype="'x-java'" namelist="speakNameKeyAndVerbatim" />
+		</onentry>
+		<!-- yes, ask the range class -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_create_individual" />
+
+		<!-- no?  why did the user mention it?  start over. -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_which_prop">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_confused'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the subject individual -->
+	<state id="get_individual_property_preference_create_individual">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Individual, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_property_preference_create_class_member">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(ActiveIndividual, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+			<!-- populate the utility with the new individual -->
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:individualKey')"
+				expr="Data(ActiveIndividual, 'cc:entity/p:Individual/p:key')" />
+			<!-- populate the ClassMember we're about to create -->
+			<assign location="Data(ClassMember, 'cc:entity/p:ClassMember/p:individualKey')"
+				expr="Data(ActiveIndividual, 'cc:entity/p:Individual/p:key')" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the subject individual's classmember -->
+	<state id="get_individual_property_preference_create_class_member">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(ClassMember, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_property_preference_what_value">
+			<!-- don't need to remember the created ClassMember -->
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+
+	<!-- what value for the utility [0,1]? -->
+	<state id="get_individual_property_preference_what_value">
+		<onentry>
+			<assign location="Data(speakThreeKeys, 'cc:messageId')" expr="'get_individual_property_preference_what_value'" />
+			<assign location="Data(speakThreeKeys, 'cc:key0/p:ExternalKey[1]')"
+				expr="Data(get_individual_property_preference_input, 'cc:input/cc:decision//p:Decision/p:classKey[1]')" />
+			<assign location="Data(speakThreeKeys, 'cc:key1/p:ExternalKey[1]')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:key[1]')" />
+			<assign location="Data(speakThreeKeys, 'cc:key2/p:ExternalKey[1]')"
+				expr="Data(ActiveIndividual, 'cc:entity/p:Individual/p:key[1]')" />
+			<send targettype="'x-java'" namelist="speakThreeKeys" />
+		</onentry>
+
+		<!-- "skip" means "end" -->
+		<transition event="user_input" cond="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:event') == 'skip'"
+			target="get_individual_property_preference_final" />
+
+		<!-- user provided a number from 0 to 5 -->
+		<transition event="user_input"
+			cond="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:event') == 'number'
+				and Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') ge 0
+				and Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') le 5"
+			target="get_individual_property_preference_create">
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:value')"
+				expr="Data(_eventdatamap['user_input'], 'cc:UserInput/cc:text') / 5" />
+		</transition>
+
+		<!-- otherwise, ask again (or maybe this should just return?) -->
+		<transition event="user_input" target="get_individual_property_preference_what_value">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_what_value_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the utility record -->
+	<state id="get_individual_property_preference_create">
+		<onentry>
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:stakeholderKey')"
+				expr="Data(get_individual_property_preference_input, 'cc:input/cc:stakeholder/p:Stakeholder/p:key[1]')" />
+			<assign location="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:propertyKey')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:key[1]')" />
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(IndividualPropertyUtility, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_property_preference_more_for_prop">
+			<!-- don't care about the returned entity -->
+			<!-- confirm the new record -->
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_property_preference_create_success'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(IndividualPropertyUtility, 'cc:entity/p:IndividualPropertyUtility/p:value') * 5.0" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- want to talk about another individual for this property? -->
+	<state id="get_individual_property_preference_more_for_prop">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId[1]')" expr="'get_individual_property_preference_more_for_prop'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey[1]')"
+				expr="Data(ActiveProperty, 'cc:entity/p:IndividualProperty/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_which_individual" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_more_prop" />
+		<!-- anything else == ask again -->
+		<transition event="user_input" target="get_individual_property_preference_more_for_prop" />
+	</state>
+
+	<!-- want to talk about another property? -->
+	<state id="get_individual_property_preference_more_prop">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_more_prop'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_which_prop" />
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_final" />
+		<!-- anything else == ask again -->
+		<transition event="user_input" target="get_individual_property_preference_more_prop" />
+	</state>
+
+	<!-- User said something we didn't recognize, so maybe it's a hertofore-unknown property.  -->
+	<state id="get_individual_property_preference_verify_new_prop">
+		<onentry>
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:messageId')"
+				expr="'get_individual_property_preference_verify_new_prop'" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:verbatim1')"
+				expr="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:name')" />
+			<assign location="Data(speakNameKeyAndVerbatim, 'cc:key/p:ExternalKey')"
+				expr="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:domainClassKey')" />
+			<send targettype="'x-java'" namelist="speakNameKeyAndVerbatim" />
+		</onentry>
+		<!-- yes, ask the range class -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_property_which_range_class" />
+		<!-- no?  why did the user mention it?  start over. -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_which_prop">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_confused'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- what's the range of the new property?
+		TODO: this is awful, experts-only.  do it differently. -->
+	<state id="get_individual_property_preference_property_which_range_class">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')"
+				expr="'get_individual_property_preference_property_which_range_class'" />
+			<assign location="Data(speak1, 'cc:verbatim1')"
+				expr="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<!-- user supplies a class -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'model_entity' and Data(_eventdata, 'cc:UserInput/cc:type') == 'class'"
+			target="get_individual_property_preference_create_prop">
+			<assign location="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:rangeClassKey')"
+				expr="_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- unknown utterance might be new class (skip description for now) -->
+		<transition event="user_input" target="get_individual_property_preference_verify_new_range">
+			<assign location="Data(Class, 'cc:entity/p:Class/p:name')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+		</transition>
+	</state>
+
+	<!-- verify the new range class -->
+	<state id="get_individual_property_preference_verify_new_range">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_individual_property_preference_verify_new_range'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(Class, 'cc:entity/p:Class/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_individual_property_preference_create_range" />
+		<!-- no?  why did the user mention it?  start over.
+			TODO: back up one step rather than to the beginning? -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_individual_property_preference_which_prop">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_confused'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create a new range class, which has already been populated. -->
+	<state id="get_individual_property_preference_create_range">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Class, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_property_preference_create_prop">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(RangeClass, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+			<assign location="Data(IndividualProperty, 'cc:entity/p:IndividualProperty/p:rangeClassKey')"
+				expr="Data(RangeClass, 'cc:entity/p:Class/p:key')" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the new property, which has already been populated. -->
+	<state id="get_individual_property_preference_create_prop">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(IndividualProperty, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_individual_property_preference_which_individual">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(ActiveProperty, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_individual_property_preference_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_individual_property_preference_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<final id="get_individual_property_preference_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(get_individual_property_preference_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

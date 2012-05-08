@@ -1,0 +1,68 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version="1.0"
+	initialstate="assistant_run">
+
+	<datamodel>
+		<data name="AssistantAction">
+			<cc:action></cc:action>
+		</data>
+		<!-- The class we're currently talking about -->
+
+		<data name="findDecisionByClassAndUser">
+			<cc:classKey></cc:classKey>
+		</data>
+		<data name="resetIterator"></data>
+		<data name="fetchDecision"></data>
+		<data name="createDecision">
+			<cc:name></cc:name>
+		</data>
+
+	</datamodel>
+
+	<state id="assistant_run">
+		<initial>
+			<transition target="assistant_solicit_individual_property_preference_pre" />
+		</initial>
+		<transition event="assistant_run.done" target="assistant_final_outer" />
+
+
+
+		
+		
+		
+		
+		
+		
+
+
+		<!-- ask the user if there are any individual properties they like or dislike -->
+		<state id="assistant_solicit_individual_property_preference_pre">
+			<datamodel>
+				<data name="getIndividualProperties"></data>
+			</datamodel>
+			<onentry>
+				<send targettype="'x-java'" namelist="getProperties" />
+			</onentry>
+			<transition event="getIndividualPropertiesDone" target="assistant_solicit_individual_property_preference_post" />
+			<transition event="getIndividualPropertiesFail" target="assistant_solicit_individual_property_preference_fail" />
+		</state>
+		<state id="assistant_solicit_individual_property_preference_post"></state>
+		<state id="assistant_solicit_individual_property_preference_fail"></state>
+
+
+
+
+
+
+
+		<final id="assistant_final">
+			<onentry>
+				<assign location="Data(speak0, 'cc:messageId')" expr="'assistant_final'" />
+				<send targettype="'x-java'" namelist="speak0" />
+			</onentry>
+		</final>
+	</state>
+	<!-- assistant_run -->
+
+	<!--  this should produce parent.done for whatever parent included this file -->
+	<final id="assistant_final_outer" />
+</scxml>

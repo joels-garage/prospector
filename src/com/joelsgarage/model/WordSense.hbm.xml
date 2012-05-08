@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.joelsgarage.model">
+	<union-subclass name="WordSense" extends="ModelEntity">
+
+		<property name="word" type="text" length="8192" />
+		<property name="canonical" />
+		<component name="referentKey">
+			<property name="type" column="referentType" />
+			<property name="key" column="referentKey" length="12" />
+		</component>
+
+	</union-subclass>
+</hibernate-mapping>

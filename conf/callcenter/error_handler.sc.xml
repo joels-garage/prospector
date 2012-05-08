@@ -1,0 +1,39 @@
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter" version=" 1.0"
+	initialstate="error_handler_return">
+	
+	<!-- you should never find yourself here. -->
+	<state id="error_handler_return">
+		<transition target="normal_operation_history" />
+	</state>
+
+	<state id="unrecognized_input_error_handler">
+		<onentry>
+			<assign location="Data(UserInput, 'cc:event')" expr="Data(_eventdata, 'cc:UserInput/cc:event')" />
+			<assign location="Data(UserInput, 'cc:utterance')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<assign location="Data(speak1, 'cc:messageId')" expr="'unrecognized_input'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(UserInput, 'cc:utterance')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition target="normal_operation_history" />
+		<onexit>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'help_abort'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onexit>
+	</state>
+
+	<state id="inappropriate_input_error_handler">
+		<onentry>
+			<assign location="Data(UserInput, 'cc:event')" expr="Data(_eventdata, 'cc:UserInput/cc:event')" />
+			<assign location="Data(UserInput, 'cc:utterance')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+			<assign location="Data(speak1, 'cc:messageId')" expr="'inappropriate_input'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(UserInput, 'cc:utterance')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition target="normal_operation_history" />
+		<onexit>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'help_abort'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onexit>
+	</state>
+
+</scxml>

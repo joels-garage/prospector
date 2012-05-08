@@ -1,0 +1,727 @@
+<?xml version="1.0"?>
+<result xmlns:html="http://www.w3.org/1999/xhtml">
+<cultivar>
+<name>
+<latin-name>Viburnum  opulus L. var. americanum Aiton</latin-name>
+<common-name>American cranberrybush</common-name>
+<code><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></code>
+</name>
+
+<data>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Duration </name>
+<value>Perennial</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Growth Habit</name>
+<value>Tree, Shrub</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Native Status</name>
+<value>L48 (N), CAN (N), SPM (N)</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Federal T/E Status</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>National Wetland Indicator </name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Active Growth Period</name>
+<value>Spring and Summer</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>After Harvest Regrowth Rate</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Bloat</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>C:N Ratio</name>
+<value>High</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Coppice Potential</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fall Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fire Resistant</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Flower Color</name>
+<value>White</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Flower Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Foliage Color</name>
+<value>Green</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Foliage Porosity Summer</name>
+<value>Moderate</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Foliage Porosity Winter</name>
+<value>Porous</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Foliage Texture</name>
+<value>Coarse</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Color</name>
+<value>Red</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Growth Form</name>
+<value>Multiple Stem</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Growth Rate</name>
+<value>Slow</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Height at 20 Years, Maximum (feet)</name>
+<value>6</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Height, Mature (feet)</name>
+<value>6</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Known Allelopath</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Leaf Retention</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Lifespan</name>
+<value>Long</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Low Growing Grass</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Nitrogen Fixation</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Resprout Ability</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Shape and Orientation</name>
+<value>Erect</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Toxicity</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Adapted to Coarse Textured Soils</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Adapted to Fine Textured Soils</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Adapted to Medium Textured Soils</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Anaerobic Tolerance</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>CaCO3 Tolerance</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Cold Stratification Required</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Drought Tolerance</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fertility Requirement</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fire Tolerance</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Frost Free Days, Minimum</name>
+<value>130</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Hedge Tolerance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Moisture Use</name>
+<value>High</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>pH, Minimum</name>
+<value>5.5</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>pH, Maximum</name>
+<value>7.5</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Planting Density per Acre, Minimum</name>
+<value>680</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Planting Density per Acre, Maximum</name>
+<value>1200</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Precipitation, Minimum</name>
+<value>32</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Precipitation, Maximum</name>
+<value>60</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Root Depth, Minimum (inches)</name>
+<value>14</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Salinity Tolerance</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Shade Tolerance</name>
+<value>Intolerant</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Temperature, Minimum (�F)</name>
+<value>-38</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Bloom Period</name>
+<value>Late Spring</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Commercial Availability</name>
+<value>Routinely Available</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Abundance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Period Begin</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Period End</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fruit/Seed Persistence</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Bare Root</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Bulb</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Container</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Corm</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Cuttings</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Seed</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Sod</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Sprigs</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Propagated by Tubers</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Seed per Pound</name>
+<value>13600</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Seed Spread Rate</name>
+<value>Slow</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Seedling Vigor</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Small Grain</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Vegetative Spread Rate</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Berry/Nut/Seed Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Christmas Tree Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fodder Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Fuelwood Product</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Lumber Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Naval Store Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Nursery Stock Product</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Palatable Browse Animal</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Palatable Graze Animal</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Palatable Human</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Post Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Protein Potential</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Pulpwood Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2</key></subjectKey>
+<name>Veneer Product</name>
+<value>No</value>
+</characteristic>
+
+</data>
+
+<name>
+<latin-name>Viburnum  opulus L. var. americanum Aiton</latin-name>
+<common-name>American cranberrybush</common-name>
+<code><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></code>
+</name>
+
+<data>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Duration </name>
+<value>Perennial</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Growth Habit</name>
+<value>Tree, Shrub</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Native Status</name>
+<value>L48 (N), CAN (N), SPM (N)</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Federal T/E Status</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>National Wetland Indicator </name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Active Growth Period</name>
+<value>Spring and Summer</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>After Harvest Regrowth Rate</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Bloat</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>C:N Ratio</name>
+<value>High</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Coppice Potential</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fall Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fire Resistant</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Flower Color</name>
+<value>White</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Flower Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Foliage Color</name>
+<value>Green</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Foliage Porosity Summer</name>
+<value>Dense</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Foliage Porosity Winter</name>
+<value>Moderate</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Foliage Texture</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Color</name>
+<value>Red</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Conspicuous</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Growth Form</name>
+<value>Multiple Stem</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Growth Rate</name>
+<value>Slow</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Height at 20 Years, Maximum (feet)</name>
+<value>4</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Height, Mature (feet)</name>
+<value>4.5</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Known Allelopath</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Leaf Retention</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Lifespan</name>
+<value>Long</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Low Growing Grass</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Nitrogen Fixation</name>
+<value/>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Resprout Ability</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Shape and Orientation</name>
+<value>Erect</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Toxicity</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Adapted to Coarse Textured Soils</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Adapted to Fine Textured Soils</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Adapted to Medium Textured Soils</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Anaerobic Tolerance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>CaCO3 Tolerance</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Cold Stratification Required</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Drought Tolerance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fertility Requirement</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fire Tolerance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Frost Free Days, Minimum</name>
+<value>90</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Hedge Tolerance</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Moisture Use</name>
+<value>High</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>pH, Minimum</name>
+<value>4.5</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>pH, Maximum</name>
+<value>6.9</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Planting Density per Acre, Minimum</name>
+<value>700</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Planting Density per Acre, Maximum</name>
+<value>1100</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Precipitation, Minimum</name>
+<value>35</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Precipitation, Maximum</name>
+<value>55</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Root Depth, Minimum (inches)</name>
+<value>14</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Salinity Tolerance</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Shade Tolerance</name>
+<value>Intermediate</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Temperature, Minimum (�F)</name>
+<value>-33</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Bloom Period</name>
+<value>Mid Spring</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Commercial Availability</name>
+<value>Routinely Available</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Abundance</name>
+<value>High</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Period Begin</name>
+<value>Summer</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Period End</name>
+<value>Fall</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fruit/Seed Persistence</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Bare Root</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Bulb</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Container</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Corm</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Cuttings</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Seed</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Sod</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Sprigs</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Propagated by Tubers</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Seed per Pound</name>
+<value>13000</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Seed Spread Rate</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Seedling Vigor</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Small Grain</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Vegetative Spread Rate</name>
+<value>Slow</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Berry/Nut/Seed Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Christmas Tree Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fodder Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Fuelwood Product</name>
+<value>None</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Lumber Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Naval Store Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Nursery Stock Product</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Palatable Browse Animal</name>
+<value>Medium</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Palatable Graze Animal</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Palatable Human</name>
+<value>Yes</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Post Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Protein Potential</name>
+<value>Low</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Pulpwood Product</name>
+<value>No</value>
+</characteristic>
+<characteristic><subjectKey><namespace>plants.usda.com</namespace><type>individual</type><key>VIOPA2_Cultivar:Compactum</key></subjectKey>
+<name>Veneer Product</name>
+<value>No</value>
+</characteristic>
+
+</data>
+</cultivar></result>

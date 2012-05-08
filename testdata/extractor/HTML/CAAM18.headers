@@ -1,0 +1,8 @@
+HTTP/1.0 200 OK
+Date: Fri, 13 Jun 2008 21:49:53 GMT
+Server: Apache/2.0.52 (Unix) DAV/2 mod_jk/1.2.14
+Content-Type: text/html;charset=ISO-8859-1
+X-Cache: MISS from localhost
+Via: 1.0 localhost (squid/3.0.STABLE6)
+Proxy-Connection: close
+

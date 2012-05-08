@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+                "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+		<!--  note special value testtest below -->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/testtest</property>
+
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<!--<property name="connection.pool_size">1</property>-->
+
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">1800</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+		<property name="current_session_context_class">thread</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="show_sql">true</property>
+
+		<!--<property name="hbm2ddl.auto">create</property>-->
+		<!--<property name="hbm2ddl.auto">update</property>-->
+		<!-- note special value create-drop below -->
+		<property name="hbm2ddl.auto">create-drop</property>
+
+
+		<!--  all these mappings use "table per concrete class" using union-subclass -->
+
+			<mapping resource="com/joelsgarage/prospector/client/model/AffineMeasurementUnit.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Annotation.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Class.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/ClassAxiom.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/ClassMember.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/ClassPreference.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Decision.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/DerivedProvenance.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Document.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/EmailDocument.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/Evidence.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Fact.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Individual.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/IndividualFact.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/IndividualPreference.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/IndividualProperty.hbm.xml" />
+		<mapping
+			resource="com/joelsgarage/prospector/client/model/IndividualPropertyPreference.hbm.xml" />
+		<mapping
+			resource="com/joelsgarage/prospector/client/model/IndividualPropertyUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/IndividualUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Interpretation.hbm.xml" />
+
+		<mapping
+			resource="com/joelsgarage/prospector/client/model/MaximizerQuantityPropertyUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/MeasurementQuantity.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/MeasurementUnit.hbm.xml" />
+		<mapping
+			resource="com/joelsgarage/prospector/client/model/MinimizerQuantityPropertyUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/ModelEntity.hbm.xml" />
+
+		<mapping
+			resource="com/joelsgarage/prospector/client/model/OptimizerQuantityPropertyUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Permission.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Person.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Preference.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Property.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/PropertyPreference.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/PropertyWeight.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Provenance.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/QuantityFact.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/QuantityProperty.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/QuantityPropertyUtility.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Session.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/Stakeholder.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/StandardMeasurementUnit.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/StringFact.hbm.xml" />
+
+		<mapping resource="com/joelsgarage/prospector/client/model/StringProperty.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/UnitSynonym.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/User.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/UserAction.hbm.xml" />
+		<mapping resource="com/joelsgarage/prospector/client/model/WebDocument.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

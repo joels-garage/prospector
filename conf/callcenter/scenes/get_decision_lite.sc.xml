@@ -1,0 +1,291 @@
+<!--
+	Asks the user for the decision class. If found, looks for a decision of which this user is a
+	stakeholder. If found, done. If not found, create one. It's like get_decision but with no dialog
+	branches.
+	
+-->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="get_decision_lite_start">
+	<datamodel>
+		<data name="get_decision_lite_input">
+			<cc:input>
+				<!-- who are we talking to right now? -->
+				<cc:user />
+			</cc:input>
+		</data>
+		<data name="get_decision_lite_output">
+			<cc:output>
+				<!-- the key of the chosen decision, or null if nothing was chosen -->
+				<cc:key>
+					<p:ExternalKey />
+				</cc:key>
+			</cc:output>
+		</data>
+		<!-- Java methods -->
+		<data name="findDecisionByClassAndUser">
+			<cc:classKey></cc:classKey>
+		</data>
+		<data name="resetIterator"></data>
+		<data name="fetchDecision"></data>
+
+		<!-- Internal data, i.e. stuff passed between states -->
+		<!-- The class we're currently talking about -->
+		<data name="ActiveClass">
+			<cc:key></cc:key>
+		</data>
+		<data name="ActiveDecision">
+			<cc:decision />
+		</data>
+	</datamodel>
+
+	<state id="get_decision_lite_start">
+		<onentry>
+			<!-- this should fail with a warning, since we don't have any input -->
+			<assign location="Data(get_decision_lite_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(get_decision_lite_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="get_decision_lite_get_class_ask" />
+	</state>
+
+	<!-- Greeting: What can I help you with? -->
+	<state id="get_decision_lite_get_class_ask">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_decision_lite_get_class_ask'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- Waiting for a response.  Several options exist. -->
+		<!-- Only one of these transitions is selected, using document order. -->
+		<!-- User specifies a class by itself, as a direct answer to the question -->
+		<transition event="user_input"
+			cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'model_entity' and Data(_eventdata, 'cc:UserInput/cc:type') == 'class'"
+			target="get_decision_lite_store_class">
+			<assign location="Data(ActiveClass, 'cc:key')" expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- User says "i want x" -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'goal'"
+			target="get_decision_lite_store_class">
+			<assign location="Data(ActiveClass, 'cc:key')" expr="Data(_eventdata, 'cc:UserInput/cc:key')" />
+		</transition>
+		<!-- User says "abort" -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'abort'"
+			target="get_decision_lite_final">
+			<assign location="Data(get_decision_lite_output, 'cc:output/cc:key')" expr="''" />
+		</transition>
+		<!-- anything else might be a new class -->
+		<transition event="user_input" target="get_decision_lite_verify_new_class">
+			<!-- its name is whatever the user said -->
+			<assign location="Data(Decision, 'cc:entity/p:Class/p:name')" expr="Data(_eventdata, 'cc:UserInput/cc:utterance')" />
+		</transition>
+	</state>
+
+	<state id="get_decision_lite_verify_new_class">
+		<onentry>
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_decision_lite_verify_new_class'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(Class, 'cc:entity/p:Class/p:name')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_decision_lite_create_class" />
+		<!-- no?  why did the user mention it?  start over.
+			TODO: back up one step rather than to the beginning? -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_decision_lite_get_class_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_decision_lite_get_class_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<!-- create the new class the user specified. -->
+	<state id="get_decision_lite_create_class">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Class, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_decision_lite_create_decision">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(Class, 'cc:entity')" expr="Data(_eventdata, 'cc:Result/cc:entity')" />
+			<assign location="Data(Decision, 'cc:entity/p:Decision/p:classKey')" expr="Data(Class, 'cc:entity/p:Class/p:key')" />
+			<assign location="Data(Decision, 'cc:entity/p:Decision/p:name')" expr="Data(Class, 'cc:entity/p:Class/p:name')" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_decision_lite_final">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_decision_lite_fail'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+	<!-- make a decision of the very same name -->
+	<state id="get_decision_lite_create_decision">
+		<onentry>
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Decision, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_decision_lite_create_stakeholder">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(get_decision_lite_output, 'cc:output/cc:key/p:ExternalKey')"
+				expr="Data(_eventdata, 'cc:Result/cc:entity/p:Decision/p:key')" />
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'get_decision_lite_create_decision_success'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(_eventdata, 'cc:Result/cc:entity/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_decision_lite_final">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_decision_lite_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+	
+	<!-- create the stakeholder record for this user -->
+	<state id="get_decision_lite_create_stakeholder">
+		<onentry>
+			<assign location="Data(Stakeholder, 'cc:entity/p:Stakeholder/p:decisionKey')"
+				expr="Data(get_decision_lite_output, 'cc:output/cc:key/p:ExternalKey')" />
+			<assign location="Data(Stakeholder, 'cc:entity/p:Stakeholder/p:userKey')"
+				expr="Data(get_decision_lite_input, 'cc:input/cc:user/p:User/p:key[1]')" />
+			<assign location="Data(createModelEntity, 'cc:entity')" expr="Data(Stakeholder, 'cc:entity')" />
+			<send targettype="'x-java'" namelist="createModelEntity" />
+		</onentry>
+		<transition event="createModelEntitySuccess" target="get_decision_lite_final">
+			<!-- entity is returned in eventdata -->
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'get_decision_lite_create_stakeholder_success'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(_eventdata, 'cc:Result/cc:entity/p:Stakeholder/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</transition>
+		<transition event="createModelEntityFail" target="get_decision_lite_final">
+			<assign location="Data(speak1, 'cc:messageId')" expr="'get_decision_lite_fail'" />
+			<assign location="Data(speak1, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:error')" />
+			<send targettype="'x-java'" namelist="speak1" />
+		</transition>
+	</state>
+
+	<!-- got a class, store it in the datamodel, and look for decisions relevant to this class and user -->
+	<!-- todo: deal with multiple matching classes -->
+	<!-- TODO: fetch and store the class name here -->
+	<state id="get_decision_lite_store_class">
+		<onentry>
+			<!-- Say: I know about <class> -->
+			<assign location="Data(speakNameLookup, 'cc:messageId')" expr="'get_decision_lite_get_class_confirm'" />
+			<assign location="Data(speakNameLookup, 'cc:keyString')" expr="Data(ActiveClass, 'cc:key')" />
+			<assign location="Data(findDecisionByClassAndUser, 'cc:classKey')" expr="Data(ActiveClass, 'cc:key')" />
+			<send targettype="'x-java'" namelist="speakNameLookup findDecisionByClassAndUser" />
+		</onentry>
+
+		<!-- nothing matches; want to create it? -->
+		<transition event="findDecisionByClassAndUserResult" cond="Data(_eventdata, 'cc:Result/cc:count') == 0"
+			target="get_decision_lite_create_decision_ask">
+			<assign location="Data(speakNameLookup, 'cc:messageId')" expr="'get_decision_lite_get_class_no_results'" />
+			<assign location="Data(speakNameLookup, 'cc:keyString')" expr="Data(ActiveClass, 'cc:key')" />
+			<send targettype="'x-java'" namelist="speakNameLookup" />
+		</transition>
+		<!-- got one result; fetch it -->
+		<transition event="findDecisionByClassAndUserResult" cond="Data(_eventdata, 'cc:Result/cc:count') == 1"
+			target="get_decision_lite_confirm_decision_fetch">
+			<assign location="Data(speakNameLookup, 'cc:messageId')" expr="'get_decision_lite_get_class_got_one'" />
+			<assign location="Data(speakNameLookup, 'cc:keyString')" expr="Data(ActiveClass, 'cc:key')" />
+			<send targettype="'x-java'" namelist="speakNameLookup" />
+		</transition>
+		<!-- multiple results, bail out. -->
+		<transition event="findDecisionByClassAndUserResult" cond="Data(_eventdata, 'cc:Result/cc:count') > 1"
+			target="get_decision_lite_confirm_decision_fetch">
+			<assign location="Data(speakNameAndVerbatim, 'cc:messageId')" expr="'get_decision_lite_get_class_result_count'" />
+			<assign location="Data(speakNameAndVerbatim, 'cc:keyString')" expr="Data(ActiveClass, 'cc:key')" />
+			<assign location="Data(speakNameAndVerbatim, 'cc:verbatim1')" expr="Data(_eventdata, 'cc:Result/cc:count')" />
+			<send targettype="'x-java'" namelist="speakNameAndVerbatim" />
+		</transition>
+	</state>
+
+	<!-- Fetch the name of the next decision -->
+	<state id="get_decision_lite_confirm_decision_fetch">
+		<onentry>
+			<send targettype="'x-java'" namelist="fetchDecision" />
+		</onentry>
+		<transition event="fetchDecisionNext" target="get_decision_lite_confirm_decision_ask">
+			<!-- we store the whole returned decision -->
+			<assign location="Data(ActiveDecision, 'cc:decision')" expr="Data(_eventdata, 'cc:Result/cc:decision')" />
+		</transition>
+		<!-- no more to look at -->
+		<transition event="fetchDecisionDone" target="get_decision_lite_confirm_decision_done" />
+	</state>
+
+	<!-- use this one? -->
+	<state id="get_decision_lite_confirm_decision_ask">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'get_decision_lite_confirm_decision'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(ActiveDecision, 'cc:decision/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</onentry>
+		<!-- use this one -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="get_decision_lite_final">
+			<assign location="Data(get_decision_lite_output, 'cc:output/cc:key/p:ExternalKey')"
+				expr="Data(ActiveDecision, 'cc:decision/p:Decision/p:key')" />
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'get_decision_lite_select_decision'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(ActiveDecision, 'cc:decision/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</transition>
+		<!-- not this one, look at the next one -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_decision_lite_confirm_decision_fetch" />
+		<!-- make a new one: ask its name -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'new'"
+			target="get_decision_lite_create_decision_ask" />
+	</state>
+	<!-- no more -->
+	<state id="get_decision_lite_confirm_decision_done">
+		<onentry>
+			<!-- look at the list again? -->
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_decision_lite_confirm_decision_done'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- yes, restart iterating -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_decision_lite_reset_iterator" />
+		<!-- no, ask about creating a new one -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_decision_lite_create_decision_ask" />
+	</state>
+
+	<!-- start over -->
+	<state id="get_decision_lite_reset_iterator">
+		<onentry>
+			<send targettype="'x-java'" namelist="resetIterator" />
+		</onentry>
+		<transition event="resetIteratorDone" target="get_decision_lite_confirm_decision_fetch" />
+	</state>
+
+	<!-- create a new one? use the same as the class name. -->
+	<state id="get_decision_lite_create_decision_ask">
+		<onentry>
+			<assign location="Data(speak0, 'cc:messageId')" expr="'get_decision_lite_create_decision_ask'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</onentry>
+		<!-- what's its name? -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'"
+			target="get_decision_lite_create_decision_name"/>
+		<!-- nothing left to do, just exit with a null key -->
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'"
+			target="get_decision_lite_final">
+			<assign location="Data(get_decision_lite_output, 'cc:output/cc:key')" expr="''" />
+		</transition>
+	</state>
+
+	<!-- name is the same as the class name -->
+	<state id="get_decision_lite_create_decision_name">
+		<onentry>
+			<assign location="Data(fetchModelEntity, 'cc:keyString')" expr="Data(ActiveClass, 'cc:key')" />
+			<send targettype="'x-java'" namelist="fetchModelEntity" />
+		</onentry>
+		<transition event="fetchModelEntitySuccess" target="get_decision_lite_create_decision">
+			<assign location="Data(Class, 'cc:entity')" expr="Data(_eventdata, 'cc:entity')" />
+			<assign location="Data(Decision, 'cc:entity/p:Decision/p:name')" expr="Data(_eventdata, 'cc:entity/p:Class/p:name')" />
+		</transition>
+		<transition event="fetchModelEntityFail" target="get_decision_lite_final" />
+	</state>
+
+	<final id="get_decision_lite_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(get_decision_lite_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

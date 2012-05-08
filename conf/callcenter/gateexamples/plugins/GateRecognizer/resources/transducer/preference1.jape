@@ -1,0 +1,20 @@
+Phase:	Preference1
+Input: Lookup Token
+Options: control = appelt
+
+// Combines annotation matching with plain text matching
+
+Rule: Preference1
+(
+ {Lookup.majorType == pronoun, Lookup.person == first}
+ ({Lookup.majorType == sentiment, Lookup.lexicalCategory == verb}):sentiment
+ ({Lookup.majorType == model_entity}):entity
+)
+:gate_recognizer
+-->
+:gate_recognizer.Preference = {
+  degree = :sentiment.Lookup.degree,
+  externalKey = :entity.Lookup.key,
+  type = :entity.Lookup.type,
+  rule = "Preference1"
+  }

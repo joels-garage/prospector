@@ -1,0 +1,64 @@
+<!--
+	The "verify decision" scene asks the user to confirm that the specified decision
+	is still what the user wants to work on.
+	
+	The idea is that this scene would be played if it's been awhile since the last
+	conversation, i.e. it's a form of reorientation.
+	
+	The output is just xml schema boolean, e.g. "true" or "false" (or "0" or "1")
+-->
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:cc="http://www.joelsgarage.com/callcenter"
+	xmlns:p="http://www.joelsgarage.com/prospector" version="1.0" initialstate="verify_decision_start">
+	<datamodel>
+		<data name="verify_decision_input">
+			<cc:input>
+				<cc:decision></cc:decision>
+			</cc:input>
+		</data>
+		<data name="verify_decision_output">
+			<cc:output>
+				<!-- true or false -->
+				<cc:value></cc:value>
+			</cc:output>
+		</data>
+	</datamodel>
+
+	<state id="verify_decision_start">
+		<onentry>
+			<!-- this should fail with a warning, since we don't have any input -->
+			<assign location="Data(verify_decision_input, 'cc:input')" expr="Data(_eventdata, 'cc:input')" />
+			<assign location="Data(verify_decision_output, 'cc:output')" expr="''" />
+		</onentry>
+		<transition target="verify_decision_ask" />
+	</state>
+
+	<!-- Still want to work on X? -->
+	<state id="verify_decision_ask">
+		<onentry>
+			<assign location="Data(speakNameKey, 'cc:messageId')" expr="'verify_decision_ask'" />
+			<assign location="Data(speakNameKey, 'cc:key/p:ExternalKey')"
+				expr="Data(verify_decision_input, 'cc:input/cc:decision/p:Decision/p:key')" />
+			<send targettype="'x-java'" namelist="speakNameKey" />
+		</onentry>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'yes'" target="verify_decision_final">
+			<assign location="Data(verify_decision_output, 'cc:output/cc:value')" expr="'true'" />
+			<assign location="Data(speak0, 'cc:messageId')" expr="'verify_decision_true'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<transition event="user_input" cond="Data(_eventdata, 'cc:UserInput/cc:event') == 'no'" target="verify_decision_final">
+			<assign location="Data(verify_decision_output, 'cc:output/cc:value')" expr="'false'" />
+			<assign location="Data(speak0, 'cc:messageId')" expr="'verify_decision_false'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+		<transition event="user_input" target="verify_decision_ask">
+			<assign location="Data(speak0, 'cc:messageId')" expr="'verify_decision_help'" />
+			<send targettype="'x-java'" namelist="speak0" />
+		</transition>
+	</state>
+
+	<final id="verify_decision_final">
+		<onentry>
+			<assign location="Data(logEndScene, 'cc:output')" expr="Data(verify_decision_output, 'cc:output')" />
+		</onentry>
+	</final>
+</scxml>

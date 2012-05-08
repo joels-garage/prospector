@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="com/joelsgarage/show/" kind="src" path="src"/>
+	<classpathentry kind="src" path="target/generated-sources"/>
+	<classpathentry excluding="com/joelsgarage/show/" kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/GWT/gwt-linux-1.5.0/gwt-user.jar" sourcepath="/GWTSource-Trunk"/>
+	<classpathentry kind="lib" path="/JUNIT/junit3.8.2/junit.jar" sourcepath="/JUNIT/junit3.8.2/src.jar"/>
+	<classpathentry kind="lib" path="/HIBERNATE/hibernate-3.2/hibernate3.jar" sourcepath="/HIBERNATE/hibernate-3.2/src"/>
+	<classpathentry kind="lib" path="/DOM4J/dom4j-1.6.1/dom4j-1.6.1.jar" sourcepath="/DOM4J/dom4j-1.6.1/src/java"/>
+	<classpathentry kind="lib" path="/ARGS4J/args4j-2.0.8/args4j-2.0.8.jar" sourcepath="/ARGS4J/args4j-2.0.8/src"/>
+	<classpathentry kind="lib" path="/COMMONS-SCXML-TRUNK/target/commons-scxml-0.9-SNAPSHOT.jar" sourcepath="/COMMONS-SCXML-TRUNK/src/main"/>
+	<classpathentry kind="lib" path="/SMACK/smack_3_0_4/smack.jar" sourcepath="/SMACK/smack_src_3_0_4/source"/>
+	<classpathentry kind="lib" path="/COMMONS-LOGGING/commons-logging-1.1.1/commons-logging-1.1.1.jar" sourcepath="/COMMONS-LOGGING/commons-logging-1.1.1/commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="/LOG4J/apache-log4j-1.2.15/log4j-1.2.15.jar" sourcepath="/LOG4J/apache-log4j-1.2.15/src/main/java"/>
+	<classpathentry kind="lib" path="/COMMONS-JEXL/commons-jexl-1.1/commons-jexl-1.1.jar" sourcepath="/COMMONS-JEXL/commons-jexl-1.1-src/src/java"/>
+	<classpathentry kind="lib" path="/JOX/jox-1.16/jox116.jar" sourcepath="/JOX/jox-1.16/source"/>
+	<classpathentry kind="lib" path="/DTDPARSER/dtdparser-1.21/dtdparser121.jar" sourcepath="/DTDPARSER/dtdparser-1.21/source"/>
+	<classpathentry kind="lib" path="/GOOGLE-COLLECTIONS/google-collect-snapshot-20080530/google-collect-snapshot-20080530.jar" sourcepath="/GOOGLE-COLLECTIONS/google-collect-snapshot-20080530/src"/>
+	<classpathentry kind="lib" path="/HERITRIX/heritrix-1.14.0/heritrix-1.14.0.jar" sourcepath="/HERITRIX/heritrix-1.14.0/src/java"/>
+	<classpathentry kind="lib" path="/XALAN-J/xalan-j_2_7_1/serializer.jar"/>
+	<classpathentry kind="lib" path="/XALAN-J/xalan-j_2_7_1/xalan.jar"/>
+	<classpathentry kind="lib" path="/XALAN-J/xalan-j_2_7_1/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/XALAN-J/xalan-j_2_7_1/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/HTMLCLEANER/htmlcleaner-1.55/htmlcleaner1_55.jar" sourcepath="/HTMLCLEANER/htmlcleaner-1.55/src"/>
+	<classpathentry kind="lib" path="/COMMONS-BEANUTILS/commons-beanutils-1.7.0/commons-beanutils.jar" sourcepath="/COMMONS-BEANUTILS/commons-beanutils-1.7.0-src/src/java"/>
+	<classpathentry kind="lib" path="/STRIPES/stripes-1.5RC1/lib/stripes.jar" sourcepath="/STRIPES/stripes-1.5RC1/src"/>
+	<classpathentry kind="lib" path="/TOMCAT/apache-tomcat-6.0.16/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/COLT/colt-1.2.0/lib/colt.jar" sourcepath="/COLT/colt-1.2.0/src"/>
+	<classpathentry kind="lib" path="/GATE/gate-4.0-build2752-ALL/bin/gate.jar" sourcepath="/GATE/gate-4.0-build2752-ALL/src"/>
+	<classpathentry kind="lib" path="/GATE/gate-4.0-build2752-ALL/lib/nekohtml-0.9.5.jar"/>
+	<classpathentry kind="lib" path="/OPENCSV/opencsv-1.8/deploy/opencsv-1.8.jar" sourcepath="/OPENCSV/opencsv-1.8/src"/>
+	<classpathentry kind="lib" path="/PROTOBUF/protobuf-2.0.3/dist/protobuf.jar" sourcepath="/PROTOBUF/protobuf-2.0.3/java/src/main/java"/>
+	<classpathentry kind="lib" path="/GSON/google-gson-1.2.3/gson-1.2.3.jar" sourcepath="/GSON/google-gson-1.2.3/gson-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="/JSON/json-20081120/dist/json.jar" sourcepath="/JSON/json-20081120/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
